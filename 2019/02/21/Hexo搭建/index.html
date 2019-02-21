@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="blog," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 本文以主题为material讲解。  安装Hexo npm install -g hexo-cli  创建一个叫blog的网站 hexo init blog      //切入到想放入blog的文件中  进入blog目录，运行该服务 cd bloghexo server  打开浏览器，输入http://localhost:4000/查看  修改主题和blog目录下的配置文件(下面直接称为：站">
+<meta name="keywords" content="blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo框架搭建博客记录">
+<meta property="og:url" content="https://syt-honey.github.io/2019/02/21/Hexo搭建/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="前言 本文以主题为material讲解。  安装Hexo npm install -g hexo-cli  创建一个叫blog的网站 hexo init blog      //切入到想放入blog的文件中  进入blog目录，运行该服务 cd bloghexo server  打开浏览器，输入http://localhost:4000/查看  修改主题和blog目录下的配置文件(下面直接称为：站">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-21T13:28:26.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo框架搭建博客记录">
+<meta name="twitter:description" content="前言 本文以主题为material讲解。  安装Hexo npm install -g hexo-cli  创建一个叫blog的网站 hexo init blog      //切入到想放入blog的文件中  进入blog目录，运行该服务 cd bloghexo server  打开浏览器，输入http://localhost:4000/查看  修改主题和blog目录下的配置文件(下面直接称为：站">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/02/21/Hexo搭建/"/>
+
+
+
+
+
+  <title>Hexo框架搭建博客记录 | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/02/21/Hexo搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo框架搭建博客记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T16:59:13+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><hr>
+<p>本文以主题为<code>material</code>讲解。</p>
+<p><br></p>
+<h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="创建一个叫blog的网站"><a href="#创建一个叫blog的网站" class="headerlink" title="创建一个叫blog的网站"></a>创建一个叫blog的网站</h4><hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init blog      //切入到想放入blog的文件中</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="进入blog目录，运行该服务"><a href="#进入blog目录，运行该服务" class="headerlink" title="进入blog目录，运行该服务"></a>进入blog目录，运行该服务</h4><hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd blog</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="打开浏览器，输入http-localhost-4000-查看"><a href="#打开浏览器，输入http-localhost-4000-查看" class="headerlink" title="打开浏览器，输入http://localhost:4000/查看"></a>打开浏览器，输入<code>http://localhost:4000/</code>查看</h4><hr>
+<p><br></p>
+<h4 id="修改主题和blog目录下的配置文件-下面直接称为：站点配置文件"><a href="#修改主题和blog目录下的配置文件-下面直接称为：站点配置文件" class="headerlink" title="修改主题和blog目录下的配置文件(下面直接称为：站点配置文件)"></a>修改主题和<code>blog</code>目录下的配置文件(下面直接称为：站点配置文件)</h4><hr>
+<ul>
+<li>将自己选的主题文件放入<code>themes</code>目录下(我用的：<a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">material</a>)</li>
+<li>打开站点配置文件，找到<code>theme</code>字段，将值改为自己选的主题     </li>
+<li>将此配置文件中的一些基本信息修改为自己的信息，具体详情请见：<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo配置</a><ul>
+<li><code>language</code>：将值设置成为你网站所需要的语言，支持的语言在文件<code>/material/languages</code>中。</li>
+<li><code>description</code>：网站描述。主要用于SEO，告诉搜索引擎关于你站点的简单描述。</li>
+<li><code>url</code>：网站网址          </li>
+<li><code>root</code>：网站根目录。注意自己网站是存放在哪个目录下的。</li>
+<li><code>theme</code>：改为<code>material</code></li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h4 id="修改选中主题中的配置文件"><a href="#修改选中主题中的配置文件" class="headerlink" title="修改选中主题中的配置文件"></a>修改选中主题中的配置文件</h4><hr>
+<ul>
+<li>首先，将配置文件<code>_config.template.yml</code>copy一份到当前目录，并更名为<code>_config.yml</code>。详情请见：<a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">安装说明</a>。</li>
+<li>更改<code>_config.yml</code>配置文件中的基本信息：<ul>
+<li><code>keywords</code>：网站关键词</li>
+<li><code>site_verification</code>：搜索引擎验证，具体做法请参见：<a href="https://www.jianshu.com/p/1ae43e700c45" target="_blank" rel="noopener">给Hexo搭建的博客添加百度和谷歌的搜索引擎验证</a><ul>
+<li><code>google</code>：谷歌Search Console验证</li>
+<li><code>baidu</code>：百度站长平台验证                </li>
+</ul>
+</li>
+<li><code>structured_data</code>：在页面的<code>head</code>中生成结构化数据。这项功能需要你完善地配置主题的站点配置文件和主题配置文件。</li>
+<li><code>comment\use</code>：主题方式(我用的<code>disqus</code>)</li>
+<li><code>comment\shortname</code>：disqus shortname。//这个在disqus的哪里？？</li>
+<li><code>analytics\google_site_id</code>：自己的谷歌<code>analytics</code>ID。</li>
+</ul>
+</li>
+</ul>
+<p>注：向搜索引擎验证你对站点的所有权，用于向搜索引擎提交sitemap和管理站点被搜索引擎收录的情况。</p>
+<p><br></p>
+<h4 id="修改站点配置文件，将网站自部署到Github上"><a href="#修改站点配置文件，将网站自部署到Github上" class="headerlink" title="修改站点配置文件，将网站自部署到Github上"></a>修改站点配置文件，将网站自部署到Github上</h4><hr>
+<ul>
+<li>在文件的末尾加上：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//添加你要放博客的远程仓库部署</span><br><span class="line">deploy: type: git </span><br><span class="line">repo: https://github.com/github-name/github-name.github.io.git   //只要是你仓库地址即可，没有强制要求.github.io仓库</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
+<h4 id="安装部署使用的git插件"><a href="#安装部署使用的git插件" class="headerlink" title="安装部署使用的git插件"></a>安装部署使用的git插件</h4><hr>
+<p>我们使用的是<code>git</code>源码管理工具，所以我们需要安装<code>git</code>包进行部署，安装这个插件才能使用<code>git</code>进行自动部署。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="生成网站"><a href="#生成网站" class="headerlink" title="生成网站"></a>生成网站</h4><hr>
+<p>部署网站前，我们需要先将其生成静态网站。进入<code>blog</code>目录执行下面命令，生成的网页将会存放在根目录自动生成的<code>public</code>文件夹中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="重启生成网站，进行自动部署网站"><a href="#重启生成网站，进行自动部署网站" class="headerlink" title="重启生成网站，进行自动部署网站"></a>重启生成网站，进行自动部署网站</h4><hr>
+<p>注：每次修改后都需要重新生成网站并进行部署。         </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>参考文章：<br><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo简述</a><br><a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">material用法</a><br><a href="https://blog.csdn.net/u012028371/article/details/78666998" target="_blank" rel="noopener">Hexo用法</a></p>
+<p><br></p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/gitbook的正确打开方式/" rel="next" title="gitbook的正确打开方式">
+                <i class="fa fa-chevron-left"></i> gitbook的正确打开方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/21/JavaScript高级语言程序设计(1-4章)/" rel="prev" title="JavaScript基础知识">
+                JavaScript基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it .</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个叫blog的网站"><span class="nav-number">3.</span> <span class="nav-text">创建一个叫blog的网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入blog目录，运行该服务"><span class="nav-number">4.</span> <span class="nav-text">进入blog目录，运行该服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开浏览器，输入http-localhost-4000-查看"><span class="nav-number">5.</span> <span class="nav-text">打开浏览器，输入http://localhost:4000/查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改主题和blog目录下的配置文件-下面直接称为：站点配置文件"><span class="nav-number">6.</span> <span class="nav-text">修改主题和blog目录下的配置文件(下面直接称为：站点配置文件)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改选中主题中的配置文件"><span class="nav-number">7.</span> <span class="nav-text">修改选中主题中的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改站点配置文件，将网站自部署到Github上"><span class="nav-number">8.</span> <span class="nav-text">修改站点配置文件，将网站自部署到Github上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装部署使用的git插件"><span class="nav-number">9.</span> <span class="nav-text">安装部署使用的git插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成网站"><span class="nav-number">10.</span> <span class="nav-text">生成网站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启生成网站，进行自动部署网站"><span class="nav-number">11.</span> <span class="nav-text">重启生成网站，进行自动部署网站</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

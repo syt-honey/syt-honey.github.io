@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="gitbook," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景：最近在参加了一个学习英语课程(阅读英文原著)，内容觉得还不错，想分享给我的小伙伴们，就想着写这个啦。下面我就写写我的安装步骤，还走了蛮多坑的。  1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)2. 安装node.js// 测试npm --version 3. 你可能会遇到这样的问题： 解决方法：指定node.js的仓库为国内最大的node.js社区http://cnodej">
+<meta name="keywords" content="gitbook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitbook的正确打开方式">
+<meta property="og:url" content="https://syt-honey.github.io/2019/02/21/gitbook的正确打开方式/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="背景：最近在参加了一个学习英语课程(阅读英文原著)，内容觉得还不错，想分享给我的小伙伴们，就想着写这个啦。下面我就写写我的安装步骤，还走了蛮多坑的。  1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)2. 安装node.js// 测试npm --version 3. 你可能会遇到这样的问题： 解决方法：指定node.js的仓库为国内最大的node.js社区http://cnodej">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/nodejsRep.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/success-nodejsRep.png">
+<meta property="og:updated_time" content="2019-02-21T13:28:19.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gitbook的正确打开方式">
+<meta name="twitter:description" content="背景：最近在参加了一个学习英语课程(阅读英文原著)，内容觉得还不错，想分享给我的小伙伴们，就想着写这个啦。下面我就写写我的安装步骤，还走了蛮多坑的。  1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)2. 安装node.js// 测试npm --version 3. 你可能会遇到这样的问题： 解决方法：指定node.js的仓库为国内最大的node.js社区http://cnodej">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/nodejsRep.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/02/21/gitbook的正确打开方式/"/>
+
+
+
+
+
+  <title>gitbook的正确打开方式 | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/02/21/gitbook的正确打开方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">gitbook的正确打开方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T16:59:13+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>背景：最近在参加了一个学习英语课程(阅读英文原著)，内容觉得还不错，想分享给我的小伙伴们，就想着写这个啦。<br>下面我就写写我的安装步骤，还走了蛮多坑的。</p>
+<hr>
+<h4 id="1-卸载掉之前安装的gitbook-如果没有安装就忽略这一步"><a href="#1-卸载掉之前安装的gitbook-如果没有安装就忽略这一步" class="headerlink" title="1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)"></a>1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)</h4><h4 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2. 安装node.js"></a>2. 安装node.js</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 测试</span><br><span class="line">npm --version</span><br></pre></td></tr></table></figure>
+<h4 id="3-你可能会遇到这样的问题："><a href="#3-你可能会遇到这样的问题：" class="headerlink" title="3. 你可能会遇到这样的问题："></a>3. 你可能会遇到这样的问题：</h4><p><img src="/images/nodejsRep.png" alt="nodejsRep"></p>
+<p>解决方法：指定node.js的仓库为国内最大的node.js社区<code>http://cnodejs.org</code>提供的仓库，这里有几种方式：</p>
+<ul>
+<li><p>通过config命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config set registry http://registry.cnpmjs.org</span><br><span class="line">npm info underscore</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在npm命令行指定</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm --registry http://registry.cnpmjs.org info underscore</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 ~/.npmrc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">registry = http://registry.cnpmjs.org</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中，第三个是只需要设置一次即可。(不过我还是用了第二种方法，效果立竿见影啊~)<br><img src="/images/success-nodejsRep.png" alt="success-nodejsRep"></p>
+<p><strong>注：</strong>几小时之后更：还是乖乖用了第三个。。。每回都要写一次，认怂……</p>
+<h4 id="4-安装gitbook"><a href="#4-安装gitbook" class="headerlink" title="4. 安装gitbook"></a>4. 安装gitbook</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gitbook-cli -g</span><br><span class="line">// 检测</span><br><span class="line">gitbook -V</span><br></pre></td></tr></table></figure>
+<h4 id="5-初始化目录列表"><a href="#5-初始化目录列表" class="headerlink" title="5. 初始化目录列表"></a>5. 初始化目录列表</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gitbook init</span><br></pre></td></tr></table></figure>
+<h4 id="6-新建book-json文件，下面贴出我的文件："><a href="#6-新建book-json文件，下面贴出我的文件：" class="headerlink" title="6. 新建book.json文件，下面贴出我的文件："></a>6. 新建book.json文件，下面贴出我的文件：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;output&quot;: null,</span><br><span class="line">  &quot;generator&quot;: &quot;site&quot;,</span><br><span class="line">  &quot;author&quot;: &quot;Honeysyt&quot;,</span><br><span class="line">  &quot;title&quot;: &quot;How to Win Friends and Inflence People&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;This is an original book of Dale Carnegie, which named &apos;How to Win Friends and Influence People&apos;.&quot;,</span><br><span class="line">  &quot;extension&quot;: null,</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &quot;include-codeblock&quot;,</span><br><span class="line">    &quot;ace&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;template&quot;: &quot;ace&quot;,</span><br><span class="line">  &quot;unindent&quot;: true,</span><br><span class="line">  &quot;edit&quot;: true,</span><br><span class="line">  &quot;pluginsConfig&quot;: &#123;&#125;,</span><br><span class="line">  &quot;variables&quot;: &#123;&#125;,</span><br><span class="line">  &quot;links&quot;: &#123;</span><br><span class="line">    &quot;sidebar&quot;: &#123;</span><br><span class="line">      &quot;Have problems? Issues, give it to me~&quot;: &quot;https://github.com/syt-honey/How-to-Win-Friends-and-Influence-People/issues&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;sharing&quot;: &#123;</span><br><span class="line">      &quot;google&quot;: null,</span><br><span class="line">      &quot;facebook&quot;: null,</span><br><span class="line">      &quot;twitter&quot;: null,</span><br><span class="line">      &quot;weibo&quot;: null,</span><br><span class="line">      &quot;all&quot;: null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;pdf&quot;: &#123;</span><br><span class="line">    &quot;pageNumbers&quot;: false,</span><br><span class="line">    &quot;fontSize&quot;: 12,</span><br><span class="line">    &quot;paperSize&quot;: &quot;a4&quot;,</span><br><span class="line">    &quot;margin&quot;: &#123;</span><br><span class="line">      &quot;right&quot;: 62,</span><br><span class="line">      &quot;left&quot;: 62,</span><br><span class="line">      &quot;top&quot;: 36,</span><br><span class="line">      &quot;bottom&quot;: 36</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;headerTemplate&quot;: null,</span><br><span class="line">    &quot;footerTemplate&quot;: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可以根据你自己的情况来改。</p>
+<h4 id="7-好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流"><a href="#7-好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流" class="headerlink" title="7. 好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流~"></a>7. 好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流~</h4><p><br></p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gitbook/" rel="tag"># gitbook</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/Fore-end/" rel="next" title="Record of Fore-end">
+                <i class="fa fa-chevron-left"></i> Record of Fore-end
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/21/Hexo搭建/" rel="prev" title="Hexo框架搭建博客记录">
+                Hexo框架搭建博客记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it .</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-卸载掉之前安装的gitbook-如果没有安装就忽略这一步"><span class="nav-number">1.</span> <span class="nav-text">1. 卸载掉之前安装的gitbook(如果没有安装就忽略这一步)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装node-js"><span class="nav-number">2.</span> <span class="nav-text">2. 安装node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-你可能会遇到这样的问题："><span class="nav-number">3.</span> <span class="nav-text">3. 你可能会遇到这样的问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安装gitbook"><span class="nav-number">4.</span> <span class="nav-text">4. 安装gitbook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-初始化目录列表"><span class="nav-number">5.</span> <span class="nav-text">5. 初始化目录列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-新建book-json文件，下面贴出我的文件："><span class="nav-number">6.</span> <span class="nav-text">6. 新建book.json文件，下面贴出我的文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流"><span class="nav-number">7.</span> <span class="nav-text">7. 好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流~</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
