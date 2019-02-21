@@ -47,4 +47,4 @@ $ git config --global core.autocrlf false
 
 <br>
 
-有问题？发送 [issues](http://sythoney.me/about/) 给我~
+有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~

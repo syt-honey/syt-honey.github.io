@@ -51,5 +51,5 @@ tags: vue
 [vue-cli#2.0webpack配置解析](https://juejin.im/post/584e48b2ac502e006c74a120)   
 [webpack的中文文档](https://webpack.docschina.org/)
 
-有问题？发送 [issues](http://sythoney.me/about/) 给我~
+有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~
 
