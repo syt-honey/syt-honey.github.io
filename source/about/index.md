@@ -6,7 +6,7 @@ date: 2018-08-07 14:37:45
 #### 关于我
 ---
 
-目前仍然处于学习阶段，如果什么问题请以 "标题+问题"的形式 [issues](https://github.com/syt-honey/Blog/issues) 给我，非常感谢！具体如下：
+目前仍然处于学习阶段，如果什么问题请以 "标题+问题"的形式 [issues](https://github.com/syt-honey/syt-honey.github.io/issues) 给我，非常感谢！具体如下：
 ```
   标题：xxxxx
   问题：xxxxx
