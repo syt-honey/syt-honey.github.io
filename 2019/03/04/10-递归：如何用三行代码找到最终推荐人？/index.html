@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法与数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+<meta name="keywords" content="算法与数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10-递归：如何用三行代码找到最终推荐人？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/03/04/10-递归：如何用三行代码找到最终推荐人？/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-05T00:56:41.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10-递归：如何用三行代码找到最终推荐人？">
+<meta name="twitter:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/03/04/10-递归：如何用三行代码找到最终推荐人？/"/>
+
+
+
+
+
+  <title>10-递归：如何用三行代码找到最终推荐人？ | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/04/10-递归：如何用三行代码找到最终推荐人？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10-递归：如何用三行代码找到最终推荐人？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T17:31:17+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h3><p>推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。  </p>
+<p>一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中<code>actor_id</code>表述用户id，<code>referrer_id</code>表示推荐人id。  </p>
+<p>基于这个背景，问题是，给定用户id，如何查找这个用户的最终”推荐人？  </p>
+<h3 id="如何理解递归？"><a href="#如何理解递归？" class="headerlink" title="如何理解递归？"></a>如何理解递归？</h3><p>数据结构和算法中，两个最难理解的知识点，一个是 <strong>动态规划</strong>，另一个是 <strong>递归</strong>。  </p>
+<p>递归是一种应用非常广泛的算法(或者编程技巧)。很多数据结构和算法的编码实现都要用到递归，比如DFS深度优先搜索、前中后序二叉树遍历等等。  </p>
+<p>这里有一个很有趣的例子可以体现出递归背后的原理：</p>
+<blockquote>
+<p>周末你带着女朋友出去电影院看电影，女朋友问你，咱们现在在第几排啊？电影院太黑了，看不清没法数，现在你怎么办？</p>
+</blockquote>
+<p>别忘了你是程序员，这个可难不倒你，递归就开始排上用场了。于是你就问前面一排的人他是第几排，你想只要在他的数字上加一，就知道自己在哪一排了。但是，前面的人也看不清啊，所以他也问他前面的人。就这样一排一排往前问，直到问到第一排的人，说我在第一排，然后再这样一排一排再把数字传回来。直到你前面的人告诉你他在哪一排，于是你就知道答案了。  </p>
+<p>我们用递推公式表示：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int f(int n) &#123;</span><br><span class="line">    if(n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125; </span><br><span class="line">    return f(n-1) + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="递归需要满足的三个条件"><a href="#递归需要满足的三个条件" class="headerlink" title="递归需要满足的三个条件"></a>递归需要满足的三个条件</h3><ol>
+<li>一个问题的解可以分成几个子问题的解</li>
+<li>这个问题与子问题处理数据规模不同其它的求解思路都一样</li>
+<li>存在递归终止条件</li>
+</ol>
+<h3 id="如何编写递归代码？"><a href="#如何编写递归代码？" class="headerlink" title="如何编写递归代码？"></a>如何编写递归代码？</h3><p>如何写递归代码？写递归代码最关键的是<strong>写出递推公式， 找到终止条件</strong>。  </p>
+<h3 id="写递归应该要注意什么？"><a href="#写递归应该要注意什么？" class="headerlink" title="写递归应该要注意什么？"></a>写递归应该要注意什么？</h3><ol>
+<li>递归代码要警惕堆栈溢出。  </li>
+</ol>
+<p>在实际开发的过程中，编写代码时，我们会遇到很多问题，比如堆栈溢出。而堆栈溢出会导致系统崩溃。那么我们应该如何预防堆栈溢出呢? <strong> 我们可以通过在代码中限制递归调用的最大深度的方式</strong>来解决这个问题。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 全局变量，表示递归的深度。</span><br><span class="line">int depth = 0;</span><br><span class="line">int f(int n) &#123;</span><br><span class="line">  ++depth；</span><br><span class="line">  if (depth &gt; 1000) &#123;</span><br><span class="line">    throw exception;</span><br><span class="line">  &#125;</span><br><span class="line">  if (n == 1) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line">  return f(n-1) + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，由于最大允许的递归深度和当前剩余的栈空间大小有关，我们实现无法计算。所以，如果最大深度比较小时可以用这种方法，否则这种方法不实用。  </p>
+<ol start="2">
+<li>递归代码要警惕重复计算</li>
+</ol>
+<p>为了避免重复计算，我们可以通过一个数据结构(比如散列表)来保存已经求解过的f(k)。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int f(int n) &#123;</span><br><span class="line">    if(n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    if(n == 2) &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if(hasSolvedList.containersKey(n)) &#123;</span><br><span class="line">        return hasSolvedList.get(n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int res = f(n-1) + f(n-2);</span><br><span class="line">    hasSolvedList.put(n, res);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何将递归代码改成非递归代码？"><a href="#如何将递归代码改成非递归代码？" class="headerlink" title="如何将递归代码改成非递归代码？"></a>如何将递归代码改成非递归代码？</h3><p>递归有利有弊，递归代码的表达力很强，写起来简洁，但是空间复杂度高、有堆栈溢出的风险、存在重复计算、过多的函数会耗时较多等问题。所以，在实际开发的过程中，根据实际情况来选择是否需要使用递归的方式来实现。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 刚刚电影院的例子</span><br><span class="line">int f(int n) &#123;</span><br><span class="line">    int res = 1;</span><br><span class="line">    for(int i = 2; i &lt;= n; ++i) &#123;</span><br><span class="line">       res = res + 1;</span><br><span class="line">    &#125; </span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解答开篇问题"><a href="#解答开篇问题" class="headerlink" title="解答开篇问题"></a>解答开篇问题</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long findRootReferrerId(long actorId) &#123;</span><br><span class="line">  Long referrerId = select referrer_id from [table] where actor_id = actorId;</span><br><span class="line">  if (referrerId == null) return actorId;</span><br><span class="line">  return findRootReferrerId(referrerId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于这个解法，并没有完全解决问题。比如，当递归很深时会造成堆栈溢出。其次，当出现A推荐的人是B，B推荐的人是C，而C推荐的人是A，那就会发生死循环。  </p>
+<p>第一个问题可以用<strong>限制最大深度</strong>来解决，当然第二个可以在递归的同时检测是否为‘环’。(具体哪种方法呢？后面老师讲到了再链接过来~)  </p>
+<h3 id="课后问题"><a href="#课后问题" class="headerlink" title="课后问题"></a>课后问题</h3><p>我们平常调试代码喜欢使用IDE的单步跟踪功能，像规模比较大、递归层次很深的递归代码，几乎无法使用这种调试方式。对于递归代码，有什么好的调试方法？  </p>
+<blockquote>
+<p>@博金<br>调试递归：</p>
+<ol>
+<li>打印日志</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>结合条件断点进行调试。</li>
+</ol>
+<hr>
+<p>@涛<br>递归是什么？<br>递归就是用栈的数据结构，加上一个简单的逻辑算法实现了业务功能。</p>
+<p><br></p>
+<p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/素数筛选算法/" rel="next" title="素数筛选算法">
+                <i class="fa fa-chevron-left"></i> 素数筛选算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/人生中必做的五件事/" rel="prev" title="一生中必须要做的五件事">
+                一生中必须要做的五件事 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题提出"><span class="nav-number">1.</span> <span class="nav-text">问题提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解递归？"><span class="nav-number">2.</span> <span class="nav-text">如何理解递归？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归需要满足的三个条件"><span class="nav-number">3.</span> <span class="nav-text">递归需要满足的三个条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何编写递归代码？"><span class="nav-number">4.</span> <span class="nav-text">如何编写递归代码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写递归应该要注意什么？"><span class="nav-number">5.</span> <span class="nav-text">写递归应该要注意什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何将递归代码改成非递归代码？"><span class="nav-number">6.</span> <span class="nav-text">如何将递归代码改成非递归代码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇问题"><span class="nav-number">7.</span> <span class="nav-text">解答开篇问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后问题"><span class="nav-number">8.</span> <span class="nav-text">课后问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
