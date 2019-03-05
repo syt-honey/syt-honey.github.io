@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T00:56:41.675Z">
+<meta property="og:updated_time" content="2019-03-05T01:31:10.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10-递归：如何用三行代码找到最终推荐人？">
 <meta name="twitter:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
@@ -354,17 +354,8 @@
 <p>关于这个解法，并没有完全解决问题。比如，当递归很深时会造成堆栈溢出。其次，当出现A推荐的人是B，B推荐的人是C，而C推荐的人是A，那就会发生死循环。  </p>
 <p>第一个问题可以用<strong>限制最大深度</strong>来解决，当然第二个可以在递归的同时检测是否为‘环’。(具体哪种方法呢？后面老师讲到了再链接过来~)  </p>
 <h3 id="课后问题"><a href="#课后问题" class="headerlink" title="课后问题"></a>课后问题</h3><p>我们平常调试代码喜欢使用IDE的单步跟踪功能，像规模比较大、递归层次很深的递归代码，几乎无法使用这种调试方式。对于递归代码，有什么好的调试方法？  </p>
-<blockquote>
-<p>@博金<br>调试递归：</p>
-<ol>
-<li>打印日志</li>
-</ol>
-</blockquote>
-<ol start="2">
-<li>结合条件断点进行调试。</li>
-</ol>
 <hr>
-<p>@涛<br>递归是什么？<br>递归就是用栈的数据结构，加上一个简单的逻辑算法实现了业务功能。</p>
+<p>@博金<br>调试递归：<br>1.打印日志<br>2.结合条件断点进行调试。<br>@涛<br>递归是什么？<br>递归就是用栈的数据结构，加上一个简单的逻辑算法实现了业务功能。</p>
 <p><br></p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
