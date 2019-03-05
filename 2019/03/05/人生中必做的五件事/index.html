@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+<meta name="description" content="将吴军老师的这篇文章放在这里，时刻提醒自己。下面是原文：  前三天我讲了，如果我在临终前只能交代一句话，那么就是“上帝喜欢傻子”。如果能给晚辈更多的一些建议的话，按照我现在的认知，我觉得人一生必须做五件事。这算是我对好好做人的一点心得。 第一件，恋爱、结婚、生子。这件事本来不是问题，是人的本能。但是当我们在欢呼文明进步的时候，这件事反而成了问题。很多年轻人到了30岁，还没有认真恋爱过，更不要说一些">
 <meta name="keywords" content="生活">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一生中必须要做的五件事">
 <meta property="og:url" content="https://syt-honey.github.io/2019/03/05/人生中必做的五件事/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+<meta property="og:description" content="将吴军老师的这篇文章放在这里，时刻提醒自己。下面是原文：  前三天我讲了，如果我在临终前只能交代一句话，那么就是“上帝喜欢傻子”。如果能给晚辈更多的一些建议的话，按照我现在的认知，我觉得人一生必须做五件事。这算是我对好好做人的一点心得。 第一件，恋爱、结婚、生子。这件事本来不是问题，是人的本能。但是当我们在欢呼文明进步的时候，这件事反而成了问题。很多年轻人到了30岁，还没有认真恋爱过，更不要说一些">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T01:00:05.378Z">
+<meta property="og:updated_time" content="2019-03-05T01:06:09.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一生中必须要做的五件事">
-<meta name="twitter:description" content="问题提出推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。   一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中actor_id表述用户id，referrer_id表示推荐人id。   基于这个背景，问题是，给定用户id，如何">
+<meta name="twitter:description" content="将吴军老师的这篇文章放在这里，时刻提醒自己。下面是原文：  前三天我讲了，如果我在临终前只能交代一句话，那么就是“上帝喜欢傻子”。如果能给晚辈更多的一些建议的话，按照我现在的认知，我觉得人一生必须做五件事。这算是我对好好做人的一点心得。 第一件，恋爱、结婚、生子。这件事本来不是问题，是人的本能。但是当我们在欢呼文明进步的时候，这件事反而成了问题。很多年轻人到了30岁，还没有认真恋爱过，更不要说一些">
 
 
 
@@ -320,51 +320,44 @@
       
 
       
-        <h3 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h3><p>推荐注册返佣金这功能大家都不会陌生。在这个功能中，用户A推荐用户B，用户名注册之后又推荐了用户C。我们可以说，用户C的“最终推荐人”为A，用户的“最终推荐人”也为A，而用户A则没有推荐人。  </p>
-<p>一般来说，我们会通过数据库来记录这种推荐关系。在数据库中，我们可以记录两行数据，其中<code>actor_id</code>表述用户id，<code>referrer_id</code>表示推荐人id。  </p>
-<p>基于这个背景，问题是，给定用户id，如何查找这个用户的最终”推荐人？  </p>
-<h3 id="如何理解递归？"><a href="#如何理解递归？" class="headerlink" title="如何理解递归？"></a>如何理解递归？</h3><p>数据结构和算法中，两个最难理解的知识点，一个是 <strong>动态规划</strong>，另一个是 <strong>递归</strong>。  </p>
-<p>递归是一种应用非常广泛的算法(或者编程技巧)。很多数据结构和算法的编码实现都要用到递归，比如DFS深度优先搜索、前中后序二叉树遍历等等。  </p>
-<p>这里有一个很有趣的例子可以体现出递归背后的原理：</p>
-<blockquote>
-<p>周末你带着女朋友出去电影院看电影，女朋友问你，咱们现在在第几排啊？电影院太黑了，看不清没法数，现在你怎么办？</p>
-</blockquote>
-<p>别忘了你是程序员，这个可难不倒你，递归就开始排上用场了。于是你就问前面一排的人他是第几排，你想只要在他的数字上加一，就知道自己在哪一排了。但是，前面的人也看不清啊，所以他也问他前面的人。就这样一排一排往前问，直到问到第一排的人，说我在第一排，然后再这样一排一排再把数字传回来。直到你前面的人告诉你他在哪一排，于是你就知道答案了。  </p>
-<p>我们用递推公式表示：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int f(int n) &#123;</span><br><span class="line">    if(n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125; </span><br><span class="line">    return f(n-1) + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="递归需要满足的三个条件"><a href="#递归需要满足的三个条件" class="headerlink" title="递归需要满足的三个条件"></a>递归需要满足的三个条件</h3><ol>
-<li>一个问题的解可以分成几个子问题的解</li>
-<li>这个问题与子问题处理数据规模不同其它的求解思路都一样</li>
-<li>存在递归终止条件</li>
-</ol>
-<h3 id="如何编写递归代码？"><a href="#如何编写递归代码？" class="headerlink" title="如何编写递归代码？"></a>如何编写递归代码？</h3><p>如何写递归代码？写递归代码最关键的是<strong>写出递推公式， 找到终止条件</strong>。  </p>
-<h3 id="写递归应该要注意什么？"><a href="#写递归应该要注意什么？" class="headerlink" title="写递归应该要注意什么？"></a>写递归应该要注意什么？</h3><ol>
-<li>递归代码要警惕堆栈溢出。  </li>
-</ol>
-<p>在实际开发的过程中，编写代码时，我们会遇到很多问题，比如堆栈溢出。而堆栈溢出会导致系统崩溃。那么我们应该如何预防堆栈溢出呢? <strong> 我们可以通过在代码中限制递归调用的最大深度的方式</strong>来解决这个问题。  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 全局变量，表示递归的深度。</span><br><span class="line">int depth = 0;</span><br><span class="line">int f(int n) &#123;</span><br><span class="line">  ++depth；</span><br><span class="line">  if (depth &gt; 1000) &#123;</span><br><span class="line">    throw exception;</span><br><span class="line">  &#125;</span><br><span class="line">  if (n == 1) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line">  return f(n-1) + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是，由于最大允许的递归深度和当前剩余的栈空间大小有关，我们实现无法计算。所以，如果最大深度比较小时可以用这种方法，否则这种方法不实用。  </p>
-<ol start="2">
-<li>递归代码要警惕重复计算</li>
-</ol>
-<p>为了避免重复计算，我们可以通过一个数据结构(比如散列表)来保存已经求解过的f(k)。  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int f(int n) &#123;</span><br><span class="line">    if(n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    if(n == 2) &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if(hasSolvedList.containersKey(n)) &#123;</span><br><span class="line">        return hasSolvedList.get(n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int res = f(n-1) + f(n-2);</span><br><span class="line">    hasSolvedList.put(n, res);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="如何将递归代码改成非递归代码？"><a href="#如何将递归代码改成非递归代码？" class="headerlink" title="如何将递归代码改成非递归代码？"></a>如何将递归代码改成非递归代码？</h3><p>递归有利有弊，递归代码的表达力很强，写起来简洁，但是空间复杂度高、有堆栈溢出的风险、存在重复计算、过多的函数会耗时较多等问题。所以，在实际开发的过程中，根据实际情况来选择是否需要使用递归的方式来实现。  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 刚刚电影院的例子</span><br><span class="line">int f(int n) &#123;</span><br><span class="line">    int res = 1;</span><br><span class="line">    for(int i = 2; i &lt;= n; ++i) &#123;</span><br><span class="line">       res = res + 1;</span><br><span class="line">    &#125; </span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解答开篇问题"><a href="#解答开篇问题" class="headerlink" title="解答开篇问题"></a>解答开篇问题</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">long findRootReferrerId(long actorId) &#123;</span><br><span class="line">  Long referrerId = select referrer_id from [table] where actor_id = actorId;</span><br><span class="line">  if (referrerId == null) return actorId;</span><br><span class="line">  return findRootReferrerId(referrerId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>关于这个解法，并没有完全解决问题。比如，当递归很深时会造成堆栈溢出。其次，当出现A推荐的人是B，B推荐的人是C，而C推荐的人是A，那就会发生死循环。  </p>
-<p>第一个问题可以用<strong>限制最大深度</strong>来解决，当然第二个可以在递归的同时检测是否为‘环’。(具体哪种方法呢？后面老师讲到了再链接过来~)  </p>
-<h3 id="课后问题"><a href="#课后问题" class="headerlink" title="课后问题"></a>课后问题</h3><p>我们平常调试代码喜欢使用IDE的单步跟踪功能，像规模比较大、递归层次很深的递归代码，几乎无法使用这种调试方式。对于递归代码，有什么好的调试方法？  </p>
-<blockquote>
-<p>@博金<br>调试递归：</p>
-<ol>
-<li>打印日志</li>
-</ol>
-</blockquote>
-<ol start="2">
-<li>结合条件断点进行调试。</li>
-</ol>
+        <p>将吴军老师的这篇文章放在这里，时刻提醒自己。下面是原文：</p>
 <hr>
-<p>@涛<br>递归是什么？<br>递归就是用栈的数据结构，加上一个简单的逻辑算法实现了业务功能。</p>
+<p>前三天我讲了，如果我在临终前只能交代一句话，那么就是“上帝喜欢傻子”。如果能给晚辈更多的一些建议的话，按照我现在的认知，我觉得人一生必须做五件事。这算是我对好好做人的一点心得。</p>
+<h4 id="第一件，恋爱、结婚、生子。"><a href="#第一件，恋爱、结婚、生子。" class="headerlink" title="第一件，恋爱、结婚、生子。"></a>第一件，恋爱、结婚、生子。</h4><p>这件事本来不是问题，是人的本能。但是当我们在欢呼文明进步的时候，这件事反而成了问题。很多年轻人到了30岁，还没有认真恋爱过，更不要说一些大学生因为忙于学业，无法认真考虑这个问题了。</p>
+<p>我在第一季《在大学做什么》这封来信中，建议大学生在学校时谈一次恋爱，因为这是人成长所必要的经历。今天很多人沉溺于虚拟世界，为所谓的二次元文化辩护，并且用很多种方式证明这是不可阻挡的未来趋势。</p>
+<p>但是在我看来，真正的成功者，真正有幸福生活的人，应该在现实生活中获得成功，获得最真实和丰富的生活。</p>
+<p>今天一些人讲，自己工作忙，没时间恋爱，结婚。其实说得不好听点，99%的人工作中做的那些事情真没有生活本身重要，没有张三做，自然有李四做，甚至做得还更好。<br>但是，每一个人的具体生活，可是独一无二的，既不能由别人代替，也不可能在以后有时间补上。以后有时间，就等于是说永远没有时间。</p>
+<p>光恋爱不结婚是不够的，结了婚能得到恋爱得不到的幸福。</p>
+<p>我经常坐邮轮旅行，在邮轮上总能遇到很多金婚甚至钻石婚的老夫妇，在赞叹他们健康长寿之后，和他们聊聊他们的生活就会发现，婚姻是他们长寿的一个很重要的原因。<br>有了婚姻，通常会有孩子。很多年轻人在有孩子之前嫌烦，我自己多少也是如此，但是有了孩子后，会发现自己获得了想象不到的快乐。</p>
+<p>中国人喜欢把孩子当作自己的私有财产，而西方人则会将他们视为上帝所赐给父母的礼物，心态上会略有差别。我抚养孩子是在美国，或许受到西方文化的影响更多些，更多的是享受她们成长的过程，而不是要她们成为什么样的人。当你享受这个过程时，就能由衷地感到幸福。</p>
+<p>我并不信什么宗教，但是对上帝总是充满敬意。我认为，上帝把人分为了男人和女人，让男人和女人相识相爱，这是宇宙的大道，也是人间最美妙的事情。同样，结婚生子也是上天赋予人的权利和幸福的根本。</p>
+<h4 id="第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。"><a href="#第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。" class="headerlink" title="第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。"></a>第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。</h4><p>今天的人，为了生存，常常不得不根据薪水的多少和名望的高低来决定自己该做什么事情。只有很少的人每天所做的事情都是他们非常喜欢的工作。但是，人一辈子至少应该有一次，尝试做自己喜欢的事情。</p>
+<p>我这并不是要大家辞职创业，而仅仅是建议大家尝试一下，特别是在年轻的时候。</p>
+<p>上帝给每一个人很多天赋，但是很多时候我们并不知道，甚至从他们的父母身上也看不到。</p>
+<p>我的小女儿过去从来没有找到自己感兴趣的事情，我身上的天赋在她身上根本看不到，姐姐喜欢的事情她也不喜欢，在学校里尝试了不少集体活动都中途退出了，在合唱队里唱歌时，连嘴都懒得张。</p>
+<p>后来一个偶然的机会，一个声乐老师说她有声乐天赋，开始我和她妈妈都有点不相信，后来让老师教她试了一试，果然如此，而她自己也喜欢上了这项活动，从此认认真真学习唱歌剧，在不到两年的时间里，她已经两次被卡内基音乐厅邀请登台演出了。</p>
+<p>当然我也理解，大部分人因为生活压力，未必能从事自己喜欢的职业，但是至少要有一项兴趣爱好。我在第一季来信中讲了很多次，我们要做有趣味的人，而不只是工作和赚钱的机器，有趣则从兴趣开始。</p>
+<p>此外，兴趣不仅仅是让自己喜悦，而且能提升自我，因为在把自己的兴趣爱好提升到极致的过程中，能够让自己得到升华。没有兴趣的人，或多或少有点狭隘。<br>吴晓波在《大败局》一书中讲述了中国第一代靠炒股发家的超级富豪，结局几乎无一例外地是破产或者被抓、被杀。</p>
+<p>吴晓波总结这些人有一个大问题，就是没有一个像样的兴趣爱好。除了一些人看足球外（不完全能算是爱好），剩下的人兴趣爱好主要是嫖娼。这样的人的境界可想而知，即使运气好有了财富，也难以守住财富。</p>
+<p>因此，人不能到了发现自己格局太小时，才想起做自己该做的事情。</p>
+<h4 id="第三件，回馈"><a href="#第三件，回馈" class="headerlink" title="第三件，回馈"></a>第三件，回馈</h4><p>生活如此善待我们，所以我们必须花一些时间、精力和辛苦挣来的钱去感谢曾经帮助我们的人，去帮助那些需要我们帮助的，不是很幸运的人。</p>
+<p>这不仅可以让我们心里得到满足，而且能够实实在在地改善那些人的生活，使得我们周围的人能够过得更好，并且反过来给我们一个更好的环境。<br>回馈是多方面的。中国人所说的孝道本身就是一种回馈。但是，回馈不仅限于对我们的父母、恩人、母校和亲友，也包括整个社会以及那些和我们素不相识的人。</p>
+<p>很多人讲，我现在太忙或者太穷，没有时间或者金钱回馈。其实回馈完全不在于多少，而在于从现在开始身体力行。</p>
+<p>世界最著名的慈善家恐怕当属老洛克菲勒(John Davison Rockefeller)了。据估计他一生捐出了5.5亿美元的巨款，折算成今天的 GDP 水平，相当于1000亿美元左右。他帮助约翰·霍普金斯大学建立了公共卫生学院，这是美国今天最好的公共卫生学院，洛克菲勒还在中国创立了协和医院。</p>
+<p>此外，他出巨资（8000万美元）帮助芝加哥大学从一个很小的教会学校变成后来的世界一流大学，还建立了在医学界非常有名的洛克菲勒大学（一所医学院）。在接受洛克菲勒捐赠的大学中，哈佛、耶鲁、哥伦比亚、布朗、卫斯理等名校都在其列。</p>
+<p>洛克菲勒并非是在有钱后才开始做善事的，他在16岁有第一份工作时，就开始将自己收入的6%捐出来，并且一生都在做回馈社会的事情。</p>
+<p>同样地，没有时间也不过是托词。大部分人恐怕不会比我更忙，我每周大约两天准时去看望我的母亲，我想我能做到，99%的人应该也有时间做到。</p>
+<p>至于工作，我是这样处理的。到了时间，不论我是在开会，还是在做别的事情，我会和其他人讲，我现在必须离开了。时间一长大家都知道那些天不要指望我会加班，也不要在快下班时安排事情。而背后的根本原因是，我们做的那点事情，远没有我们自以为的那么重要。</p>
+<p>回馈不能仅仅有心，必须有行动。关于想法和行动，我以后还会再聊。</p>
+<h4 id="第四件，有一个信仰"><a href="#第四件，有一个信仰" class="headerlink" title="第四件，有一个信仰"></a>第四件，有一个信仰</h4><p>人应该有信仰，这个信仰未必是宗教信仰，什么信仰其实都可以，但是必须有。因为当我们失去了方向和动力，不知所措的时候，信仰会让我们知道该怎么做事情。当我们不得不作出很多抉择时，比如在道德和利益上纠结时，信仰能帮助我们找到符合我们本心的选择。</p>
+<p>信仰的作用不止这些，有了信仰我们在表明立场时就敢于站出来，理直气壮地向不公正大胆抗议，或者喊出我们所相信的原则。</p>
+<p>我在第一季的第285封信和324封信中谈到班超和谢道韫时讲中国人需要勇气，而信仰最能够给予我们勇气和力量，一个有信仰的人，如果知道自己是对的，就不怕恐吓，敢于行动。</p>
+<h4 id="第五件，留下遗产"><a href="#第五件，留下遗产" class="headerlink" title="第五件，留下遗产"></a>第五件，留下遗产</h4><p>每一个人最后都应该考虑留下什么遗产，当然这里的遗产远不止是钱财。</p>
+<p>根据幸福学的理论，我们幸福的一个重要来源是基因的传承，即传宗接代，因此，子嗣本身是遗产的一部分。当然，这种遗产动物也能留下，因此人类的遗产应该比这个更多。<br>我最早思考遗产这件事其实是在读博士时。当时我的导师贾里尼克教授和我讲，“博士和硕士是不同的，硕士只要掌握专业技能即可，博士需要对人类的知识体系有所贡献，因此，虽然你做了很多工作，发表了不少论文，但是还缺少解决一个以前没有人解决过的，对以后的人又有意义的问题，因此，我还不能让你毕业”。</p>
+<p>我当时听了这个话当然很不高兴，因为很多学习水平不如我的人早就毕业了，但是今天我要感谢他的这番话，让我最终为人类的知识体系添上了一块砖。这或许就是一种遗产。<br>每个人都可以问自己这样一个问题，这个世界如果没有我，是否会完全一样？如果答案是肯定的，说明你没有留下什么遗产。如果因为你所做的一些事情，哪怕小，哪怕微不足道，世界也因此不同，这就是你给世界留下的遗产。明白了这一点，就知道你不必要浪费时间做什么事情了。</p>
+<hr>
+<p>如果有一天，出于某种原因你必须去到一个人生地不熟的地方工作（比如北美）。你已经在那里工作一年多了都没有回国，甚至过年都没有。现在你有一次回国的机会，但时间很短，那么你会奔向哪里？<br>希望你心里有答案。</p>
+<p>生活是你自己的，请你活成你想要样子。</p>
 <p><br></p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
@@ -542,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题提出"><span class="nav-number">1.</span> <span class="nav-text">问题提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解递归？"><span class="nav-number">2.</span> <span class="nav-text">如何理解递归？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归需要满足的三个条件"><span class="nav-number">3.</span> <span class="nav-text">递归需要满足的三个条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何编写递归代码？"><span class="nav-number">4.</span> <span class="nav-text">如何编写递归代码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写递归应该要注意什么？"><span class="nav-number">5.</span> <span class="nav-text">写递归应该要注意什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何将递归代码改成非递归代码？"><span class="nav-number">6.</span> <span class="nav-text">如何将递归代码改成非递归代码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇问题"><span class="nav-number">7.</span> <span class="nav-text">解答开篇问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后问题"><span class="nav-number">8.</span> <span class="nav-text">课后问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一件，恋爱、结婚、生子。"><span class="nav-number">1.</span> <span class="nav-text">第一件，恋爱、结婚、生子。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。"><span class="nav-number">2.</span> <span class="nav-text">第二件，尝试一次做自己喜欢的事情，至少有一点像样的兴趣爱好。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三件，回馈"><span class="nav-number">3.</span> <span class="nav-text">第三件，回馈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四件，有一个信仰"><span class="nav-number">4.</span> <span class="nav-text">第四件，有一个信仰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五件，留下遗产"><span class="nav-number">5.</span> <span class="nav-text">第五件，留下遗产</span></a></li></ol></div>
             
 
           </div>
