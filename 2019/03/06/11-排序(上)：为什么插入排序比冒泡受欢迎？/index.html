@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法与数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在接下来的三讲里，将会讲解最常用的几种排序方法：冒泡排序、插入排序、选择排序、归并排序、快速排序、计数排序、基数排序、桶排序。按照时间复杂度把它们分成了三类，分三讲来讲解。   思考题：插入排序和冒泡排序的时间复杂度相同，都是O(n^2)，在实际的软件开发里，为什么我们更倾向于使用插入排序算法而不是冒泡排序算法呢？ 如何分析一个算法？学习排序算法，我们处理学习他的算法原理、代码之外，更重要的是要">
+<meta name="keywords" content="算法与数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11-排序(上)：为什么插入排序比冒泡受欢迎？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="在接下来的三讲里，将会讲解最常用的几种排序方法：冒泡排序、插入排序、选择排序、归并排序、快速排序、计数排序、基数排序、桶排序。按照时间复杂度把它们分成了三类，分三讲来讲解。   思考题：插入排序和冒泡排序的时间复杂度相同，都是O(n^2)，在实际的软件开发里，为什么我们更倾向于使用插入排序算法而不是冒泡排序算法呢？ 如何分析一个算法？学习排序算法，我们处理学习他的算法原理、代码之外，更重要的是要">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/sort.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/order.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/bubble.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/insertion.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/selection.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/summary.png">
+<meta property="og:updated_time" content="2019-03-06T07:40:42.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11-排序(上)：为什么插入排序比冒泡受欢迎？">
+<meta name="twitter:description" content="在接下来的三讲里，将会讲解最常用的几种排序方法：冒泡排序、插入排序、选择排序、归并排序、快速排序、计数排序、基数排序、桶排序。按照时间复杂度把它们分成了三类，分三讲来讲解。   思考题：插入排序和冒泡排序的时间复杂度相同，都是O(n^2)，在实际的软件开发里，为什么我们更倾向于使用插入排序算法而不是冒泡排序算法呢？ 如何分析一个算法？学习排序算法，我们处理学习他的算法原理、代码之外，更重要的是要">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/sort.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/"/>
+
+
+
+
+
+  <title>11-排序(上)：为什么插入排序比冒泡受欢迎？ | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">11-排序(上)：为什么插入排序比冒泡受欢迎？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-06T10:46:56+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在接下来的三讲里，将会讲解最常用的几种排序方法：冒泡排序、插入排序、选择排序、归并排序、快速排序、计数排序、基数排序、桶排序。按照时间复杂度把它们分成了三类，分三讲来讲解。</p>
+</blockquote>
+<p><img src="/images/sort.png" alt="sort"></p>
+<p><strong>思考题：</strong>插入排序和冒泡排序的时间复杂度相同，都是O(n^2)，在实际的软件开发里，为什么我们更倾向于使用插入排序算法而不是冒泡排序算法呢？</p>
+<h3 id="如何分析一个算法？"><a href="#如何分析一个算法？" class="headerlink" title="如何分析一个算法？"></a>如何分析一个算法？</h3><p><strong>学习排序算法，我们处理学习他的算法原理、代码之外，更重要的是要学会如何评价、分析一个排序算法。</strong>那分析一个排序算法，要从哪几个方面入手呢？</p>
+<h4 id="排序算法的执行效率"><a href="#排序算法的执行效率" class="headerlink" title="排序算法的执行效率"></a>排序算法的执行效率</h4><p>对于排序算法执行效率的分析，我们会从这几个方面来衡量：</p>
+<ol>
+<li>最好情况、最坏情况、平均情况时间复杂度</li>
+<li>时间复杂度的系数、常数、低阶</li>
+<li>比较次数和交换（移动）次数</li>
+</ol>
+<h4 id="排序算法的内存消耗"><a href="#排序算法的内存消耗" class="headerlink" title="排序算法的内存消耗"></a>排序算法的内存消耗</h4><p>前面讲过，算法的内存消耗可以通过空间复杂度来衡量，排序算法也不例外。不过、针对排序算法的空间复杂度，我们引入一个新的概念 <strong>原地排序（Sorted in place）</strong>。原地排序排序算法，就是特指空间复杂度为O(1)的排序算法。接下来的三种算法都是原地排序算法。</p>
+<h4 id="排序算法的稳定性"><a href="#排序算法的稳定性" class="headerlink" title="排序算法的稳定性"></a>排序算法的稳定性</h4><p>仅仅用执行效率和内存消耗来衡量排序算法的好坏是不够的。针对排序算法，我们还有一个重要的度量指标，<strong>稳定性。这个概念是说，如果待排序的序列中存在值相等的元素，经过排序之后，相等元素之间原有的先后顺序不变。</strong></p>
+<p>稳定性有什么作用呢？下面我们来看一个例子：</p>
+<p>比如说，我们现在要给电商交易系统中的“订单”排序。订单有两个属性，一个是下单时间，另一个是订单金额。如果我们现在有 10 万条订单数据，我们希望按照金额从小到大对订单数据排序。对于金额相同的订单，我们希望按照下单时间从早到晚有序。对于这样一个排序需求，我们怎么来做呢？</p>
+<p>借助稳定排序算法，这个问题可以非常简洁地解决。解决思路是这样的：我们先按照下单时间给订单排序，注意是按照下单时间，不是金额。排序完成之后，我们用稳定排序算法，按照订单金额重新排序。</p>
+<p><img src="/images/order.png" alt="order"></p>
+<p><strong>稳定排序算法可以保持金额相同的两个对象，在排序之后的前后顺序不变。</strong></p>
+<p>下面我们来看看这三种算法之间的比较：</p>
+<h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><p>它只会操作相邻的两个数据。每次冒泡操作都会对相邻的两个元素进行 比较，看是否满足大小关系要求。</p>
+<p>如图：<br><img src="/images/bubble.png" alt="bubble"></p>
+<p>算法实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//冒泡，在此添加一个标志位，减少交换次数。</span><br><span class="line">void bubbleSort(int[] a, int n) &#123;</span><br><span class="line">  if(n &lt;= 1) &#123;</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  for(int i = 0;i &lt; n; ++i) &#123;</span><br><span class="line">    boolean flag = false;  // 创建一个标志位，如果为true表示有数据交换，反之没有。</span><br><span class="line">    for(int j = 0;j &lt; n - i - 1; ++j) &#123;</span><br><span class="line">      if(a[j] &gt; a[j+1]) &#123;</span><br><span class="line">        int temp = a[j];</span><br><span class="line">        a[j] = a[j+1];</span><br><span class="line">        a[j+1] = temp;</span><br><span class="line">        flag = true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(!flag) &#123;  // 如果没有数据交换就跳出</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法分析：<br>空间复杂度：原地排序算法，为O(1)。<br>时间复杂度：</p>
+<ol>
+<li>最好的情况也叫做满有序度：O(n)。</li>
+<li>最坏的情况也叫做满逆序度：O(n^2)。</li>
+<li>平均情况：O(n^2)。<br>稳定性：当元素相等时不交换位置，所以是稳定的。</li>
+</ol>
+<h3 id="插入排序（Insertion-Sort）"><a href="#插入排序（Insertion-Sort）" class="headerlink" title="插入排序（Insertion Sort）"></a>插入排序（Insertion Sort）</h3><p>插入排序将数组分为两个区，已排序区、未排序区。每次都在未排序区中取出一个数插入到已排序区中的合适位置，直至未排序区为空。</p>
+<p>如图：<br><img src="/images/insertion.png" alt="insertion"></p>
+<p>算法实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 插入排序</span><br><span class="line">void insertionSort(int[] a, int n) &#123;</span><br><span class="line">  if(n &lt;= 1) &#123;</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  for(int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">    int value = a[i];</span><br><span class="line">    int j = i - 1;</span><br><span class="line">    for(; j &gt;= 0; --j) &#123;</span><br><span class="line">      if(a[j] &gt; value) &#123;</span><br><span class="line">        a[j+1] = a[j];</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[j+1] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法分析：<br>空间复杂度：原地排序法，为O(1)。<br>时间复杂度：</p>
+<ol>
+<li>最好情况：O(n)。</li>
+<li>最坏情况：O(n^2)。</li>
+<li>平均情况：O(n^2)。<br>稳定性：是稳定的。</li>
+</ol>
+<h3 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h3><p>选择排序类似于插入排序，也分为已排序和未排序两个区间。但是选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。</p>
+<p>如图：<br><img src="/images/selection.png" alt="selection"></p>
+<p>算法实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 选择排序</span><br><span class="line">void selectionSort(int[] a, int n) &#123;</span><br><span class="line">  if(n &lt;= 1) &#123;</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  for(int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">    int min = a[i];</span><br><span class="line">    int flag = i;   // 最小元素的下标</span><br><span class="line">    int j = i + 1</span><br><span class="line">    for(; j &lt; n; ++j) &#123;    // 寻找最小元素的下标</span><br><span class="line">      if(a[j] &lt; min) &#123;</span><br><span class="line">        flag = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(flag != i) &#123;</span><br><span class="line">      int temp = a[i];</span><br><span class="line">      a[i] = a[flag];</span><br><span class="line">      a[flag] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法分析：<br>空间复杂度：原地排序。<br>时间复杂度：</p>
+<ol>
+<li>最好情况：O(n^2)。</li>
+<li>最坏情况：O(n^2)。</li>
+<li>平均情况：O(n^2)。<br>稳定性：由于该排序每次都要寻找未排序元素中的最小值，并和前面的元素交换位置，这样就破坏了稳定性。</li>
+</ol>
+<h3 id="解答开篇"><a href="#解答开篇" class="headerlink" title="解答开篇"></a>解答开篇</h3><p>为什么冒泡排序和插入排序的时间复杂度都是O(n^2),都是原地排序算法，而后者却更受欢迎呢？我们通过观察它们的代码实现就可以知道：冒泡排序的数据交换要比插入排序的数据移动要复杂，冒泡需要三个赋值操作，而插入只需要一个。虽然冒泡排序和插入排序在时间复杂度上是一样的，都是O(n^2)，但是如果我们希望把性能优化到极致，那肯定首选插入排序。</p>
+<p>插入排序的算法思想也有很大的优化空间，比如<a href="https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">希尔排序</a>。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>想要分析、评价一个排序算法，需要从执行效率，内存消耗和稳定性三个方面来看。学习排序算法中点掌握它们的分析方法。下面是三种算法的比较：<br><img src="/images/summary.png" alt="summary"></p>
+<h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>特定算法是依赖特定的数据结构的。这一讲讲的几种排序算法都是基于数组实现的。如果数据存储在链表中，这三种排序算法还能工作嘛？如果能，那相应的时间、空间复杂度又是多少呢？</p>
+<hr>
+<p>@双木公子<br>对于老师所提课后题，觉得应该有个前提，是否允许修改链表的节点value值，还是只能改变节点的位置。一般而言，考虑只能改变节点位置，冒泡排序相比于数组实现，比较次数一致，但交换时操作更复杂；插入排序，比较次数一致，不需要再有后移操作，找到位置后可以直接插入，但排序完毕后可能需要倒置链表；选择排序比较次数一致，交换操作同样比较麻烦。综上，时间复杂度和空间复杂度并无明显变化，若追求极致性能，冒泡排序的时间复杂度系数会变大，插入排序系数会减小，选择排序无明显变化。</p>
+<p><br></p>
+<p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/人生中必做的五件事/" rel="next" title="一生中必须要做的五件事">
+                <i class="fa fa-chevron-left"></i> 一生中必须要做的五件事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何分析一个算法？"><span class="nav-number">1.</span> <span class="nav-text">如何分析一个算法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排序算法的执行效率"><span class="nav-number">1.1.</span> <span class="nav-text">排序算法的执行效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序算法的内存消耗"><span class="nav-number">1.2.</span> <span class="nav-text">排序算法的内存消耗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序算法的稳定性"><span class="nav-number">1.3.</span> <span class="nav-text">排序算法的稳定性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序（Bubble-Sort）"><span class="nav-number">2.</span> <span class="nav-text">冒泡排序（Bubble Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序（Insertion-Sort）"><span class="nav-number">3.</span> <span class="nav-text">插入排序（Insertion Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序（Selection-Sort）"><span class="nav-number">4.</span> <span class="nav-text">选择排序（Selection Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇"><span class="nav-number">5.</span> <span class="nav-text">解答开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后思考"><span class="nav-number">7.</span> <span class="nav-text">课后思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
