@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/quick.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/mandq.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/K.png">
-<meta property="og:updated_time" content="2019-03-07T14:19:11.633Z">
+<meta property="og:updated_time" content="2019-03-08T05:43:06.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12-排序(下)：如何用快排思想在O(n)内查找第k大元素？">
 <meta name="twitter:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
@@ -330,7 +330,7 @@
 </blockquote>
 <p><strong>思考：</strong>归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？</p>
 <h3 id="归并排序-Merge-Sort"><a href="#归并排序-Merge-Sort" class="headerlink" title="归并排序(Merge Sort)"></a>归并排序(Merge Sort)</h3><p>排序一个数组，先把数组从中间分成前后两个部分，然后分别对这两个部分进行排序，再将排好序的两部分合并在一起。</p>
-<p>这里用到了 <strong>分治思想</strong>，将一个大问题分解成小的问题来解决。我们都知道递归也是将大问题分解成小问题来解决，实际上分支算法一般也都是用递归来实现的。但是前者是一种解决问题的处理思想，而递归是一种编程技巧。</p>
+<p>这里用到了 <strong>分治思想</strong>，将一个大问题分解成小的问题来解决。我们都知道递归也是将大问题分解成小问题来解决，实际上分治算法一般也都是用递归来实现的。但是前者是一种解决问题的处理思想，而递归是一种编程技巧。</p>
 <p>下面我们来具体讨论一下归并排序：</p>
 <p>原理：先把数组从中间分成前后两个部分，然后对前后两个部分分别进行排序，再将排序好的两个部分合并到一起。</p>
 <p>如图：<br><img src="/images/merge1.png" alt="merge"></p>
