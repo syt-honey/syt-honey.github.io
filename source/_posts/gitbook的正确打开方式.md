@@ -17,7 +17,7 @@ tags: gitbook
 ```
 
 #### 3. 你可能会遇到这样的问题：
-![nodejsRep](/images/nodejsRep.png)
+![nodejsRep](/images/gitbook/nodejsRep.png)
 
 解决方法：指定node.js的仓库为国内最大的node.js社区`http://cnodejs.org`提供的仓库，这里有几种方式：
 * 通过config命令
@@ -34,7 +34,7 @@ tags: gitbook
   registry = http://registry.cnpmjs.org
 ```
 其中，第三个是只需要设置一次即可。(不过我还是用了第二种方法，效果立竿见影啊~)
-![success-nodejsRep](/images/success-nodejsRep.png)
+![success-nodejsRep](/images/gitbook/success-nodejsRep.png)
 
 **注：**几小时之后更：还是乖乖用了第三个。。。每回都要写一次，认怂……
 #### 4. 安装gitbook
