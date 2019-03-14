@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://syt-honey.github.io/images/merge1.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/quick.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/mandq.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/K.png">
-<meta property="og:updated_time" content="2019-03-08T05:43:06.187Z">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/merge1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/quick.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/mandq.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/K.png">
+<meta property="og:updated_time" content="2019-03-14T10:24:49.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12-排序(下)：如何用快排思想在O(n)内查找第k大元素？">
 <meta name="twitter:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
-<meta name="twitter:image" content="https://syt-honey.github.io/images/merge1.png">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/algorithm/merge1.png">
 
 
 
@@ -333,7 +333,7 @@
 <p>这里用到了 <strong>分治思想</strong>，将一个大问题分解成小的问题来解决。我们都知道递归也是将大问题分解成小问题来解决，实际上分治算法一般也都是用递归来实现的。但是前者是一种解决问题的处理思想，而递归是一种编程技巧。</p>
 <p>下面我们来具体讨论一下归并排序：</p>
 <p>原理：先把数组从中间分成前后两个部分，然后对前后两个部分分别进行排序，再将排序好的两个部分合并到一起。</p>
-<p>如图：<br><img src="/images/merge1.png" alt="merge"></p>
+<p>如图：<br><img src="/images/algorithm/merge1.png" alt="merge"></p>
 <p>我们前面讲到，分治算法一般都是由递归来实现的，那么我们应该如何用递归来实现归并算法呢？前面我们讲过，递归最重要的是要找到递推公式和终止条件。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 递推公式：</span><br><span class="line">merge_sort(left...right) = merge(merge_sort(left...middle), merge_sort(middle+1...right));</span><br><span class="line"></span><br><span class="line">// 终止条件, 不用再继续分解</span><br><span class="line">left &gt;= right</span><br></pre></td></tr></table></figure>
 <p>算法实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 归并排序</span><br><span class="line">void merge_sort(int[] a, int left, int right) &#123;</span><br><span class="line">  //终止条件</span><br><span class="line">  if(left &gt;= right) &#123;</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line">  int middle = (left + right) / 2;</span><br><span class="line">  merge_sort(a, left, middle);</span><br><span class="line">  merge_sort(a, middle + 1, right);</span><br><span class="line">  merge(a, left, middle, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 合并两个有序的数组</span><br><span class="line">void merge(int[] a,int left,int middle,int right) &#123;</span><br><span class="line">  int i = left, j = middle + 1, k = 0;</span><br><span class="line">  int *temp = (int*)malloc((right - left + 1)*sizeof(int));</span><br><span class="line">  while(i &lt;= middle &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">    if(a[i] &lt;= a[j]) &#123;</span><br><span class="line">      temp[k++] = a[i++];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      temp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 判断哪个子数组中有剩余的数据</span><br><span class="line">  if (i &gt; middle)</span><br><span class="line">	&#123;</span><br><span class="line">		while(j &lt;= right)</span><br><span class="line">		&#123;</span><br><span class="line">			temp[k++] = a[j++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		while(i &lt;= middle)</span><br><span class="line">		&#123;</span><br><span class="line">			temp[k++] = a[i++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  return ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -350,7 +350,7 @@
 <p>这样，最后当n/(2^k) = 1时，可知k = log2(n)(以2为底, n的对数)。将k带入就可以得到：T(n) = nlog2(n) + Cn。用O表示法时间复杂度就是O(nlogn)。</p>
 <p>好啦，时间复杂度搞定了，那么空间复杂度怎么算呢？其实很简单，从概念出发。在任意时刻，CPU只会有一个函数在执行，也就只会有一个临时的内存空间在使用。所以空间复杂度时O(n)啦。正因为这一点，它就 <strong>不是原地排序</strong>，。</p>
 <h3 id="快速排序-Quick-Sort"><a href="#快速排序-Quick-Sort" class="headerlink" title="快速排序(Quick Sort)"></a>快速排序(Quick Sort)</h3><p>快速排序是，如果要排序数组中下标从left到right之间的一组数据，我们选择left到right之间的任意点作为分区点pivot。遍历left到right之间的数据，将小于pivot的放在左边，大于pivot的放在右边，pivot在中间。这样：</p>
-<p><img src="/images/quick.png" alt="quick"></p>
+<p><img src="/images/algorithm/quick.png" alt="quick"></p>
 <p>再根据分治、递归的思想，我们可以用递归排序下标从left到middle - 1之间的数据和下标 middle + 1到right之间的数据，直到区间缩短为1。所以递推公式和终止条件是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 递推公式：</span><br><span class="line">quick_sort(left…right) = quick_sort(left…middle-1) + quick_sort(middle+1, right)</span><br><span class="line"></span><br><span class="line">// 终止条件：</span><br><span class="line">left &gt;= right</span><br></pre></td></tr></table></figure>
 <p>算法实现：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 快排</span><br><span class="line">void quick_sort(int[] a, int left, int right) &#123;</span><br><span class="line">  if(left &gt;= right) &#123;</span><br><span class="line">    return ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  int middle = partition(a, left, right);  // 函数返回pivot的下标</span><br><span class="line">  quick_sort(a, left, middle - 1);</span><br><span class="line">  quick_sort(a, middle + 1， right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 原地分区</span><br><span class="line">int partition(int[] a, int left, int right) &#123;</span><br><span class="line">  int pivot = a[right];</span><br><span class="line">  int i = left;</span><br><span class="line">  for(int j = left; j &lt; right - 1; ++j) &#123;</span><br><span class="line">    if(a[j] &lt; pivot) &#123;</span><br><span class="line">      swap(a[i], a[j]);</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(a[i], a[right]);</span><br><span class="line">  return i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -361,11 +361,11 @@
 <li>平均O(nlogn)</li>
 </ol>
 <p>看起来归并排序和快速排序真的很相似，都是用的分治思想，那么它们的区别在哪里呢？</p>
-<p><img src="/images/mandq.png" alt="mandq"></p>
+<p><img src="/images/algorithm/mandq.png" alt="mandq"></p>
 <p>可以发现，归并排序的处理过程是由下到上而快排则是由上到下。归并排序是稳定但非原地排序算法，而快排因巧妙设计使其可以在原地分区函数实现原地排序解决了归并排序占用太多内存的问题。虽然快速排序最差情况的时间复杂度为O(n^2)，但是大部分情况下的时间复杂度可以做到O(nlogn)，只有在极端情况下才会退化到O(n^2)。</p>
 <h3 id="解答开篇"><a href="#解答开篇" class="headerlink" title="解答开篇"></a>解答开篇</h3><p>快排的核心思想是 <strong>分治</strong>和 <strong>分区</strong>，我们可以利用分区的思想来解答开篇的问题：O(n)时间复杂度内求无序数组中的第K大元素。</p>
 <p>我们选择数组区间 A[0…n-1] 的最后一个元素 A[n-1] 作为 pivot，对数组 A[0…n-1] 原地分区，这样数组就分成了三部分，A[0…p-1]、A[p]、A[p+1…n-1]。如果 p+1=K，那 A[p] 就是要求解的元素；如果 K&gt;p+1, 说明第 K 大元素出现在A[p+1…n-1] 区间，我们再按照上面的思路递归地在 A[p+1…n-1] 这个区间内查找。同理，如果 K &lt; p+1，那我们就在A[0…p-1]区间查找。</p>
-<p><img src="/images/K.png" alt="K"></p>
+<p><img src="/images/algorithm/K.png" alt="K"></p>
 <p>我们再来看看它的时间复杂度为什么是O(n)呢？第一次分区查找，我们需要对n个数进行分区操作，第二次是n/2,以此类推，我们可以很容易的看出它是一个等比数列，因此总的复杂度是：n + n/2 + n/4 + … + 1 = 2n - 1。所以其时间复杂度为O(n)。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>归并排序和快速排序是两种稍微复杂的排序算法，它们用的都是分治的思想，代码都通过递归来实现，过程非常相似。理解归并排序的重点是理解递推公式和 <code>merge()</code>合并函数。同理，理解快排的重点也是理解递推公式，还有 <code>partition()</code> 分区函数。归并排序算法是一种在任何情况下时间复杂度都比较稳定的排序算法，这也使它存在致命的缺点，即归并排序不是原地排序算法，空间复杂度比较高，是 O(n)。正因为此，它也没有快排应用广泛。</p>
 <p>快速排序算法虽然最坏情况下的时间复杂度是 O(n )，但是平均情况下时间复杂度都是O(nlogn)。不仅如此，快速排序算法时间复杂度退化到 O(n)的概率非常小，我们可以通过合理地选择 pivot 来避免这种情况。</p>
