@@ -18,7 +18,7 @@ tags: 算法与数据结构
 原理：先把数组从中间分成前后两个部分，然后对前后两个部分分别进行排序，再将排序好的两个部分合并到一起。
 
 如图：
-![merge](/images/algorithm/merge1.png)
+![mergeSort](/images/algorithm/mergeSort.png)
 
 我们前面讲到，分治算法一般都是由递归来实现的，那么我们应该如何用递归来实现归并算法呢？前面我们讲过，递归最重要的是要找到递推公式和终止条件。
 
@@ -111,7 +111,7 @@ T(n) = 2*T(n/2) + n
 
 快速排序是，如果要排序数组中下标从left到right之间的一组数据，我们选择left到right之间的任意点作为分区点pivot。遍历left到right之间的数据，将小于pivot的放在左边，大于pivot的放在右边，pivot在中间。这样：
 
-![quick](/images/algorithm/quick.png)
+![quickSort](/images/algorithm/quickSort.png)
 
 再根据分治、递归的思想，我们可以用递归排序下标从left到middle - 1之间的数据和下标 middle + 1到right之间的数据，直到区间缩短为1。所以递推公式和终止条件是这样的：
 
@@ -161,7 +161,7 @@ int partition(int[] a, int left, int right) {
 
 看起来归并排序和快速排序真的很相似，都是用的分治思想，那么它们的区别在哪里呢？
 
-![mandq](/images/algorithm/mandq.png)
+![M-Q-Summary](/images/algorithm/M-Q-Summary.png)
 
 可以发现，归并排序的处理过程是由下到上而快排则是由上到下。归并排序是稳定但非原地排序算法，而快排因巧妙设计使其可以在原地分区函数实现原地排序解决了归并排序占用太多内存的问题。虽然快速排序最差情况的时间复杂度为O(n^2)，但是大部分情况下的时间复杂度可以做到O(nlogn)，只有在极端情况下才会退化到O(n^2)。
 
@@ -171,7 +171,7 @@ int partition(int[] a, int left, int right) {
 
 我们选择数组区间 A[0…n-1] 的最后一个元素 A[n-1] 作为 pivot，对数组 A[0…n-1] 原地分区，这样数组就分成了三部分，A[0…p-1]、A[p]、A[p+1…n-1]。如果 p+1=K，那 A[p] 就是要求解的元素；如果 K>p+1, 说明第 K 大元素出现在A[p+1…n-1] 区间，我们再按照上面的思路递归地在 A[p+1…n-1] 这个区间内查找。同理，如果 K < p+1，那我们就在A[0…p-1]区间查找。
 
-![K](/images/algorithm/K.png)
+![findEleK](/images/algorithm/findEleK.png)
 
 我们再来看看它的时间复杂度为什么是O(n)呢？第一次分区查找，我们需要对n个数进行分区操作，第二次是n/2,以此类推，我们可以很容易的看出它是一个等比数列，因此总的复杂度是：n + n/2 + n/4 + ... + 1 = 2n - 1。所以其时间复杂度为O(n)。
 
