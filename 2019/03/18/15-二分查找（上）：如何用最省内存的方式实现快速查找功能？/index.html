@@ -88,7 +88,7 @@
 <meta property="og:description" content="开篇问题假设这里有1000万个整数数据，每个数据占8个字节，如何设计数据结构和算法，快速判断某个整数是否在这1000万数据中？我们希望这个功能不要占用太多的内存空间，最多不要超过100MB，你会怎么做？ 二分查找二分查找针对的是一个有序的数据集合，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，直到找到要查找的元素，或者区间被缩小为0。 我们可以很容易的发">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binarySearch.png">
-<meta property="og:updated_time" content="2019-03-18T03:21:01.098Z">
+<meta property="og:updated_time" content="2019-03-18T07:52:40.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15-二分查找（上）：如何用最省内存的方式实现快速查找功能？">
 <meta name="twitter:description" content="开篇问题假设这里有1000万个整数数据，每个数据占8个字节，如何设计数据结构和算法，快速判断某个整数是否在这1000万数据中？我们希望这个功能不要占用太多的内存空间，最多不要超过100MB，你会怎么做？ 二分查找二分查找针对的是一个有序的数据集合，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，直到找到要查找的元素，或者区间被缩小为0。 我们可以很容易的发">
@@ -327,8 +327,8 @@
 <p>我们可以很容易的发现，二分的每次折半操作会使待查找的空间呈指数下降，这样：</p>
 <p><img src="/images/algorithm/binarySearch.png" alt="binarySearch"></p>
 <p>当n/(2^k) = 1 时，k的值为总共缩小的次数，经过k次区间缩小操作，时间复杂度就是O(k)。由于k = log2(n)，所以时间复杂为O(logn)。</p>
-<h3 id="二分查找的递归与非递归实现"><a href="#二分查找的递归与非递归实现" class="headerlink" title="二分查找的递归与非递归实现"></a>二分查找的递归与非递归实现</h3><p>下面是一个简单二分查找的非递归实现：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 二分查找</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    </span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = (low + high) / 2;</span><br><span class="line">        if(a[mid] == value) &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125; else if(a[mid] &lt; value) &#123;</span><br><span class="line">            low = mid +1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二分查找的非递归实现"><a href="#二分查找的非递归实现" class="headerlink" title="二分查找的非递归实现"></a>二分查找的非递归实现</h3><p>下面是一个简单二分查找的非递归实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 二分查找: 查找某个给定值，并且假设没有重复</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    </span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = (low + high) / 2;</span><br><span class="line">        if(a[mid] == value) &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125; else if(a[mid] &lt; value) &#123;</span><br><span class="line">            low = mid +1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>三个需要注意的点：</p>
 <ol>
 <li>循环退出条件<br>注意是 <code>low &lt;= high</code>，而不是 <code>low &lt; high</code>。</li>
@@ -406,6 +406,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/" rel="prev" title="16-二分查找（下）：如何快速根据IP定位对应的省份地址？">
+                16-二分查找（下）：如何快速根据IP定位对应的省份地址？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -486,7 +490,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -542,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开篇问题"><span class="nav-number">1.</span> <span class="nav-text">开篇问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找的递归与非递归实现"><span class="nav-number">3.</span> <span class="nav-text">二分查找的递归与非递归实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找应用场景的局限性"><span class="nav-number">4.</span> <span class="nav-text">二分查找应用场景的局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，二分查找依赖的是顺序表结构——数组"><span class="nav-number">4.1.</span> <span class="nav-text">首先，二分查找依赖的是顺序表结构——数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其次，二分查找针对的是有序序列"><span class="nav-number">4.2.</span> <span class="nav-text">其次，二分查找针对的是有序序列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次，数据量太小不适合二分查找"><span class="nav-number">4.3.</span> <span class="nav-text">再次，数据量太小不适合二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后，数据量太大也不合适"><span class="nav-number">4.4.</span> <span class="nav-text">最后，数据量太大也不合适</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇"><span class="nav-number">5.</span> <span class="nav-text">解答开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容小结"><span class="nav-number">6.</span> <span class="nav-text">内容小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后思考"><span class="nav-number">7.</span> <span class="nav-text">课后思考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开篇问题"><span class="nav-number">1.</span> <span class="nav-text">开篇问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找的非递归实现"><span class="nav-number">3.</span> <span class="nav-text">二分查找的非递归实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找应用场景的局限性"><span class="nav-number">4.</span> <span class="nav-text">二分查找应用场景的局限性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，二分查找依赖的是顺序表结构——数组"><span class="nav-number">4.1.</span> <span class="nav-text">首先，二分查找依赖的是顺序表结构——数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其次，二分查找针对的是有序序列"><span class="nav-number">4.2.</span> <span class="nav-text">其次，二分查找针对的是有序序列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次，数据量太小不适合二分查找"><span class="nav-number">4.3.</span> <span class="nav-text">再次，数据量太小不适合二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后，数据量太大也不合适"><span class="nav-number">4.4.</span> <span class="nav-text">最后，数据量太大也不合适</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇"><span class="nav-number">5.</span> <span class="nav-text">解答开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容小结"><span class="nav-number">6.</span> <span class="nav-text">内容小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后思考"><span class="nav-number">7.</span> <span class="nav-text">课后思考</span></a></li></ol></div>
             
 
           </div>
