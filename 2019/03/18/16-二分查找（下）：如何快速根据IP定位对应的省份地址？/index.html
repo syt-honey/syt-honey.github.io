@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法与数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="开篇问题在一个庞大的地址库中逐一对比IP地址所在的区间，是非常耗时的。假设我们有12万条这样的IP区间与归属地的对应关系，如何快速定位出一个IP地址的归属地呢？ 上一篇我们介绍了有关二分查找的原理，并且实现了一种简单二分查找。今天就来看看几个关于二分查找的变体问题：  变体一：查找第一个值等于给定值的元素显然，如果要查找第一个值等于给定值的元素，之前简单进行比较得出元素的方法便不再适用了。现在我们">
+<meta name="keywords" content="算法与数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16-二分查找（下）：如何快速根据IP定位对应的省份地址？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="开篇问题在一个庞大的地址库中逐一对比IP地址所在的区间，是非常耗时的。假设我们有12万条这样的IP区间与归属地的对应关系，如何快速定位出一个IP地址的归属地呢？ 上一篇我们介绍了有关二分查找的原理，并且实现了一种简单二分查找。今天就来看看几个关于二分查找的变体问题：  变体一：查找第一个值等于给定值的元素显然，如果要查找第一个值等于给定值的元素，之前简单进行比较得出元素的方法便不再适用了。现在我们">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binarySearchVariant.png">
+<meta property="og:updated_time" content="2019-03-18T12:44:28.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="16-二分查找（下）：如何快速根据IP定位对应的省份地址？">
+<meta name="twitter:description" content="开篇问题在一个庞大的地址库中逐一对比IP地址所在的区间，是非常耗时的。假设我们有12万条这样的IP区间与归属地的对应关系，如何快速定位出一个IP地址的归属地呢？ 上一篇我们介绍了有关二分查找的原理，并且实现了一种简单二分查找。今天就来看看几个关于二分查找的变体问题：  变体一：查找第一个值等于给定值的元素显然，如果要查找第一个值等于给定值的元素，之前简单进行比较得出元素的方法便不再适用了。现在我们">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/algorithm/binarySearchVariant.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/"/>
+
+
+
+
+
+  <title>16-二分查找（下）：如何快速根据IP定位对应的省份地址？ | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">16-二分查找（下）：如何快速根据IP定位对应的省份地址？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-18T15:49:09+08:00">
+                2019-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="开篇问题"><a href="#开篇问题" class="headerlink" title="开篇问题"></a>开篇问题</h3><p>在一个庞大的地址库中逐一对比IP地址所在的区间，是非常耗时的。<strong>假设我们有12万条这样的IP区间与归属地的对应关系，如何快速定位出一个IP地址的归属地呢？</strong></p>
+<p>上一篇我们介绍了有关二分查找的原理，并且实现了一种简单二分查找。今天就来看看几个关于二分查找的变体问题：</p>
+<p><img src="/images/algorithm/binarySearchVariant.png" alt="binarySearchVariant"></p>
+<h3 id="变体一：查找第一个值等于给定值的元素"><a href="#变体一：查找第一个值等于给定值的元素" class="headerlink" title="变体一：查找第一个值等于给定值的元素"></a>变体一：查找第一个值等于给定值的元素</h3><p>显然，如果要查找第一个值等于给定值的元素，之前简单进行比较得出元素的方法便不再适用了。现在我们需要判断给定值在数组中是否有重复。</p>
+<p>下面我们来看看代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//二分查找：查找第一个值等于给定值的元素</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = low + ((high - low) &gt;&gt; 1); // 如果不明白这种写法可以看看前面的一篇文章</span><br><span class="line">        if(a[mid] &gt; value) &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125; else if(a[mid] &lt; value)&#123;</span><br><span class="line">            low = mid + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if((mid == 0) || (a[mid - 1] != value)) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变体二：查找最后一个值等于给定值的元素"><a href="#变体二：查找最后一个值等于给定值的元素" class="headerlink" title="变体二：查找最后一个值等于给定值的元素"></a>变体二：查找最后一个值等于给定值的元素</h3><p>同样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//二分查找：查找最后一个值等于给定值的元素</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = low +((high - low) &gt;&gt; 1);</span><br><span class="line">        if(a[mid] &gt; value) &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125; else if(a[mid] &lt; value) &#123;</span><br><span class="line">            low = mid + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if((mid == n - 1) || (a[mid + 1] != value)) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                low = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变体三：查找第一个大于等于给定值的元素"><a href="#变体三：查找第一个大于等于给定值的元素" class="headerlink" title="变体三：查找第一个大于等于给定值的元素"></a>变体三：查找第一个大于等于给定值的元素</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 二分查找：查找第一个大于等于给定值的元素</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = low + ((high - low) &gt;&gt; 1);</span><br><span class="line">        if(a[mid] &gt;= value) &#123;</span><br><span class="line">            if((mid == 0) || (a[mid - 1] &lt; value)) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            low = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变体四：查找最后一个小于等于给定值的元素"><a href="#变体四：查找最后一个小于等于给定值的元素" class="headerlink" title="变体四：查找最后一个小于等于给定值的元素"></a>变体四：查找最后一个小于等于给定值的元素</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//二分查找：查找最后一个小于等于给定值的元素</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = low + ((high - low) &gt;&gt; 1);</span><br><span class="line">        if(a[mid] &gt; value) &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if((mid == n - 1) || (a[mid + 1] &gt; value)) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                low = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解答开篇"><a href="#解答开篇" class="headerlink" title="解答开篇"></a>解答开篇</h3><p>我们来看看开头提出的问题：如何快速定位一个IP地址的归属地？</p>
+<p>如果IP区间与归属地对应关系不经常更新，我们就可以预先处理这12万条数据，让其按照起始IP从小到大排序。如何来排序呢？我们知道，IP地址可以转化为32位的整形数。所以，我们可以将起始地址，按照对应的整型值的大小关系，从小到大进行排序。</p>
+<p>然后，这个问题就可以转化为我刚讲的第四种变形问题“在有序数组中，查找最后一个小于等于某个给定值的元素”了。当我们要查询某个 IP 归属地时，我们可以先通过二分查找，找到最后一个起始 IP 小于等于这个 IP 的 IP 区间，然后，检查这个 IP 是否在这个 IP 区间内，如果在，我们就取出对应的归属地显示；如果不在，就返回未查找到。</p>
+<h3 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h3><p>上一节我说过，凡是用二分查找能解决的，绝大部分我们更倾向于用散列表或者二叉查找树。即便是二分查找在内存使用上更节省，但是毕内存如此紧缺的情况并不多。那二分查找真的没什么用处了吗？实际上，上一节讲的求“值等于给定值”的二分查找确实不怎么会被用到，二分查找更适合用在“近似”查找问题，在这类问题上，二分查找的优势更加明显。比如今天讲的这几种变体问题，用其他数据结构，比如散列表、二叉树，就比较难实现了。变体的二分查找算法写起来非常烧脑，很容易因为细节处理不好而产生 Bug，这些容易出错的细节有：终止条件、区间上下界更新方法、返回值选择。所以今天的内容你最好能用自己实现一遍，对锻炼编码能力、逻辑思维、写出 Bug free 代码，会很有帮助。</p>
+<h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>我们今天讲的都是非常规的二分查找问题，今天的思考题也是一个非常规的二分查找问题。如果有序数组是一个循环有序数组，比如 4，5，6，1，2，3。针对这种情况，如何实现一个求“值等于给定值”的二分查找算法呢？</p>
+<hr>
+<p>@Smallfly<br>有三种方法查找循环有序数组<br>一、</p>
+<ol>
+<li>找到分界下标，分成两个有序数组</li>
+<li>判断目标值在哪个有序数据范围内，做二分查找<br>二、</li>
+<li>找到最大值的下标 x;</li>
+<li>所有元素下标 +x 偏移，超过数组范围值的取模;</li>
+<li>利用偏移后的下标做二分查找；</li>
+<li>如果找到目标下标，再作 -x 偏移，就是目标值实际下标。<br>两种情况最高时耗都在查找分界点上，所以时间复杂度是 O(N）。<br>复杂度有点高，能否优化呢？<br>三、<br>我们发现循环数组存在一个性质：以数组中间点为分区，会将数组分成一个有序数组和一<br>个循环有序数组。<br>如果首元素小于 mid，说明前半部分是有序的，后半部分是循环有序数组；<br>如果首元素大于 mid，说明后半部分是有序的，前半部分是循环有序的数组；<br>如果目标元素在有序数组范围中，使用二分查找；<br>如果目标元素在循环有序数组中，设定数组边界后，使用以上方法继续查找。<br>时间复杂度为 O(logN)。</li>
+</ol>
+<p><br></p>
+<p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/15-二分查找（上）：如何用最省内存的方式实现快速查找功能？/" rel="next" title="15-二分查找（上）：如何用最省内存的方式实现快速查找功能？">
+                <i class="fa fa-chevron-left"></i> 15-二分查找（上）：如何用最省内存的方式实现快速查找功能？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开篇问题"><span class="nav-number">1.</span> <span class="nav-text">开篇问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体一：查找第一个值等于给定值的元素"><span class="nav-number">2.</span> <span class="nav-text">变体一：查找第一个值等于给定值的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体二：查找最后一个值等于给定值的元素"><span class="nav-number">3.</span> <span class="nav-text">变体二：查找最后一个值等于给定值的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体三：查找第一个大于等于给定值的元素"><span class="nav-number">4.</span> <span class="nav-text">变体三：查找第一个大于等于给定值的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体四：查找最后一个小于等于给定值的元素"><span class="nav-number">5.</span> <span class="nav-text">变体四：查找最后一个小于等于给定值的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇"><span class="nav-number">6.</span> <span class="nav-text">解答开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容小结"><span class="nav-number">7.</span> <span class="nav-text">内容小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后思考"><span class="nav-number">8.</span> <span class="nav-text">课后思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
