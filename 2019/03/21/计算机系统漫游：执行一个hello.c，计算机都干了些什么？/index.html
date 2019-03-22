@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统漫游：执行hello.c，计算机都干了些什么？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/03/21/计算机系统漫游：执行一个hello.c，计算机都干了些什么？/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/complier.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/memory-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/cs-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/thread-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/vm-1.png">
+<meta property="og:updated_time" content="2019-03-22T01:15:24.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统漫游：执行hello.c，计算机都干了些什么？">
+<meta name="twitter:description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/cs/complier.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/03/21/计算机系统漫游：执行一个hello.c，计算机都干了些什么？/"/>
+
+
+
+
+
+  <title>计算机系统漫游：执行hello.c，计算机都干了些什么？ | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/21/计算机系统漫游：执行一个hello.c，计算机都干了些什么？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机系统漫游：执行hello.c，计算机都干了些什么？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-21T15:56:12+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致说法错误。如果你认为我说的不对，非常真诚的恳请您能够发个<a href="http://syt-honey.github.io/about/">issues</a>告知我，我会及时更正过来。再一次真诚的谢谢您。我也不知道会不会有人看到这篇文章，但是我想做个说明总是好一点，避免不必要的误会，到时候落得个「不懂装懂」就很不好了。最后，开心学习，开心成长~ 加油加油~~</p>
+</blockquote>
+<blockquote>
+<p>这是CSAPP这本书的第一章，主要讲述了，当我们运行一个hello.c文件时，从输入到显示结果，计算机都干了些什么?</p>
+</blockquote>
+<h3 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h3><p>在学习这本书之前呢，我们先要弄清楚三个问题：</p>
+<ol>
+<li>为什么学习这本书？</li>
+<li>学习这本书，我们能获得什么？</li>
+<li>这本书是以什么样的路线来讲解「操作系统」这门课程的？</li>
+</ol>
+<p>引用书中的话，这本书适用于一些希望深入了解软硬组件是如何工作的以及这些组件是如何影响程序的正确性和性能的，以此来提高自身的技能。这本书就是想我们了解，当在系统上执行hello程序时，系统到底发生了什么以及为什么会这样。通过限制hello程序的生命周期来开始对系统的学习。</p>
+<h3 id="hello-c-的一生"><a href="#hello-c-的一生" class="headerlink" title="hello.c 的一生"></a>hello.c 的一生</h3><p>下面我们正式开始整章的学习。</p>
+<h4 id="1-写出一个hello-c程序"><a href="#1-写出一个hello-c程序" class="headerlink" title="1.写出一个hello.c程序"></a>1.写出一个hello.c程序</h4><p>先看一个我们每个人的入门程序 (偷笑，当初打出这段代码小黑框蹦出来的时候真的是超惊喜欸！)：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  printf(&quot;hello, world\n&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们编辑完了c程序，那当我们点下”run”按钮到最后控制台跳出输出和结果这个过程，计算机会发生什么呢？</p>
+<h4 id="2-程序的翻译（启动）"><a href="#2-程序的翻译（启动）" class="headerlink" title="2.程序的翻译（启动）"></a>2.程序的翻译（启动）</h4><p>为了在系统上运行c程序，每条c语句都必须被其它程序转化为一些列的低级机器语言指令。然后这些指令按照一种称为可执行目标程序（可执行目标文件）的格式打好包，并以二进制磁盘文件的形式存放起来。</p>
+<p>在Unix系统上，从源文件到目标文件的转化是由 <strong>编译器驱动程序</strong>完成的：<br><code>linux&gt; gcc -o hello hello.c</code><br>在这里，gcc编译器驱动程序读取源程序文件hello.c，并把它翻译成一个可执行目标文件hello。这个翻译过程可分为四个阶段完成，如下图。<strong>执行这四个阶段的程序（预处理器、编译器、汇编器和链接器）一起构成了 编译系统</strong>。</p>
+<p><img src="/images/cs/complier.png" alt="complier"></p>
+<p>简单说下各个阶段都干了些什么：</p>
+<ul>
+<li>预处理阶段：预处理器(cpp)根据以字符#开头的命令，修改原始的C程序。直接将头文件中的内容插入到程序文本中。</li>
+<li><p>编译阶段：编译器(ccl)将文本文件.i编译成文本文件.s的汇编文件，它包含一个汇编语言程序。这个程序包含main的定义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">main:</span><br><span class="line">    subq $8, %rsp</span><br><span class="line">    movl $.LCO, %edi</span><br><span class="line">    call puts</span><br><span class="line">    movl $0, %eax</span><br><span class="line">    addq $8, %rsp</span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>汇编阶段：汇编器(as)将.s编译成机器语言指令，并将结果保存在目标文件.o(二进制文件)中。</p>
+</li>
+<li>链接阶段：链接器(ld)负责将各种目标文件合并到hello 文件中。它是一个可执行文件，可以被加载到内存中，由系统执行。</li>
+</ul>
+<p>所以呢，经过这个阶段，我们的hello.c程序已经被翻译成一个可执行的二进制文件存储在磁盘里了。接下来就是，处理器是怎么读这个文件的呢？</p>
+<h4 id="3-处理器读并解释存储在内存中的指令"><a href="#3-处理器读并解释存储在内存中的指令" class="headerlink" title="3.处理器读并解释存储在内存中的指令"></a>3.处理器读并解释存储在内存中的指令</h4><p>Unix系统上运行可执行文件，我们可以在shell里这样写：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">linux&gt; ./hello</span><br><span class="line">hello, world</span><br><span class="line">linux&gt;</span><br></pre></td></tr></table></figure>
+<p>我们看到，打印出内容了。有必要解释一下，shell是一个命令行解释器。它输出一个提示符，等待一个命令行，然后执行这个命令。如果这个命令行的第一个单词不是内置的shell命令，那么shell就会假设这是一个可执行文件的名字，将加载运行这个文件。</p>
+<p>好啦，总结一下这个过程，编辑 -&gt; 编译 -&gt; 读取文件加载到内存运行 -&gt; 输出到控制台。是不是觉得很简单？哈哈，我们讲的太泛啦。接下来的几个章节里，我们将会更加细粒度的看清楚这些阶段背后的本质。通过更多了解计算机的底层，让我们以后遇到莫名奇妙的链接错误时不会手足无措，需要提高程序性能的时候也不会无从下手。</p>
+<p>讲完了这么多，现在我们需要了解一些其它的基础知识。</p>
+<h3 id="你必须知道的一些基础知识"><a href="#你必须知道的一些基础知识" class="headerlink" title="你必须知道的一些基础知识"></a>你必须知道的一些基础知识</h3><p><strong>1.信息就是上下文</strong></p>
+<p>了解位、字节的概念。计算机的所有数据都是以一串比特（位）表示的，因此学习这个是有必要的。原文<code>源程序实际上就是一个由值0和1组成的位序列，8个位被组织成一组，称为字节。每个字节表示程序中的某些文本字符。</code>于是有：（每个字节表示某些文本字符）1字节 = 8个位</p>
+<p>在计算机中，所有的数据都是以比特的形式表示，那么我们怎么区分不同数据呢？唯一的方法就是读到这些数据对象的上下文。</p>
+<p><strong>2.我们为什么要了解编译系统是怎么工作的呢？</strong></p>
+<ul>
+<li>优化程序性能</li>
+<li>理解链接时的错误</li>
+<li>避免安全漏洞</li>
+<li>等等</li>
+</ul>
+<p><strong>3. 系统硬件</strong></p>
+<ul>
+<li>总线：总线是贯穿整个系统的一组电子管道。它携带着信息字节，负责各个部件间的传递。通常总线被设计成传送定长的字节块，也就是字。字中的字节数(字长)就是一个基本的系统参数。我们现在的大多数机器要么是4个字节(32位)，要么就是8个字节(64位)。</li>
+<li>I/O设备：I/O设备是系统与外界的联系通道(显示器(输出设备)、键盘(输入设备)啥的都是)。每个I/O设备都通过一个控制器或适配器与I/O总线相连。控制器和适配器之间的在于它们的封装方式。控制器是I/O设备本身或者系统的主印制电路板(主板)上的芯片组。而适配器则是一块插在主板插槽上的卡。但无论怎么样，它们的功能都是在I/O总线和I/O设备之间传递信息。</li>
+<li>主存：一个临时存储设备，在处理器执行程序时，用来存放程序和程序处理的数据。从物理上来说，主存是一组<em>动态随机存取存储器(DRAM)</em>芯片组成。从逻辑上来说，存储器是一个线性的字节数组，每个字节都有唯一的索引。</li>
+<li>处理器：中央处理单元，也叫处理器，是解释存储在主存中指令的引擎。处理器的核心是一个大小为一个字的存储设备(或寄存器)，称为程序计数器(PC)。在任何时候，PC都指向主存中的某条机器语言指令。</li>
+</ul>
+<p><strong>4. 缓存</strong></p>
+<p>从上面“运行程序”中，我们知道，计算机工作时，处理器从主存中取出数据放入寄存器中进行计算，但是，处理器从寄存器文件中读取数据比从主存中读取几乎要快100倍。并且，随着这些年半导体技术的进步，这样的速度差还在持续加大。针对处理器与主存之间的差异，系统设计者采用了更小更快的存储设备，称为<em>高速缓存存储器</em>。通过让高速缓存存放可能经常访问的数据，大部分的内存操作都能在快速的高速缓存中完成。</p>
+<p><strong>意识到高速缓存存储器存在的应用程序员能够利用告诉缓存将程序的性能提高一个数量级。</strong></p>
+<p><strong>5. 存储设备的层次结构</strong></p>
+<p>看张图就大概明白了：</p>
+<p><img src="/images/cs/memory-1.png" alt="memory-1"></p>
+<p><strong>6. 操作系统</strong></p>
+<p>首先，操作系统是一个系统软件。它有两个基本功能：1.防止硬件被失控的应用程序滥用。2.向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。它通过几个基本的抽象概念(进程、虚拟内存和文件)来实现这两个功能。看图：</p>
+<p><img src="/images/cs/cs-1.png" alt="cs-1"></p>
+<p><strong>7. 进程</strong></p>
+<p>进程是操作系统对一个正在运行的程序的一种抽象。当我们运行hello程序时，操作系统会提供一种假象，就好像系统上只有这一个程序在运行。我们现在来讨论一下一个CPU单核处理器的情况。当我们在shell中输入命令到运行hello程序，这实际上有两个程序，那么操作系统是怎么做的呢？</p>
+<p><img src="/images/cs/thread-1.png" alt="thread-1"></p>
+<p>我们看到，从一个进程到另一个进程时有操作系统内核管理的。它负责对程序上下文的切换。</p>
+<p>操作系统内核是操作系统代码常驻主存的部分。当应用程序需要操作系统的某些操作时，比如读写文件，它就执行一条特殊的系统调用指令，将控制权传递给内核，然后内核执行被请求的操作并返回应用程序。不过需要注意的是，内核它不是一个独立的进程。相反，他是系统管理全部进程所用代码和数据结构的集合。</p>
+<p><strong>8. 线程</strong></p>
+<p>尽管通常我们认为一个进程只有单一的控制流，但是在现代系统中，一个劲曾实际上可以由多个称为<em>线程</em>的执行单元完成。每个线程都运行在进程的上下文中，并共享同样的代码和全局数据。因为多线程之间比多进程之间更容易共享数据，也因为线程一般来说都比进程跟高效，所以以线程作为编程模型对于网络服务器应用变得越来越重要。</p>
+<p><strong>9. 虚拟内存</strong></p>
+<p>从名字看就知道，它是一个抽象出来的概念。它为每一个进程提供了一个假象，即每个线程都独占的使用主存。每个进程看到的内存都是一致的，称为<em>虚拟地址空间</em>。下面这张图是Linux进程的虚拟地址空间。</p>
+<p><img src="/images/cs/vm-1.png" alt="vm-1"></p>
+<p>我们来从下到上大致的解释一下吧：</p>
+<ul>
+<li>程序代码和数据：对所有的进程来说，代码是从同一固定地址开始，紧接着的是和C全局变量相对应的数据位置。代码和数据区是直接按照可执行目标文件的内容初始化的。第7章研究链接和加载时，会学习到更多有关地址空间的内容。</li>
+<li>堆：运行时堆。代码和数据区在进程一开始运行时就被指定了大小，与此不同，当调用向malloc和free这样的c标准库函数时，堆可以在运行时动态的扩展和收缩。在第9章学习管理虚拟内存时，我们将更详细的研究堆。</li>
+<li>共享库：大约在地址空间的中间部分是一块用来存放像C标准库和数学库这样的共享库的代码和数据的区域。共享库如何工作的呢？第7章介绍动态链接时会介绍到。</li>
+<li>栈：位于用户虚拟地址空间顶部的是用户栈，编译器用它来实现函数调用。和堆一样，用户栈在程序执行期间也可以动态扩展和收缩。第3章将学习编译器是如何使用栈的。</li>
+<li>内核虚拟内存：地址空间顶部的区域是为内核保留的。不允许应用程序读写这个区域的内容或直接调用内核代码定义的函数。相反，它们必须调用内核来执行这些操作。</li>
+</ul>
+<p><strong>10. 文件</strong></p>
+<p>文件就是字节序列。每个I/O设备，包括磁盘、键盘、显示器，甚至网络都可以看成是文件。不要小瞧文件这个概念，它向应用程序提供了一个统一的视图，来看待可能含有的所有各式各样的I/O设备。</p>
+<p><strong>11. 系统之间利用网络通信</strong></p>
+<p>正如我们知道的那样，系统与系统之间通常是通过网络连接到一起的。当然，如果我们从一个单独的系统来看，网络也可被视为一个I/O设备。</p>
+<p><strong>12. amdahl定律</strong></p>
+<p>定律主要思想是：当我们对系统的某个部分加速时，其对系统整体性能的影响取决于该部分的重要性和加速程度。若系统执行某应用程序需要时间为T1，假设系统某部分所需要执行时间与该时间的比例为α，而该部分性能提升比例为k。则总的执行时长为：<br>T = (1 - α)T1 + (αT1)/k = T1[(1 - α) + α/k]，<br>所以，计算加速比s = T/T1 为：<br>S = 1 / ((1 - α) + α/k)</p>
+<p><strong>13. 并发和并行</strong></p>
+<ol>
+<li>线程级并发</li>
+<li>指令集并行</li>
+</ol>
+<p><strong>14. 计算机系统中抽象的重要性(这是一个很重要的思维方式)</strong></p>
+<p>抽象的使用是计算机科学中最为重要的概念之一。计算机系统中的一个重大主题就是，提供不同层次的抽象表示，来隐藏实际发现的复杂性。例如，为一组函数规定一个简单的应用程序接口就是一个很好的变成习惯，程序员无须关注内部实现就可以使用代码。</p>
+<p><br></p>
+<p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/" rel="next" title="16-二分查找（下）：如何快速根据IP定位对应的省份地址？">
+                <i class="fa fa-chevron-left"></i> 16-二分查找（下）：如何快速根据IP定位对应的省份地址？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello-c-的一生"><span class="nav-number">2.</span> <span class="nav-text">hello.c 的一生</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-写出一个hello-c程序"><span class="nav-number">2.1.</span> <span class="nav-text">1.写出一个hello.c程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-程序的翻译（启动）"><span class="nav-number">2.2.</span> <span class="nav-text">2.程序的翻译（启动）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-处理器读并解释存储在内存中的指令"><span class="nav-number">2.3.</span> <span class="nav-text">3.处理器读并解释存储在内存中的指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你必须知道的一些基础知识"><span class="nav-number">3.</span> <span class="nav-text">你必须知道的一些基础知识</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
