@@ -88,7 +88,11 @@
 <meta property="og:description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/cs/complier.png">
-<meta property="og:updated_time" content="2019-03-22T01:05:26.615Z">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/memory-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/cs-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/thread-1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/cs/vm-1.png">
+<meta property="og:updated_time" content="2019-03-22T01:15:24.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机系统漫游：执行hello.c，计算机都干了些什么？">
 <meta name="twitter:description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
@@ -380,20 +384,20 @@
 <p><strong>意识到高速缓存存储器存在的应用程序员能够利用告诉缓存将程序的性能提高一个数量级。</strong></p>
 <p><strong>5. 存储设备的层次结构</strong></p>
 <p>看张图就大概明白了：</p>
-<p><a href="/images/cs/memory-1.png">memory-1</a></p>
+<p><img src="/images/cs/memory-1.png" alt="memory-1"></p>
 <p><strong>6. 操作系统</strong></p>
 <p>首先，操作系统是一个系统软件。它有两个基本功能：1.防止硬件被失控的应用程序滥用。2.向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。它通过几个基本的抽象概念(进程、虚拟内存和文件)来实现这两个功能。看图：</p>
-<p><a href="/images/cs/cs-1.png">cs-1</a></p>
+<p><img src="/images/cs/cs-1.png" alt="cs-1"></p>
 <p><strong>7. 进程</strong></p>
 <p>进程是操作系统对一个正在运行的程序的一种抽象。当我们运行hello程序时，操作系统会提供一种假象，就好像系统上只有这一个程序在运行。我们现在来讨论一下一个CPU单核处理器的情况。当我们在shell中输入命令到运行hello程序，这实际上有两个程序，那么操作系统是怎么做的呢？</p>
-<p><a href="/images/cs/thread-1.png">thread-1</a></p>
+<p><img src="/images/cs/thread-1.png" alt="thread-1"></p>
 <p>我们看到，从一个进程到另一个进程时有操作系统内核管理的。它负责对程序上下文的切换。</p>
 <p>操作系统内核是操作系统代码常驻主存的部分。当应用程序需要操作系统的某些操作时，比如读写文件，它就执行一条特殊的系统调用指令，将控制权传递给内核，然后内核执行被请求的操作并返回应用程序。不过需要注意的是，内核它不是一个独立的进程。相反，他是系统管理全部进程所用代码和数据结构的集合。</p>
 <p><strong>8. 线程</strong></p>
 <p>尽管通常我们认为一个进程只有单一的控制流，但是在现代系统中，一个劲曾实际上可以由多个称为<em>线程</em>的执行单元完成。每个线程都运行在进程的上下文中，并共享同样的代码和全局数据。因为多线程之间比多进程之间更容易共享数据，也因为线程一般来说都比进程跟高效，所以以线程作为编程模型对于网络服务器应用变得越来越重要。</p>
 <p><strong>9. 虚拟内存</strong></p>
 <p>从名字看就知道，它是一个抽象出来的概念。它为每一个进程提供了一个假象，即每个线程都独占的使用主存。每个进程看到的内存都是一致的，称为<em>虚拟地址空间</em>。下面这张图是Linux进程的虚拟地址空间。</p>
-<p><a href="/images/cs/vm-1.png">vm-1</a></p>
+<p><img src="/images/cs/vm-1.png" alt="vm-1"></p>
 <p>我们来从下到上大致的解释一下吧：</p>
 <ul>
 <li>程序代码和数据：对所有的进程来说，代码是从同一固定地址开始，紧接着的是和C全局变量相对应的数据位置。代码和数据区是直接按照可执行目标文件的内容初始化的。第7章研究链接和加载时，会学习到更多有关地址空间的内容。</li>
