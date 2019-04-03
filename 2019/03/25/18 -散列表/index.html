@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-query.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-deleted.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-link.png">
-<meta property="og:updated_time" content="2019-04-03T08:55:29.957Z">
+<meta property="og:updated_time" content="2019-04-03T09:18:38.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18-散列表">
 <meta name="twitter:description" content="tip：该篇有点长，请合理安排时间~  散列介绍散列思想散列表的英文叫”Hash Table”，平时也有人叫哈希表或者Hash表。 散列表用的是数组支持按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。 我们用一个例子来解释一下。假如我们有89名选手参加学校运动会。为了方便记录成绩，每个选手胸前都会贴上自己的参赛号码。现在我们希望编程实现这样一个功能，通过编号快速找到">
@@ -340,31 +340,31 @@
 <p>通过这个例子，我们可以总结出：<strong>散列表用的就是数组支持按照下标随机访问的时候，时间复杂度是O(1)的特性。</strong></p>
 <h4 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h4><p>从上面的例子我们可以看出，散列函数在散列表中起着非常关键的作用。现在我们来学习一下散列函数。</p>
 <p>散列函数，我们把它定义hash(key)。</p>
-<p>刚刚我们举的例子中，散列函数很简单，直接将编号对应数组下标就好了。但是，如果参赛选手的编号是随机生成的几位数字，又或者用的是a到z之间的字符串，那我们该如何构造散列函数呢？简言之，<strong>散列函数就是将key转化为hash(key)的一套规则</strong>，这套规则的设计基本要求：</p>
+<p>刚刚我们举的例子中，散列函数很简单，直接将编号对应数组下标就好了。但是，如果参赛选手的编号是随机生成的几位数字，又或者用的是a到z之间的字符串，那我们该如何构造散列函数呢？简言之，<strong>散列函数就是将key转化为hash(key)的一套规则</strong>，这套规则设计的基本要求：</p>
 <ul>
 <li>通过规则，计算得到的散列值是一个非负整数。</li>
 <li>如果key1 = key2，那hash(key1) == hash(key2)</li>
 <li>如果key1 ≠ key2，那hash(key1) ≠ hash(key2)</li>
 </ul>
 <p>前两点都还好理解。关于第三点，这个要求看起来合情合理，但是在真实情况下，想要找到一个不同的key对应的散列值都不一样的散列函数，几乎是不可能的。即便是著名的 <strong>MD5、SHA、CRC</strong>等哈希算法，也无法完全避免这种 <strong>散列冲突</strong>。</p>
-<h4 id="散列冲突"><a href="#散列冲突" class="headerlink" title="散列冲突"></a>散列冲突</h4><p>再好的散列函数也无法避免散列冲突。我们常用的散列冲突解决方法有两类，开放寻执法(open addressing)和链表法(chaining)。</p>
-<h5 id="1-开放寻址法"><a href="#1-开放寻址法" class="headerlink" title="1.开放寻址法"></a>1.开放寻址法</h5><p>开放寻址法的核心思想是，如果出现了散列冲突，我们就重新探测一个空闲位置，将数据插进去。那应该怎么探测新的位置呢？我们先说一个简单的探测方法，<strong>线性探测</strong>。</p>
+<h4 id="散列冲突"><a href="#散列冲突" class="headerlink" title="散列冲突"></a>散列冲突</h4><p>再好的散列函数也无法避免散列冲突。我们常用的散列冲突解决方法有两类，开放寻址法(open addressing)和链表法(chaining)。</p>
+<h5 id="1-开放寻址法"><a href="#1-开放寻址法" class="headerlink" title="1. 开放寻址法"></a>1. 开放寻址法</h5><p>开放寻址法的核心思想是，如果出现了散列冲突，我们就重新探测一个空闲位置，将数据插进去。那应该怎么探测新的位置呢？我们先说一个简单的探测方法，<strong>线性探测</strong>。</p>
 <p>当我们往散列表中插入数据时，如果某个数据经过散列函数散列后，存储位置已经被占用了，我们就从当前位置开始，依次往后查找，看是否有空闲位置，直到找到为止。</p>
 <p><img src="/images/algorithm/hash-liner-detection.png" alt="hash-liner-detection"></p>
 <p>在散列表中查找元素的过程和插入有点类似。我们通过散列表函数求出要查找元素的键值对应的散列值，然后进行比较。如果相等，则当前元素即为要找的元素，否则就依次往下找。</p>
 <p><img src="/images/algorithm/hash-query.png" alt="hash-query"></p>
 <p>散列表跟数组一样，不仅支持插入、查找操作，还支持删除操作。对于使用线性探测法解决冲突的散列表，删除操作稍微有些特别。我们不能单纯的将要删除的元素置空。这是为什么呢？</p>
-<p>在前面的查找操作中，我们通过线性探测方法，找到一个空闲位置，我们就认订散列表中不存在这个数据。但是，如果这个空闲位置是我们后来删除的，就会导致原来查找算法失效。本来存在的数据，会被认定为不存在。那我们应该怎么办呢？</p>
-<p>我们可以将需要删除的元素标记起来。比如标记为deleted。当线性探测查找的时候，遇到被标记的元素继续往下探测。</p>
+<p>在前面的查找操作中，我们通过线性探测方法，找到一个空闲位置，我们就认定散列表中不存在这个数据。但是，如果这个空闲位置是我们后来删除的，就会导致原来查找算法失效。本来存在的数据，会被认定为不存在。那我们应该怎么办呢？</p>
+<p>我们可以将需要删除的元素标记起来。比如标记为deleted。当线性探测查找的时候，遇到被标记的元素继续仍然往下探测。</p>
 <p><img src="/images/algorithm/hash-deleted.png" alt="hash-deleted"></p>
 <p>你可能已经发现了，线性探测法其实存在很大的问题。当散列表中插入的数据越来越多时，散列冲突发生的可能性就越来越大，空闲位置越来越少，线性探测的时间就会越来越久。极端的情况下，我们需要探测整张表。同理，在删除和查找时，也有可能会线性探测整张表，才可能找到数据。</p>
 <p>对于开放寻址法冲突解决方法，除了线性探测方法之外，还有另外两种比较经典的探测方法，<strong>二次探测（Quadratic probing）、双重散列（Double hashing）</strong>。</p>
 <p>所谓二次探测，和线性探测很像。线性探测每次探测的步长是1，它的探测的下标序列就是hash(key) + 0、hash(key) + 1、hash(key) + 2……而二次探测的步长就变成了原来的平方，hash(key) + 0、hash(key) + 1^2、hash(key) + 2^2……</p>
-<p>所谓双重散列，意思就是，不仅使用一个散列函数。我们使用一组散列函数hash1(key)，hash2(key)，hash3(key)……我们先用第一个散列函数，如果计算得到的存储位置已经被占用就是用第二个，以此类推。</p>
+<p>所谓双重散列，意思就是，不仅使用一个散列函数。我们使用一组散列函数hash1(key)，hash2(key)，hash3(key)……我们先用第一个散列函数，如果计算得到的存储位置已经被占用就使用第二个，以此类推。</p>
 <p>不管使用哪种探测方法，当散列表中空闲位置不多的时候，散列冲突的概率就会大大提高。为了尽可能保证散列表的操作效率，一般情况下，我们会尽可能保证散列表中有一定比例的空闲槽位。我们用装载因子(load factor)来表示空位的多少。</p>
 <p>装载因子的计算公式是：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">散列表的装载因子 = 填入表中的元素个数 / 散列表的长度</span><br></pre></td></tr></table></figure></p>
 <p>装载因子越大，说明空闲位置越少，冲突越多，散列表的性能越低。</p>
-<h5 id="2-链表法"><a href="#2-链表法" class="headerlink" title="2.链表法"></a>2.链表法</h5><p>链表法是一种更加常用的散列冲突解决办法。我们来看这个图，在散列表中，每个“桶”或“槽”会对应一张链表，所有散列值相同的元素我们都放到相同槽位对应的链表中。</p>
+<h5 id="2-链表法"><a href="#2-链表法" class="headerlink" title="2. 链表法"></a>2. 链表法</h5><p>链表法是一种更加常用的散列冲突解决办法。我们来看下面这张图，在散列表中，每个“桶”或“槽”会对应一张链表，所有散列值相同的元素都被放到相同槽位对应的链表中。</p>
 <p><img src="/images/algorithm/hash-link.png" alt="hash-link"></p>
 <p>当插入的时候，我们只需要通过散列函数计算出对应的散列槽位，将其插入到对应链表中即可，插入的时间复杂度是O(1)。当查找、删除元素时，时间复杂度与链表的长度k成正比，也就是O(k)。</p>
 <h3 id="如何设计一个工业级散列表"><a href="#如何设计一个工业级散列表" class="headerlink" title="如何设计一个工业级散列表"></a>如何设计一个工业级散列表</h3><h4 id="如何设计散列函数"><a href="#如何设计散列函数" class="headerlink" title="如何设计散列函数"></a>如何设计散列函数</h4><p>首先，散列函数的设计不能太复杂。其次，散列函数生成的值要尽可能随机并且均匀分布，避免最小化散列冲突，即便冲突，每个槽里的数据也会比较平均，不会出现某个槽中数据特别多的情况。</p>
@@ -380,7 +380,7 @@
 <h4 id="装载因子过大了怎么办？"><a href="#装载因子过大了怎么办？" class="headerlink" title="装载因子过大了怎么办？"></a>装载因子过大了怎么办？</h4><p>前面说过，装载因子不能太大，不然影响散列表的性能。不仅插入数据的过程要多次寻址或者拉很长的链，查找的过程也会因此变的缓慢。</p>
 <p>对于没有频繁插入和删除的静态数据集合来说，我们很容易根据数据的特点、分布等，设计出完美的、极少冲突的散列表。</p>
 <p>对于动态散列表，数据集合是频繁变动的，我们事先无法预估将要加入的数据个数，所以也无法事先申请一个足够大的散列表。但是随着装载因子的增大，散列冲突就会变得不可接受。这个时候，我们该如何处理呢？</p>
-<p>还记得之前讲的”动态扩容“嘛？回忆一下，我们是如何做数组、栈、队列的动态扩容的。</p>
+<p>还记得之前讲的”动态扩容“嘛？回忆一下，我们是如何做数组、栈、队列的动态扩容的。(之前课程的文章总结笔者没有写~可以自己考虑一下~)</p>
 <p>针对数组扩容，数据搬移操作比较简单。但是，针对散列表的扩容，数据搬移操作要复杂很多。因为散列表的大小变了，数据存储位置也变了，所以我们需要通过散列函数重新计算每个数据的存储位置。</p>
 <p>插入一个数据，最好情况下，不需要扩容，时间复杂度是O(1)。最坏情况下，装载因子过高，启动扩容。我们需要重新申请内存空间，重新计算哈希位置，并且搬移数据，所以时间复杂度是O(n)。用摊还分析法，均摊情况下，时间复杂度接近最好情况，时间复杂度就是O(1)。</p>
 <p>我们前面讲到，当装载因子超过某个阈值时，就需要进行扩容。装载因子阈值需要选择得当。如果太大，会导致冲突过多；如果太小，会导致内存浪费严重。</p>
@@ -389,22 +389,22 @@
 <p>当有新数据要插入时，我们将新数据插入散列表中，并且从老的散列表中拿出一个数据放入到新散列表。每次插入一个数据到散列表，我们都重复上面的过程。</p>
 <p>那这期间的查询操作怎么来做呢？对于查询操作，为了兼容新、老散列表的数据，我们先从新散列表中查找，如果没有找到再去老的散列表中查找。</p>
 <p>通过这样的均摊的方法，将一次性扩容的代价均摊到多次插入操作中，就避免了一次性扩容耗时过多的情况。这种实现方式，任何情况下，插入一个数据的时间复杂度都是O(1)。</p>
-<h4 id="如何选择冲突解决方法？"><a href="#如何选择冲突解决方法？" class="headerlink" title="如何选择冲突解决方法？"></a>如何选择冲突解决方法？</h4><p>上面讲了两种主要的散列冲突的解决方法，开发寻执法和链表法。这两种冲突解决办法在实际的软件开发中都非常有用。比如，Java中<code>LinkedHashMap</code>就采用了链式法解决冲突，<code>ThreadLocalMap</code>是通过线性探测的开放寻执法来解决冲突的。现在我们来看看，这两种冲突解决方法各有什么优势和劣势，又各自适用在哪些场景。</p>
-<h5 id="1-开放寻址法-1"><a href="#1-开放寻址法-1" class="headerlink" title="1.开放寻址法"></a>1.开放寻址法</h5><p>优点：</p>
+<h4 id="如何选择冲突解决方法？"><a href="#如何选择冲突解决方法？" class="headerlink" title="如何选择冲突解决方法？"></a>如何选择冲突解决方法？</h4><p>上面讲了两种主要的散列冲突的解决方法，开放寻址法和链表法。这两种冲突解决办法在实际的软件开发中都非常有用。比如，Java中<code>LinkedHashMap</code>就采用了链式法解决冲突，<code>ThreadLocalMap</code>是通过线性探测的开放寻址法来解决冲突的。现在我们来看看，这两种冲突解决方法各有什么优势和劣势，又各自适用在哪些场景。</p>
+<h5 id="1-开放寻址法-1"><a href="#1-开放寻址法-1" class="headerlink" title="1. 开放寻址法"></a>1. 开放寻址法</h5><p>优点：</p>
 <ol>
 <li>散列表中的数据都存储在数组中，可以有效利用CPU缓存，加快查询速度。</li>
 <li>序列化起来比较简单，不要小看序列化，很多场合都会用到。</li>
 </ol>
 <p>缺点：</p>
 <ol>
-<li>开放寻执法解决冲突的散列表，删除数据的时候比较麻烦，需要特殊标记已经删除掉的数据。</li>
-<li>在烤房寻执法中，所有的数据都存储在一个数组中，比起链表法来说，冲突的代价更高。，</li>
+<li>开放寻址法解决冲突的散列表，删除数据的时候比较麻烦，需要特殊标记已经删除掉的数据。</li>
+<li>在开放寻址法中，所有的数据都存储在一个数组中，比起链表法来说，冲突的代价更高。</li>
 <li>使用这种方法时，装载因子的上限不能太大。</li>
 <li>比链表更浪费内存。</li>
 </ol>
-<h5 id="2-链表法-1"><a href="#2-链表法-1" class="headerlink" title="2.链表法"></a>2.链表法</h5><p>优点：</p>
+<h5 id="2-链表法-1"><a href="#2-链表法-1" class="headerlink" title="2. 链表法"></a>2. 链表法</h5><p>优点：</p>
 <ol>
-<li>链表法对内存的利用率比寻执法要高。</li>
+<li>链表法对内存的利用率比寻址法要高。</li>
 <li>链表法比开放寻址法，对大装载因子的容忍度更高。开放寻址只能适用装载因子小于1的情况。接近1时，就可能会有大量的散列冲突，导致大量的探测、再散列等，性能会下降很多。但对于链表法来说，只要散列函数的值随机均匀，即便装载因子变成10，也就是链表的长度变长而已，虽然查找效率有所下降，但比起顺序查找还是要快很多。</li>
 </ol>
 <p>缺点：</p>
@@ -562,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -618,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#散列介绍"><span class="nav-number">1.</span> <span class="nav-text">散列介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列思想"><span class="nav-number">1.1.</span> <span class="nav-text">散列思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列函数"><span class="nav-number">1.2.</span> <span class="nav-text">散列函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列冲突"><span class="nav-number">1.3.</span> <span class="nav-text">散列冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-开放寻址法"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.开放寻址法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-链表法"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.链表法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设计一个工业级散列表"><span class="nav-number">2.</span> <span class="nav-text">如何设计一个工业级散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何设计散列函数"><span class="nav-number">2.1.</span> <span class="nav-text">如何设计散列函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装载因子过大了怎么办？"><span class="nav-number">2.2.</span> <span class="nav-text">装载因子过大了怎么办？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免低效扩容"><span class="nav-number">2.3.</span> <span class="nav-text">如何避免低效扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择冲突解决方法？"><span class="nav-number">2.4.</span> <span class="nav-text">如何选择冲突解决方法？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-开放寻址法-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.开放寻址法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-链表法-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.链表法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工业级散列表举例分析"><span class="nav-number">2.5.</span> <span class="nav-text">工业级散列表举例分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容小结"><span class="nav-number">3.</span> <span class="nav-text">内容小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#散列介绍"><span class="nav-number">1.</span> <span class="nav-text">散列介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列思想"><span class="nav-number">1.1.</span> <span class="nav-text">散列思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列函数"><span class="nav-number">1.2.</span> <span class="nav-text">散列函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列冲突"><span class="nav-number">1.3.</span> <span class="nav-text">散列冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-开放寻址法"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 开放寻址法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-链表法"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 链表法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设计一个工业级散列表"><span class="nav-number">2.</span> <span class="nav-text">如何设计一个工业级散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何设计散列函数"><span class="nav-number">2.1.</span> <span class="nav-text">如何设计散列函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装载因子过大了怎么办？"><span class="nav-number">2.2.</span> <span class="nav-text">装载因子过大了怎么办？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免低效扩容"><span class="nav-number">2.3.</span> <span class="nav-text">如何避免低效扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择冲突解决方法？"><span class="nav-number">2.4.</span> <span class="nav-text">如何选择冲突解决方法？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-开放寻址法-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">1. 开放寻址法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-链表法-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">2. 链表法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工业级散列表举例分析"><span class="nav-number">2.5.</span> <span class="nav-text">工业级散列表举例分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容小结"><span class="nav-number">3.</span> <span class="nav-text">内容小结</span></a></li></ol></div>
             
 
           </div>
