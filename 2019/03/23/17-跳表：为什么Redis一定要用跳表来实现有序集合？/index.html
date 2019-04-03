@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-index.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-many-layers.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-dynamic-update.png">
-<meta property="og:updated_time" content="2019-03-23T09:23:49.343Z">
+<meta property="og:updated_time" content="2019-03-25T01:02:50.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="17-跳表:为什么Redis一定要用跳表来实现有序集合？">
 <meta name="twitter:description" content="开篇问题我们前面讲15-二分查找（上）：如何用最省内存的方式实现快速查找功能？，二分查找依赖于数组的随机访问，所以只能用数组来实现。但是，如果数据存储在链表里，就真的没法用二分查找算法了嘛？ 实际上，我们只需要把链表稍微改一下，就可以支持类似“二分”的查找算法了。我们把这种数据结构叫做 跳表。 虽然你可能会对这个数据结构有点陌生，但是它确实是一种各个方面性能都比较优秀的 动态数据结构，可以支持快速">
@@ -329,7 +329,7 @@
 <p>实际上，我们只需要把链表稍微改一下，就可以支持类似“二分”的查找算法了。我们把这种数据结构叫做 <strong>跳表</strong>。</p>
 <p>虽然你可能会对这个数据结构有点陌生，但是它确实是一种各个方面性能都比较优秀的 <strong>动态数据结构</strong>，可以支持快速的插入、删除、查找操作，写起来也不复杂，甚至可以替代红黑树(red-black tree)。</p>
 <p>Redis中的有序集合(Sorted Set)就是用跳表来实现的。如果你有一定的基础，应该知道红黑树也可以实现快速的插入、删除和查找操作。<strong>那Redis为什么会选择用跳表来实现有序集合呢？</strong>为什么不用红黑树呢？</p>
-<h3 id="跳表的理解"><a href="#跳表的理解" class="headerlink" title="跳表的理解"></a>跳表的理解</h3><p>对于一个单链表来说，即便链表存储的数据是有序的，我们如果想要找到某个数据，所用的时间复发度也是O(n)。</p>
+<h3 id="跳表的理解"><a href="#跳表的理解" class="headerlink" title="跳表的理解"></a>跳表的理解</h3><p>对于一个单链表来说，即便链表存储的数据是有序的，我们如果想要找到某个数据，所用的时间复杂度也是O(n)。</p>
 <p><img src="/images/algorithm/skip-list-original-list.png" alt="skip-list-original-list"></p>
 <p>那我们如何更高效的查找呢？像下面这样，我们建立一级“索引”。每两个结点提取一个结点到上一级(我们把原始链表的上一级叫做第一级索引)。我们把抽取出来的这一层叫做 <strong>索引</strong>或 <strong>索引层</strong>。（图中的down表示down指针，指向下一级结点。）</p>
 <p><img src="/images/algorithm/skip-list-index.png" alt="skip-list-index"></p>
@@ -337,7 +337,7 @@
 <p>我们试想一下，如果数据量比较大的话，当我们建立了多层索引时，需要遍历的次数就会降低的很明显。我们来看看：</p>
 <p><img src="/images/algorithm/skip-list-many-layers.png" alt="skip-list-many-layers"></p>
 <p>看到这里我们大家就会知道了，<strong>其实跳表就是在链表上加了多级索引和指针</strong>帮助我们提高搜索效率。</p>
-<h3 id="跳表的查询时间复杂度怎么计算？"><a href="#跳表的查询时间复杂度怎么计算？" class="headerlink" title="跳表的查询时间复杂度怎么计算？"></a>跳表的查询时间复杂度怎么计算？</h3><p>我们看到了，跳表中的索引能帮助我们提高查询效率，那它的时间复杂度应该怎么来计算呢？有这么多级的索引，那是不是我们不是只要根据原始链表的结点数n，把索引的总层数和每层会遍历的次数都算出，然后相乘就可以得出总的时间复杂度嘛？emmm，没毛病。</p>
+<h3 id="跳表的查询时间复杂度怎么计算？"><a href="#跳表的查询时间复杂度怎么计算？" class="headerlink" title="跳表的查询时间复杂度怎么计算？"></a>跳表的查询时间复杂度怎么计算？</h3><p>我们看到了，跳表中的索引能帮助我们提高查询效率，那它的时间复杂度应该怎么来计算呢？有这么多级的索引，那我们不是只要根据原始链表的结点数n，把索引的总层数和每层会遍历的次数都算出，然后相乘就可以得出总的时间复杂度了嘛？emmm，没毛病。</p>
 <p>按照我们刚才讲的，我们每隔了两个结点建立一个上级索引。当原始链表有n个结点，那第一级索引节点个数约为n/2,第二级索引的个数大约就是n/4…很容易知道，第k级索引的结点个数就是n/(2^k)。</p>
 <p>现在，我们假设索引有h层，最高级的索引有两个结点。可以得出，h = log(2)n - 1。如果包含原始层的话，那跳表的高度就是log(2)n。接下来我们再假设在每一层都要遍历m个结点。这个m怎么计算呢？先来思考一下，从第一层到第h层，我们都是每隔两个结点往上取一个。观察一下会发现，上一层两个结点对应下一层是三个结点，也就是说每两层之间，最多会遍历三个结点。如果你还没明白，你可以参照上面较多数据的那张图再看看。</p>
 <p>所以我们就可以得出，当我们每两个结点往上取一个结点索引，最高索引有两个结点，我们最终得到的时间复杂度是O(logn)。</p>
@@ -418,6 +418,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/25/18 -散列表/" rel="prev" title="18-散列表">
+                18-散列表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -497,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
