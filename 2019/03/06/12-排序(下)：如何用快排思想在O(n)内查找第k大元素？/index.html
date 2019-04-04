@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/quickSort.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/M-Q-Summary.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/findEleK.png">
-<meta property="og:updated_time" content="2019-04-04T03:11:35.657Z">
+<meta property="og:updated_time" content="2019-04-04T04:29:02.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12-排序(下)：如何用快排思想在O(n)内查找第k大元素？">
 <meta name="twitter:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
@@ -371,8 +371,7 @@
 <p>快速排序算法虽然最坏情况下的时间复杂度是 O(n )，但是平均情况下时间复杂度都是O(nlogn)。不仅如此，快速排序算法时间复杂度退化到 O(n)的概率非常小，我们可以通过合理地选择 pivot 来避免这种情况。</p>
 <h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>现在你有 10 个接口访问日志文件，每个日志文件大小约 300MB，每个文件里的日志都是按照时间戳从小到大排序的。你希望将这 10 个较小的日志文件，合并为 1 个日志文件，合并之后的日志仍然按照时间戳从小到大排列。如果处理上述排序任务的机器内存只有1GB，你有什么好的解决思路，能“快速”地将这 10 个日志文件合并吗？</p>
 <hr>
-<p>@峰<br>每次从各个文件中取一条数据，在内存中根据数据时间戳构建一个最小堆，然后每次把最小值给写入新文件，同时将最小值来自的那个文件再出来一个数据，加入到最小堆中。这个空间复杂度为常数，但没能很好利用1g内存，而且磁盘单个读取比较慢，所以考虑每次读取一批数据，没了再从磁盘中取，时间复杂度还是一样O(n)。</p>
-<p><br></p>
+<p>@峰<br>每次从各个文件中取一条数据，在内存中根据数据时间戳构建一个最小堆，然后每次把最小值给写入新文件，同时将最小值来自的那个文件再出来一个数据，加入到最小堆中。这个空间复杂度为常数，但没能很好利用1g内存，而且磁盘单个读取比较慢，所以考虑每次读取一批数据，没了再从磁盘中取，时间复杂度还是一样O(n)。  </p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       

@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/bucketSort.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/countingSortArray.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/radixSort.png">
-<meta property="og:updated_time" content="2019-04-04T03:13:10.874Z">
+<meta property="og:updated_time" content="2019-04-04T04:29:09.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="13-线性排序：如何根据年龄给100万用户数据排序？">
 <meta name="twitter:description" content="这一讲我们来分析三种时间复杂度是O(n)的排序算法：桶排序、计数排序、基数排序。由于他们算法的时间复杂度是线性的，所以我们把这类排序算法又叫做 线性排序。之所以能做到线性的时间复杂度，主要原因是，这三个算法是 非基于比较的排序算法，都不涉及元素之间的比较操作。这几种排序算法理解起来、分析时间、空间复杂度都不难，但是对数据的要求很苛刻，所以 重点掌握这些算法的适用场景。  按照惯例，我们来看一道思">
@@ -362,8 +362,7 @@
 <h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>假设我们现在需要对D、a、F、B、c、A、z 这个字符串进行排序，要求将其中所有小写字母都排在大写字母的前面，但小写字母内部不要求有序。这个应该如何实现呢？如果字符串中还有数字，仍然还是要求将小写字母放在前面，大写字母放在后面，不用排序算法又该怎么解决呢？</p>
 <hr>
 <p>@wujc<br>用两个指针a、b：a指针从头开始往后遍历，遇到大写字母就停下，b从后往前遍历，遇到小写字母就停下，交换a、b指针对应的元素；重复如上过程，直到a、b指针相交。<br>对于小写字母放前面，数字放中间，大写字母放后面，可以先将数据分为小写字母和非小写字母两大类，进行如上交换后再在非小写字母区间内分为数字和大写字母做同样处理</p>
-<p>@伟忠<br>课后思考，利用桶排序思想，弄小写，大写，数字三个桶，遍历一遍，都放进去，然后再从桶中取出来就行了。相当于遍历了两遍，复杂度O(n)</p>
-<p><br></p>
+<p>@伟忠<br>课后思考，利用桶排序思想，弄小写，大写，数字三个桶，遍历一遍，都放进去，然后再从桶中取出来就行了。相当于遍历了两遍，复杂度O(n)  </p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       

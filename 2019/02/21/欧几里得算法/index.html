@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="任务 求两个数 a, b的最大公约数gcd(a, b)  说明 由贝祖定理得，gcd(a, b) = gcd(b, a-b),其中a&amp;gt;=b。通过这样不断的迭代，直到 b = 0,a 就是原来数对的最大公约数。考虑到只使用减法会超时，我们观察到如果a -b仍大于b的话，要进行一次同样的操作就把a减到不足b为止，所以有gcd(a, b) = gcd(b, a mod b)。  接口  int g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-04T02:39:33.477Z">
+<meta property="og:updated_time" content="2019-04-04T04:31:20.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="欧几里得算法">
 <meta name="twitter:description" content="任务 求两个数 a, b的最大公约数gcd(a, b)  说明 由贝祖定理得，gcd(a, b) = gcd(b, a-b),其中a&amp;gt;=b。通过这样不断的迭代，直到 b = 0,a 就是原来数对的最大公约数。考虑到只使用减法会超时，我们观察到如果a -b仍大于b的话，要进行一次同样的操作就把a减到不足b为止，所以有gcd(a, b) = gcd(b, a mod b)。  接口  int g">
@@ -335,7 +335,6 @@
 </ul>
 </blockquote>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b == <span class="number">0</span>? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
 <p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       

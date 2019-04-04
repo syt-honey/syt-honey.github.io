@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-tree-storage-structure-link.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-tree-storage-structure-array.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-tree-traversal.png">
-<meta property="og:updated_time" content="2019-04-04T03:33:44.636Z">
+<meta property="og:updated_time" content="2019-04-04T04:29:58.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="22-二叉树基础(上)：什么样的二叉树适合用数组来存储？">
 <meta name="twitter:description" content="前面讲的都是线性表结构、栈、队列等待。我们今天就来讲讲一种非线性结构，树。我们会分四节来学习。(有没有好激动？我好激动呀 (￣▽￣)” ~ )  废话不多说，这一讲我们主要介绍一下树。不过，在开始之前，我们再来看看题头的问题，什么样的二叉树适合用数组来存储呢？也许你已经有答案了，现在就开始啦。 树(Tree)什么是树？来看看维基百科的解释：  树（tree）是一种抽象数据类型（ADT）或是实作这">
@@ -373,8 +373,7 @@
 </ol>
 <hr>
 <p>@失火的夏天<br>1、是卡特兰数，是C[n,2n] / (n+1)种形状，c是组合数，节点的不同又是一个全排列，一共就是n!*C[n,2n] / (n+1)个二叉树。可以通过数学归纳法推导得出。<br>2、层次遍历需要借助队列这样一个辅助数据结构。（其实也可以不用，这样就要自己手动去处理节点的关系，代码不太好理解，好处就是空间复杂度是o(1)。不过用队列比较好理解，缺点就是空间复杂度是o(n)）。根节点先入队列，然后队列不空，取出对头元素，如果左孩子存在就入列队，否则什么也不做，右孩子同理。直到队列为空，则表示树层次遍历结束。树的层次遍历，其实也是一个广度优先的遍历算法。</p>
-<p>@言志<br>1、既然是数组了，说明是完全二叉树，应该有n的阶乘个组合。<br>2、二叉树按层遍历，可以看作以根节点为起点，图的广度优先遍历的问题。</p>
-<p><br></p>
+<p>@言志<br>1、既然是数组了，说明是完全二叉树，应该有n的阶乘个组合。<br>2、二叉树按层遍历，可以看作以根节点为起点，图的广度优先遍历的问题。  </p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       

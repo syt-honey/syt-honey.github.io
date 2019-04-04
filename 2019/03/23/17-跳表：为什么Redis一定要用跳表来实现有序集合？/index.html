@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-index.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-many-layers.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/skip-list-dynamic-update.png">
-<meta property="og:updated_time" content="2019-03-25T01:02:50.721Z">
+<meta property="og:updated_time" content="2019-04-04T04:29:36.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="17-跳表:为什么Redis一定要用跳表来实现有序集合？">
 <meta name="twitter:description" content="开篇问题我们前面讲15-二分查找（上）：如何用最省内存的方式实现快速查找功能？，二分查找依赖于数组的随机访问，所以只能用数组来实现。但是，如果数据存储在链表里，就真的没法用二分查找算法了嘛？ 实际上，我们只需要把链表稍微改一下，就可以支持类似“二分”的查找算法了。我们把这种数据结构叫做 跳表。 虽然你可能会对这个数据结构有点陌生，但是它确实是一种各个方面性能都比较优秀的 动态数据结构，可以支持快速">
@@ -375,8 +375,7 @@
 <h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>在今天的内容中，对于跳表的时间复杂度分析，我分析了每两个结点提取一个节点作为索引的时间复杂度。如果每三个或者每五个结点提取一个结点作为上级索引，对应的跳表中查询数据的时间复杂度是多少呢？</p>
 <hr>
 <p>@leo<br>跳表是我非常喜欢的数据结构，之前写过<a href="https://cloud.tencent.com/developer/article/1353762" target="_blank" rel="noopener">一篇文章</a>，希望大家斧正。另外，严格来讲，Redis的对象系统中的每种对象实际上都是基于使用场景选择多种底层数据结构实现的，比如ZSET就是基于【压缩列表】或者【跳跃表+字典】（这也跟之前排序中提到的Sort包实现的思想一样，基于数据规模选择合适的排序算法），体现了Redis对于性能极致的追求。</p>
-<p>@escray<br>如果每三个或者五个节点提取一个节点作为上级索引，那么对应的查询数据时间复杂度，应该也还是 O(logn)。<br>假设每 5 个节点提取，那么最高一层有 5 个节点，而跳表高度为 log5n，每层最多需要查找 5 个节点，即 O(mlogn)中的 m = 5，最终，时间复杂度为 O(logn)。<br>空间复杂度也还是 O(logn)，虽然省去了一部分索引节点，但是似乎意义不大。<br>不知道在一般的生产系统，跳表的提取是按照多少个节点来实现？还是每个系统根据实际情况，都不一样。<br>看了跳表的 Java 实现，查找部分的代码真是漂亮，插入部分看了半天才看明白。</p>
-<p><br></p>
+<p>@escray<br>如果每三个或者五个节点提取一个节点作为上级索引，那么对应的查询数据时间复杂度，应该也还是 O(logn)。<br>假设每 5 个节点提取，那么最高一层有 5 个节点，而跳表高度为 log5n，每层最多需要查找 5 个节点，即 O(mlogn)中的 m = 5，最终，时间复杂度为 O(logn)。<br>空间复杂度也还是 O(logn)，虽然省去了一部分索引节点，但是似乎意义不大。<br>不知道在一般的生产系统，跳表的提取是按照多少个节点来实现？还是每个系统根据实际情况，都不一样。<br>看了跳表的 Java 实现，查找部分的代码真是漂亮，插入部分看了半天才看明白。  </p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       
