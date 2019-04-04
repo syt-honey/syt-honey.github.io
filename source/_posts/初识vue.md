@@ -49,7 +49,7 @@ tags: vue
 
 [怎么样也少不了的vue-cli官网文档](https://github.com/vuejs/vue-cli)   
 [vue-cli#2.0webpack配置解析](https://juejin.im/post/584e48b2ac502e006c74a120)   
-[webpack的中文文档](https://webpack.docschina.org/)
+[webpack的中文文档](https://webpack.docschina.org/)  
 
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~
 

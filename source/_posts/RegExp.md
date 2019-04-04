@@ -26,7 +26,6 @@ tags: js
 ```
 >**注1：**在第二种方法中，`pattern`和 `flags`都为字符串模式。
 >**注2：**在ECMAScript3中，正则表达式字面量和RegExp构造函数创建的正则表达式不一样。前者始终共享同一个RegExp，后者每创建一个RegExp都是一个新实例。ECMAScript5中，使用正则表达式字面量必须像直接调用RegExp构造函数一样，每次都创建新的实例。
-
 ### 属性
 ---
 
@@ -57,8 +56,6 @@ RegExp的每个实例都具有下列属性:
   alert(pattern2.lastIndex);        // 0
   alert(pattern2.source);           // "\[bc\]at"
 ```
-
-
 ### RegExp实例方法
 ---
 

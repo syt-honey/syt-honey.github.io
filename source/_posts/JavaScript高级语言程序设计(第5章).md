@@ -202,6 +202,4 @@ tags: js
   alert(sum);   // 15
 ```
 
-<br>
-
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~

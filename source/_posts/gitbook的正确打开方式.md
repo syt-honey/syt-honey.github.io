@@ -98,6 +98,4 @@ tags: gitbook
 
 #### 7. 好啦，前面这些部分大概就是这样。后续步骤很多文章都有写，我就不写啦。遇见什么问题，欢迎和我交流~
 
-<br>
-
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~

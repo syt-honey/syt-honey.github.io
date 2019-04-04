@@ -8,16 +8,12 @@ tags: blog
 
 本文以主题为`material`讲解。
 
-<br>
-
 #### 安装Hexo
 ---
 
 ```
   npm install -g hexo-cli
 ```
-
-<br>
 
 #### 创建一个叫blog的网站
 ---
@@ -27,8 +23,6 @@ tags: blog
   hexo init blog
 ```
 
-<br>
-
 #### 进入blog目录，运行该服务
 ---
 
@@ -37,12 +31,8 @@ tags: blog
   hexo server
 ```
 
-<br>
-
 #### 打开浏览器，输入`http://localhost:4000/`查看
 ---
-
-<br>
 
 #### 修改主题和`blog`目录下的配置文件(下面直接称为：站点配置文件)
 ---
@@ -54,13 +44,10 @@ tags: blog
   * `description`：网站描述。主要用于SEO，告诉搜索引擎关于你站点的简单描述。
   * `url`：网站网址
   * `root`：网站根目录。注意自己网站是存放在哪个目录下的。
-   * `theme`：改为`material`
-
-<br>
+  * `theme`：改为`material`
 
 #### 修改选中主题中的配置文件
 ---
-
 
 * 首先，将配置文件`_config.template.yml`copy一份到当前目录，并更名为`_config.yml`。详情请见：[安装说明](https://material.viosey.com/docs/#/start)。
 * 更改`_config.yml`配置文件中的基本信息：
@@ -76,8 +63,6 @@ tags: blog
 
 注：向搜索引擎验证你对站点的所有权，用于向搜索引擎提交sitemap和管理站点被搜索引擎收录的情况。
 
-<br>
-
 #### 修改站点配置文件，将网站自部署到Github上
 ---
 
@@ -89,8 +74,6 @@ tags: blog
   branch: master
 ```
 
-<br>
-
 #### 安装部署使用的git插件
 ---
 
@@ -99,8 +82,6 @@ tags: blog
 ```
   npm install hexo-deployer-git --save
 ```
-
-<br>
 
 #### 生成网站
 ---
@@ -111,8 +92,6 @@ tags: blog
   hexo g
 ```
 
-<br>
-
 #### 重启生成网站，进行自动部署网站
 ---
 
@@ -122,13 +101,9 @@ tags: blog
   hexo d
 ```
 
-<br>
-
 参考文章：  
 [Hexo简述](https://hexo.io/zh-cn/docs/index.html)  
 [material用法](https://material.viosey.com/docs/#/start)  
-[Hexo用法](https://blog.csdn.net/u012028371/article/details/78666998)
-
-<br>
+[Hexo用法](https://blog.csdn.net/u012028371/article/details/78666998)  
 
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~

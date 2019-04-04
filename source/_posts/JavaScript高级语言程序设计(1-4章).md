@@ -141,8 +141,6 @@ tags: js
 19. 垃圾回收机制：
   * 标记清除法(mark-and-sweep)：
   * 引用计数法(reference counting)：因该方法会导致 **循环引用** ，被废弃。
-20. 管理内存：分配给web浏览器的可用内存数量通常要比分配给桌面应用程序的少。目的：防止运行JavaScript的网页耗尽全部系统内存而导致系统崩溃。
-
-<br>
+20. 管理内存：分配给web浏览器的可用内存数量通常要比分配给桌面应用程序的少。目的：防止运行JavaScript的网页耗尽全部系统内存而导致系统崩溃。  
 
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~

@@ -43,8 +43,6 @@ $ git config --global core.autocrlf false
 <br>
 
 参考文档：  
-[LF will be replaced by CRLF in git - What is that and is it important?](https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important)
-
-<br>
+[LF will be replaced by CRLF in git - What is that and is it important?](https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important)  
 
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~
