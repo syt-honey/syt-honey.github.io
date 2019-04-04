@@ -31,7 +31,7 @@ tags: vue
   # 如果填写了project-name需要先进入该文件
   npm install <packageName>
 ```
-> [npm模块安装机制简介,离线安装模块方法](http://www.ruanyifeng.com/blog/2016/01/npm-install.html)    
+> [npm模块安装机制简介,离线安装模块方法](http://www.ruanyifeng.com/blog/2016/01/npm-install.html)
 
 #### 运行
 

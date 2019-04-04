@@ -50,7 +50,7 @@ tags: gitbook
 ```
 
 #### 6. 新建book.json文件，下面贴出我的文件：
-```
+```json
 {
   "output": null,
   "generator": "site",

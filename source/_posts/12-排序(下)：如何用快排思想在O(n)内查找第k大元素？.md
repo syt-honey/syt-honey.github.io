@@ -31,7 +31,7 @@ left >= right
 ```
 
 算法实现：
-```
+```c
 // 归并排序
 void merge_sort(int[] a, int left, int right) {
   //终止条件
@@ -57,20 +57,16 @@ void merge(int[] a,int left,int middle,int right) {
   }
 
   // 判断哪个子数组中有剩余的数据
-  if (i > middle)
-	{
-		while(j <= right)
-		{
-			temp[k++] = a[j++];
-		}
-	}
-	else
-	{
-		while(i <= middle)
-		{
-			temp[k++] = a[i++];
-		}
-	}
+  if (i > middle) {
+    while(j <= right) {
+      temp[k++] = a[j++];
+    }
+  }
+  else {
+    while(i <= middle) {
+      temp[k++] = a[i++];
+    }
+  }
   return ;
 }
 ```
@@ -124,7 +120,7 @@ left >= right
 ```
 
 算法实现：
-```
+```c
 // 快排
 void quick_sort(int[] a, int left, int right) {
   if(left >= right) {

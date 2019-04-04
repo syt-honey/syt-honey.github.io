@@ -12,11 +12,11 @@ warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享�
 The file will have its original line endings in your working directory.
 ```
 
-**原因**：在Windows系统下，他们的行尾可能会被替换，使用回车或换行符，在Unix系统中则只用换行符来表示。  
+**原因**：在Windows系统下，他们的行尾可能会被替换，使用回车或换行符，在Unix系统中则只用换行符来表示。 
 
 **解决办法**： 在当前目录下执行如下命令：`git config core.autocrlf true`。想要在全局有效，执行`git config --global core.autocrlf true`。
 
-详情请参见：[说明文档](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace)     
+详情请参见：[说明文档](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace)
 
 部分内容：
 > Formatting and Whitespace
@@ -42,7 +42,7 @@ $ git config --global core.autocrlf false
 
 <br>
 
-参考文档：    
+参考文档：  
 [LF will be replaced by CRLF in git - What is that and is it important?](https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important)
 
 <br>

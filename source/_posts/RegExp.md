@@ -12,16 +12,16 @@ tags: js
 
 定义正则表达式的方式有两种：
 * 字面量方法
-```
+```js
   var expression = /pattern[/flags];
 
-  #例子
+  // 例子
   var pattern1 = /at/g;
   var pattern2 = /[bc]at/i;
   var pattern3 = /.at/gi;
 ```
 * 使用RegExp构造函数
-```
+```js
   var expression = new RegExp(pattern [, flags]);
 ```
 >**注1：**在第二种方法中，`pattern`和 `flags`都为字符串模式。
@@ -40,22 +40,22 @@ RegExp的每个实例都具有下列属性:
 | multiline |  布尔值  |                    表示是否设置了m标志                           |
 | source    |  字符串  |正则表达式字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回 |
 
-```
+```js
   var pattern1 = /\[bc\]at/i;
 
-  alert(pattern1.global);           //false
-  alert(pattern1.ignoreCase);       //true
-  alert(pattern1.multiline);        //false
-  alert(pattern1.lastIndex);        //0
-  alert(pattern1.source);           //"\[bc\]at"
+  alert(pattern1.global);           // false
+  alert(pattern1.ignoreCase);       // true
+  alert(pattern1.multiline);        // false
+  alert(pattern1.lastIndex);        // 0
+  alert(pattern1.source);           // "\[bc\]at"
 
   var pattern2 = new RegExp("\\[bc\\]at", "i");
   
-  alert(pattern2.global);           //false
-  alert(pattern2.ignoreCase);       //true
-  alert(pattern2.multiline);        //false
-  alert(pattern2.lastIndex);        //0
-  alert(pattern2.source);           //"\[bc\]at"
+  alert(pattern2.global);           // false
+  alert(pattern2.ignoreCase);       // true
+  alert(pattern2.multiline);        // false
+  alert(pattern2.lastIndex);        // 0
+  alert(pattern2.source);           // "\[bc\]at"
 ```
 
 
@@ -68,15 +68,15 @@ RegExp的每个实例都具有下列属性:
 * `toString()`
 * `valueOf()`
 
-```
+```js
   # `exec()`
   var text = "cat, bat, sat, fat";
   var pattern1 = /.at/;
 
   var matches = pattern1.exec(text);
-  alert(matches.index);              //0
-  alert(matches[0]);                 //cat
-  alert(pattern1.lastIndex);         //0
+  alert(matches.index);              // 0
+  alert(matches[0]);                 // cat
+  alert(pattern1.lastIndex);         // 0
 
   # `test()`
   var text = "000-00-0000";
@@ -88,8 +88,8 @@ RegExp的每个实例都具有下列属性:
 
   # `toLocaleString()`和`toString()`方法都会返回正则表达式的字面量，与创建正则表达式的方式无关。
   var pattern = new RegExp("\\[bc\\]at", "gi");
-  alert(pattern.toString());                 //  /\[bc\]at/gi
-  alert(pattern.toLocaleString());           //  /\[bc\]at/gi
+  alert(pattern.toString());                 // /\[bc\]at/gi
+  alert(pattern.toLocaleString());           // /\[bc\]at/gi
 
   # `valueOf()`
   #返回正则表达式本身
@@ -116,7 +116,7 @@ RegExp构造函包含一些属性(这些属性在其他语言中被看作是静�
   * `$*`
   * `$'`
 
-```
+```js
   var text = "this has been a short summer";
   var pattern = /(.)hort/g;
 
