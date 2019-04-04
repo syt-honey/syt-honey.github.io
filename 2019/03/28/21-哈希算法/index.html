@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希”，它的英文都是">
+<meta name="description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章：18-散列表 中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希">
 <meta name="keywords" content="算法与数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="21-哈希算法">
 <meta property="og:url" content="https://syt-honey.github.io/2019/03/28/21-哈希算法/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希”，它的英文都是">
+<meta property="og:description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章：18-散列表 中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-mod.png">
-<meta property="og:updated_time" content="2019-04-03T09:46:04.521Z">
+<meta property="og:updated_time" content="2019-04-03T10:04:51.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="21-哈希算法">
-<meta name="twitter:description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希”，它的英文都是">
+<meta name="twitter:description" content="哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。  什么是哈希算法？在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章：18-散列表 中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希">
 <meta name="twitter:image" content="https://syt-honey.github.io/images/algorithm/hash-mod.png">
 
 
@@ -325,7 +325,7 @@
         <blockquote>
 <p>哈希算法历史悠久，业界著名的哈希算法也有很多，比如MD5、SHA等。在我们实际开发中，基本上都是拿现成的直接用。所以，接下来将会从实战的角度来看看，在实际开发中，我们该如何用哈希算法解决问题。</p>
 </blockquote>
-<h3 id="什么是哈希算法？"><a href="#什么是哈希算法？" class="headerlink" title="什么是哈希算法？"></a>什么是哈希算法？</h3><p>在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希”，它的英文都是“Hash”。所以，“哈希算法”也可以叫做“散列算法”(注意和散列函数的区别，马上也会讲到)。</p>
+<h3 id="什么是哈希算法？"><a href="#什么是哈希算法？" class="headerlink" title="什么是哈希算法？"></a>什么是哈希算法？</h3><p>在开始之前，我们得先来了解了解，什么是哈希算法。前面这篇文章：<a href="/2019/03/25/18-散列表/" title="18-散列表">18-散列表</a> 中有讲到“散列表”、“散列函数”，这里又讲到了“哈希算法”。其实这只是英文翻译的问题，不管是“散列”还是“哈希”，它的英文都是“Hash”。所以，“哈希算法”也可以叫做“散列算法”(注意和散列函数的区别，马上也会讲到)。</p>
 <p>哈希算法的定义是这样的：<strong>将任意长度的二进制串映射为固定长度的二进制串，这个规则就是哈希算法。而通过原始数据映射之后得到的二进制值串就是哈希值。</strong></p>
 <p>但是想要设计一个优秀的哈希算法并不容易，下面是设计时需要满足的要求：</p>
 <ol>
@@ -421,7 +421,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/25/18 -散列表/" rel="next" title="18-散列表">
+              <a href="/2019/03/25/18-散列表/" rel="next" title="18-散列表">
                 <i class="fa fa-chevron-left"></i> 18-散列表
               </a>
             
@@ -430,6 +430,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/22-二叉树基础(上)：什么样的二叉树适合用数组来存储？/" rel="prev" title="22-二叉树基础(上)：什么样的二叉树适合用数组来存储？">
+                22-二叉树基础(上)：什么样的二叉树适合用数组来存储？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -510,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

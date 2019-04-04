@@ -88,7 +88,7 @@
 <meta property="og:description" content="几乎所有的编程语言都会提供排序函数，比如C语言中qsort()、C++STL中的sort()、stable_sort()，还有Java语言中的Collections.sort()。在平时开发中我们一般也都是直接使用它们了，那这些底层具体是怎么实现的呢？  基于这个问题，我们来讨论讨论：如何实现一个通用的、高性能的排序函数。 如何选择合适的排序算法？我们先来回顾一下： 我们前面讲过，当数据规模比较">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/sortAll2.png">
-<meta property="og:updated_time" content="2019-03-17T12:33:19.016Z">
+<meta property="og:updated_time" content="2019-04-04T03:13:53.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="14-排序优化：如何实现一个通用的、高性能的排序函数？">
 <meta name="twitter:description" content="几乎所有的编程语言都会提供排序函数，比如C语言中qsort()、C++STL中的sort()、stable_sort()，还有Java语言中的Collections.sort()。在平时开发中我们一般也都是直接使用它们了，那这些底层具体是怎么实现的呢？  基于这个问题，我们来讨论讨论：如何实现一个通用的、高性能的排序函数。 如何选择合适的排序算法？我们先来回顾一下： 我们前面讲过，当数据规模比较">
@@ -346,9 +346,9 @@
 <h3 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h3><p>能否分析一下你所熟悉的语言中的排序函数都是用什么排序算法实现的呢？</p>
 <hr>
 <p>@Liam<br>查看了下Arrays.sort的源码，主要采用TimSort算法, 大致思路是这样的：</p>
-<p>1.元素个数 &lt; 32, 采用二分查找插入排序(Binary Sort)<br>2.元素个数 &gt;= 32, 采用归并排序，归并的核心是分区(Run)<br>3.找连续升或降的序列作为分区，分区最终被调整为升序后压入栈<br>4.如果分区长度太小，通过二分插入排序扩充分区长度到分区最小阙值<br>5.每次压入栈，都要检查栈内已存在的分区是否满足合并条件，满足则进行合并<br>6.最终栈内的分区被全部合并，得到一个排序好的数组</p>
+<p>1、元素个数 &lt; 32, 采用二分查找插入排序(Binary Sort)<br>2、元素个数 &gt;= 32, 采用归并排序，归并的核心是分区(Run)<br>3、找连续升或降的序列作为分区，分区最终被调整为升序后压入栈<br>4、如果分区长度太小，通过二分插入排序扩充分区长度到分区最小阙值<br>5、每次压入栈，都要检查栈内已存在的分区是否满足合并条件，满足则进行合并<br>6、最终栈内的分区被全部合并，得到一个排序好的数组</p>
 <p>Timsort的合并算法非常巧妙：</p>
-<p>1.找出左分区最后一个元素(最大)及在右分区的位置<br>2.找出右分区第一个元素(最小)及在左分区的位置<br>3.仅对这两个位置之间的元素进行合并，之外的元素本身就是有序的</p>
+<p>1、找出左分区最后一个元素(最大)及在右分区的位置<br>2、找出右分区第一个元素(最小)及在左分区的位置<br>3、仅对这两个位置之间的元素进行合并，之外的元素本身就是有序的</p>
 <p><br></p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
@@ -474,7 +474,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
