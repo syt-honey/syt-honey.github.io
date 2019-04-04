@@ -88,7 +88,7 @@
 <meta property="og:description" content="开篇问题假设这里有1000万个整数数据，每个数据占8个字节，如何设计数据结构和算法，快速判断某个整数是否在这1000万数据中？我们希望这个功能不要占用太多的内存空间，最多不要超过100MB，你会怎么做？ 二分查找二分查找针对的是一个有序的数据集合，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，直到找到要查找的元素，或者区间被缩小为0。 我们可以很容易的发">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binarySearch.png">
-<meta property="og:updated_time" content="2019-03-18T07:52:40.013Z">
+<meta property="og:updated_time" content="2019-04-04T03:15:15.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15-二分查找（上）：如何用最省内存的方式实现快速查找功能？">
 <meta name="twitter:description" content="开篇问题假设这里有1000万个整数数据，每个数据占8个字节，如何设计数据结构和算法，快速判断某个整数是否在这1000万数据中？我们希望这个功能不要占用太多的内存空间，最多不要超过100MB，你会怎么做？ 二分查找二分查找针对的是一个有序的数据集合，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，直到找到要查找的元素，或者区间被缩小为0。 我们可以很容易的发">
@@ -328,7 +328,7 @@
 <p><img src="/images/algorithm/binarySearch.png" alt="binarySearch"></p>
 <p>当n/(2^k) = 1 时，k的值为总共缩小的次数，经过k次区间缩小操作，时间复杂度就是O(k)。由于k = log2(n)，所以时间复杂为O(logn)。</p>
 <h3 id="二分查找的非递归实现"><a href="#二分查找的非递归实现" class="headerlink" title="二分查找的非递归实现"></a>二分查找的非递归实现</h3><p>下面是一个简单二分查找的非递归实现：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 二分查找: 查找某个给定值，并且假设没有重复</span><br><span class="line">public int bSearch(int[] a, int n, int value) &#123;</span><br><span class="line">    int low = 0;</span><br><span class="line">    int high = n - 1;</span><br><span class="line">    </span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        int mid = (low + high) / 2;</span><br><span class="line">        if(a[mid] == value) &#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125; else if(a[mid] &lt; value) &#123;</span><br><span class="line">            low = mid +1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            high = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找: 查找某个给定值，并且假设没有重复</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(a[mid] == value) &#123;</span><br><span class="line">      <span class="keyword">return</span> mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; value) &#123;</span><br><span class="line">      low = mid +<span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>三个需要注意的点：</p>
 <ol>
 <li>循环退出条件<br>注意是 <code>low &lt;= high</code>，而不是 <code>low &lt; high</code>。</li>
@@ -361,8 +361,8 @@
 <p>后面的位数以此类推，可以用x*10^(-i)通项来循环或者递归，终止条件是i&gt;6，</p>
 <p>想了一下复杂度，每次二分是logn，包括整数位会查找7次，所以时间复杂度为7logn。空间复杂度没有开辟新的储存空间，空间复杂度为1。</p>
 <p>@Jerry银银</p>
-<p>说说第二题吧，感觉争议比较大:<br>假设链表长度为n，二分查找每次都要找到中间点(计算中忽略奇偶数差异):<br>第一次查找中间点，需要移动指针n/2次；<br>第二次，需要移动指针n/4次；<br>第三次需要移动指针n/8次；<br>……<br>以此类推，一直到1次为值</p>
-<p>总共指针移动次数(查找次数) = n/2 + n/4 + n/8 + …+ 1，这显然是个等比数列，根据等比数列求和公式：Sum = n - 1. </p>
+<p>说说第二题吧，感觉争议比较大:<br>假设链表长度为n，二分查找每次都要找到中间点(计算中忽略奇偶数差异):<br>第一次查找中间点，需要移动指针n/2次；<br>第二次，需要移动指针n/4次；<br>第三次需要移动指针n/8次；<br>……<br>以此类推，一直到1次为值  </p>
+<p>总共指针移动次数(查找次数) = n/2 + n/4 + n/8 + …+ 1，这显然是个等比数列，根据等比数列求和公式：Sum = n - 1.</p>
 <p>最后算法时间复杂度是：O(n-1)，忽略常数，记为O(n)，时间复杂度和顺序查找时间复杂度相同</p>
 <p>但是稍微思考下，在二分查找的时候，由于要进行多余的运算，严格来说，会比顺序查找时间慢</p>
 <p><br></p>
@@ -490,7 +490,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

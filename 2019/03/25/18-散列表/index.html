@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-query.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-deleted.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/hash-link.png">
-<meta property="og:updated_time" content="2019-04-03T10:01:50.990Z">
+<meta property="og:updated_time" content="2019-04-04T03:21:03.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18-散列表">
 <meta name="twitter:description" content="tip：该篇有点长，请合理安排时间~  散列介绍散列思想散列表的英文叫”Hash Table”，平时也有人叫哈希表或者Hash表。 散列表用的是数组支持按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。 我们用一个例子来解释一下。假如我们有89名选手参加学校运动会。为了方便记录成绩，每个选手胸前都会贴上自己的参赛号码。现在我们希望编程实现这样一个功能，通过编号快速找到">
@@ -420,8 +420,8 @@
 <blockquote>
 <p>在JDK1.8版本中，为了对<code>HashMap</code>做进一步优化，引入了红黑树。而当链表长度太长(默认是8)，链表就会转换为红黑树。我们可以利用红黑树快速增删改查的特点，提高<code>HashMap</code>的性能。</p>
 </blockquote>
-<p>4.散列函数<br>散列函数的设计并不复杂，追求的简单高效、分布均匀。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int hash(Object key) &#123;</span><br><span class="line">    int h = key.hashCode();</span><br><span class="line">    return (h ^ (h &gt;&gt;&gt; 16)) &amp; (capacity - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中，<code>hashCode()</code>返回的是java对象的hash code。<br>比如String类型的对象的<code>hashCode()</code>就是下面这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int hashCode() &#123;</span><br><span class="line">    int var1 = this.hash;</span><br><span class="line">    if(var1 == 0 &amp;&amp; this.value.length &gt; 0) &#123;</span><br><span class="line">        char[] var2 = this.value;</span><br><span class="line">        for(int var3 = 0; var3 &lt; this.value.length; ++var3) &#123;</span><br><span class="line">            var1 = 31 * var1 + var2[var3];</span><br><span class="line">        &#125;</span><br><span class="line">        this.hash = var1;</span><br><span class="line">    &#125;</span><br><span class="line">    return var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.散列函数<br>散列函数的设计并不复杂，追求的简单高效、分布均匀。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> h = key.hashCode();</span><br><span class="line">  <span class="keyword">return</span> (h ^ (h &gt;&gt;&gt; <span class="number">16</span>)) &amp; (capacity - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，<code>hashCode()</code>返回的是java对象的hash code。<br>比如String类型的对象的<code>hashCode()</code>就是下面这样：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> var1 = <span class="keyword">this</span>.hash;</span><br><span class="line">  <span class="keyword">if</span>(var1 == <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>.value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] var2 = <span class="keyword">this</span>.value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> var3 = <span class="number">0</span>; var3 &lt; <span class="keyword">this</span>.value.length; ++var3) &#123;</span><br><span class="line">      var1 = <span class="number">31</span> * var1 + var2[var3];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.hash = var1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h3><p>如果现在有个面试题摆在你的面前，问你，如何设计一个工业级的散列表，你会怎么回答呢？</p>
 <p>首先，要思考，<strong>何为一个工业级的散列表？工业级的散列表应该具有哪些特性？</strong></p>
 <p>有这样几点要求：</p>
@@ -437,6 +437,7 @@
 <li>定义装载因子阈值，并且设计动态扩容策略</li>
 <li>选择合适的散列冲突解决方法</li>
 </ol>
+<p>文末链接：<br><a href="https://www.jianshu.com/p/64f6de3ffcc1" target="_blank" rel="noopener">hashmap中的localFactor(装在因子)的值为什么是0.75呢</a></p>
 <p><br></p>
 <p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
 
@@ -562,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

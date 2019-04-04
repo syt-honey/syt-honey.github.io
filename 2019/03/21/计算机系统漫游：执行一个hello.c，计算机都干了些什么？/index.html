@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/cs/cs-1.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/cs/thread-1.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/cs/vm-1.png">
-<meta property="og:updated_time" content="2019-03-22T01:15:24.885Z">
+<meta property="og:updated_time" content="2019-04-04T02:43:36.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机系统漫游：执行hello.c，计算机都干了些什么？">
 <meta name="twitter:description" content="CSAPP这本书，放在我的书架上已经一年多了，在过去的时间里几乎没有花大块、很长的时间来看过它，始终没有坚持看完。但是作为一个学计算机的，操作系统垃圾就真的很说不过去了。所以还是要重新系统的学习这本书，当然，我知道，学习这本书仅仅只是一个开始。嗯，还有一个点我想我需要说明一下，关于这本书的博客我会根据自己的理解尝试以「教授者」的角度去描述，它可能会和真理会有偏差，甚至会因为我的粗心或理解不清导致">
@@ -341,7 +341,7 @@
 <p>引用书中的话，这本书适用于一些希望深入了解软硬组件是如何工作的以及这些组件是如何影响程序的正确性和性能的，以此来提高自身的技能。这本书就是想我们了解，当在系统上执行hello程序时，系统到底发生了什么以及为什么会这样。通过限制hello程序的生命周期来开始对系统的学习。</p>
 <h3 id="hello-c-的一生"><a href="#hello-c-的一生" class="headerlink" title="hello.c 的一生"></a>hello.c 的一生</h3><p>下面我们正式开始整章的学习。</p>
 <h4 id="1-写出一个hello-c程序"><a href="#1-写出一个hello-c程序" class="headerlink" title="1.写出一个hello.c程序"></a>1.写出一个hello.c程序</h4><p>先看一个我们每个人的入门程序 (偷笑，当初打出这段代码小黑框蹦出来的时候真的是超惊喜欸！)：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  printf(&quot;hello, world\n&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"hello, world\n"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们编辑完了c程序，那当我们点下”run”按钮到最后控制台跳出输出和结果这个过程，计算机会发生什么呢？</p>
 <h4 id="2-程序的翻译（启动）"><a href="#2-程序的翻译（启动）" class="headerlink" title="2.程序的翻译（启动）"></a>2.程序的翻译（启动）</h4><p>为了在系统上运行c程序，每条c语句都必须被其它程序转化为一些列的低级机器语言指令。然后这些指令按照一种称为可执行目标程序（可执行目标文件）的格式打好包，并以二进制磁盘文件的形式存放起来。</p>
 <p>在Unix系统上，从源文件到目标文件的转化是由 <strong>编译器驱动程序</strong>完成的：<br><code>linux&gt; gcc -o hello hello.c</code><br>在这里，gcc编译器驱动程序读取源程序文件hello.c，并把它翻译成一个可执行目标文件hello。这个翻译过程可分为四个阶段完成，如下图。<strong>执行这四个阶段的程序（预处理器、编译器、汇编器和链接器）一起构成了 编译系统</strong>。</p>
@@ -544,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

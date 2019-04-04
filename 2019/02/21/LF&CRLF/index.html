@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="在提交代码到远程仓库时，遇见如下问题： warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被替换">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-21T13:28:46.909Z">
+<meta property="og:updated_time" content="2019-04-04T03:03:22.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LF &amp; CRLF">
 <meta name="twitter:description" content="在提交代码到远程仓库时，遇见如下问题： warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被替换">
@@ -323,9 +323,9 @@
         <hr>
 <p>在提交代码到远程仓库时，遇见如下问题：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.</span><br><span class="line">The file will have its original line endings in your working directory.</span><br></pre></td></tr></table></figure>
-<p><strong>原因</strong>：在Windows系统下，他们的行尾可能会被替换，使用回车或换行符，在Unix系统中则只用换行符来表示。  </p>
+<p><strong>原因</strong>：在Windows系统下，他们的行尾可能会被替换，使用回车或换行符，在Unix系统中则只用换行符来表示。 </p>
 <p><strong>解决办法</strong>： 在当前目录下执行如下命令：<code>git config core.autocrlf true</code>。想要在全局有效，执行<code>git config --global core.autocrlf true</code>。</p>
-<p>详情请参见：<a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace" target="_blank" rel="noopener">说明文档</a>     </p>
+<p>详情请参见：<a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace" target="_blank" rel="noopener">说明文档</a></p>
 <p>部分内容：</p>
 <blockquote>
 <p>Formatting and Whitespace</p>
@@ -460,7 +460,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
