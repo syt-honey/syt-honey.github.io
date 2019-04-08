@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法与数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这一节我们来看看二叉树基础下，主要讲二叉查找树的操作。  前一讲我们讲了最基础的二叉树的一些常规操作。这一节我们来看看二叉查找树。它最大的特点就是，支持动态数据集合的快速插入、删除、查找操作。 之前我们讲散列表的时候有说到，它也支持这些操作，而且时间复杂度还是O(1)。那既然有了这么高效的散列表，使用二叉树的地方是不是都可以用散列表来替换呢？他们的区别在哪里？下面我们就来看看。 二叉查找树(Bi">
+<meta name="keywords" content="算法与数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/04/07/23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="这一节我们来看看二叉树基础下，主要讲二叉查找树的操作。  前一讲我们讲了最基础的二叉树的一些常规操作。这一节我们来看看二叉查找树。它最大的特点就是，支持动态数据集合的快速插入、删除、查找操作。 之前我们讲散列表的时候有说到，它也支持这些操作，而且时间复杂度还是O(1)。那既然有了这么高效的散列表，使用二叉树的地方是不是都可以用散列表来替换呢？他们的区别在哪里？下面我们就来看看。 二叉查找树(Bi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree-query.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree-insert.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree-delete.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree-query-of-duplicate.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree-time.png">
+<meta property="og:updated_time" content="2019-04-08T00:52:56.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？">
+<meta name="twitter:description" content="这一节我们来看看二叉树基础下，主要讲二叉查找树的操作。  前一讲我们讲了最基础的二叉树的一些常规操作。这一节我们来看看二叉查找树。它最大的特点就是，支持动态数据集合的快速插入、删除、查找操作。 之前我们讲散列表的时候有说到，它也支持这些操作，而且时间复杂度还是O(1)。那既然有了这么高效的散列表，使用二叉树的地方是不是都可以用散列表来替换呢？他们的区别在哪里？下面我们就来看看。 二叉查找树(Bi">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/algorithm/binary-search-tree.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/04/07/23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/"/>
+
+
+
+
+
+  <title>23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？ | H.'s Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/04/07/23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">23-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T20:29:44+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这一节我们来看看二叉树基础下，主要讲二叉查找树的操作。</p>
+</blockquote>
+<p>前一讲我们讲了最基础的二叉树的一些常规操作。这一节我们来看看二叉查找树。它最大的特点就是，支持动态数据集合的快速插入、删除、查找操作。</p>
+<p>之前我们讲散列表的时候有说到，它也支持这些操作，而且时间复杂度还是O(1)。那既然有了这么高效的散列表，使用二叉树的地方是不是都可以用散列表来替换呢？他们的区别在哪里？下面我们就来看看。</p>
+<h3 id="二叉查找树-Binary-Search-Tree"><a href="#二叉查找树-Binary-Search-Tree" class="headerlink" title="二叉查找树(Binary Search Tree)"></a>二叉查找树(Binary Search Tree)</h3><p>二叉查找树要求，<strong>在树中的任意一个节点，其左子树中的每个节点的值要小于这个节点值，而右子树节点的值都大于这个节点的值。</strong>像这样：</p>
+<p><img src="/images/algorithm/binary-search-tree.png" alt="binary-search-tree"></p>
+<p>现在我们来看看，它是来看看它的查找、插入和删除操作。</p>
+<h4 id="1-查找操作"><a href="#1-查找操作" class="headerlink" title="1. 查找操作"></a>1. 查找操作</h4><p>从定义中可以看出，对于任意一个节点，它的左子树中的节点都是比它小的，右子树中的节点都是比它大的。我们先取根节点，如果等于要查找的数据，就直接返回。如果比根节点小，那就去根节点的左子树里找，相反就去右子树里找。</p>
+<p><img src="/images/algorithm/binary-search-tree-query.png" alt="binary-search-tree-query"></p>
+<p>代码实现：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二叉查找树——查找</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinarySerachTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Node tree;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> Node <span class="title">find</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">    Node p = tree;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(data &lt; p.data) &#123;</span><br><span class="line">        p = p.left;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(data &gt; p.data) &#123;</span><br><span class="line">        p = p.right;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> data;</span><br><span class="line">    <span class="keyword">private</span> Node left;</span><br><span class="line">    <span class="keyword">private</span> Node right;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-插入操作"><a href="#2-插入操作" class="headerlink" title="2. 插入操作"></a>2. 插入操作</h4><p>和查找类似，新插入一个数据一般都是在叶子节点上。所以，我们只需要从根节点开始，依次比较要插入的数据和节点的大小关系。</p>
+<p>如果待插入数据比节点的数据大，并且节点的右子树为空，就将待插入的数据放在这个节点的右节点的位置，如果不为空就继续递归遍历右子树，查找插入位置。如果带插入数据比节点小，那就从左边遍历，查找插入位置。</p>
+<p><img src="/images/algorithm/binary-search-tree-insert.png" alt="binary-search-tree-insert"></p>
+<p>代码实现：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二叉查找树——插入</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(tree == <span class="keyword">null</span>) &#123;</span><br><span class="line">    tree = <span class="keyword">new</span> Node(data);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  Node p = tree;</span><br><span class="line">  <span class="keyword">while</span>(p != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(data &gt; p.data) &#123;</span><br><span class="line">      <span class="keyword">if</span>(p.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        p.right = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">      &#125;</span><br><span class="line">      p = p.right;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(p.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">        p.left = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">      &#125;</span><br><span class="line">      p = p.left;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-删除操作"><a href="#3-删除操作" class="headerlink" title="3. 删除操作"></a>3. 删除操作</h4><p>二叉查找树的删除操作相对前面两种操作要稍微麻烦一些。针对要删除节点的子节点个数的不同，我们需要分三种情况来处理。</p>
+<p>第一种，也是最简单的情况。如果删除的节点没有子节点，我们只需要直接将父节点指向要删除节点的指针置为null就可以了。</p>
+<p>第二种情况是，如果要删除的节点只有一个子节点，那我们只需要更新父节点中指向要删除节点的指针，让它指向要删除节点的子节点就行。</p>
+<p>第三种情况是，要删除的节点有两个子节点。我们需要找到这个节点的右子树中最小节点，把它替换到要删除的节点上。然后再删除掉刚刚查找到的最小节点(指的是最小节点位置的指针要置为null)。</p>
+<p><img src="/images/algorithm/binary-search-tree-delete.png" alt="binary-search-tree-delete"></p>
+<p>代码实现：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二叉查找树——删除</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">  Node p = tree; <span class="comment">// 指向要删除的节点，初始化时指向根节点</span></span><br><span class="line">  Node fp = <span class="keyword">null</span>;  <span class="comment">// p的父节点</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 要删除的节点没有子节点</span></span><br><span class="line">  <span class="keyword">while</span>(p != <span class="keyword">null</span> &amp;&amp; p.data != data) &#123;</span><br><span class="line">    fp = p;</span><br><span class="line">    <span class="keyword">if</span>(data &gt; p.data) &#123;</span><br><span class="line">      p = p.right;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      p = p.left;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(p == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 删除节点是叶子节点或者仅有一个子节点</span></span><br><span class="line">  Node child;</span><br><span class="line">  <span class="keyword">if</span>(p.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">    child = p.left;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(p.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">    child = p.right;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    child = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(fp == <span class="keyword">null</span>) &#123;</span><br><span class="line">    tree = child;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(fp.left == p) &#123;</span><br><span class="line">    fp.left = child;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    fp.right = child;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 要删除的节点有两个子节点</span></span><br><span class="line">  <span class="keyword">if</span>(p.left != <span class="keyword">null</span> &amp;&amp; p.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">    Node minP = p.right;  <span class="comment">// 右子树中最小节点</span></span><br><span class="line">    Node minFp = p;  <span class="comment">// minP的父节点</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(minP.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">      minFp = minP;</span><br><span class="line">      minP = minP.left;</span><br><span class="line">    &#125;</span><br><span class="line">    p.data = minP.data;</span><br><span class="line">    p = minP;</span><br><span class="line">    fp = minFP;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实际上，关于二叉查找树的删除操作，还有一个非常简单、取巧的方法，就是单纯将要删除的节点标记为“deleted”，但不真正从树中删除这个节点。但是这样做会比较浪费内存空间。</p>
+<h3 id="二叉查找树的其它操作"><a href="#二叉查找树的其它操作" class="headerlink" title="二叉查找树的其它操作"></a>二叉查找树的其它操作</h3><p>除了插入、删除、查找操作之外，二叉查找树还可以支持 <strong>快速得查找最大节点、最小节点、前驱结点和后继节点。</strong></p>
+<p>二叉查找树除了支持上面几个操作之外，还有一个重要得特性，就是 <strong>中序遍历二叉查找树，可以输出有序得数据序列，时间复杂度是O(n)，非常高效。</strong>因此，二叉查找树也叫二叉排序树。</p>
+<h3 id="支持重复数据的二叉查找树"><a href="#支持重复数据的二叉查找树" class="headerlink" title="支持重复数据的二叉查找树"></a>支持重复数据的二叉查找树</h3><p>前面我们举的例子中，都是默认数据是不重复的。但是在实际得开发中，我们往往存储得是包含很多字段的对象。我们利用某一个字段作为键值来构建二叉树。</p>
+<p>当键值相同的时候，我们应该怎么处理呢？我们有两种方法。</p>
+<p>第一种，二叉查找树中，每一个节点不仅会存储一个数据，我们通过链表和支持动态扩容的数组等数据结构，把值相同的数据都存储在同一个节点上。</p>
+<p>第二种，每一个节点仍然只存一个数据。在查找插入位置的过程中，如果碰到一个节点值与插入数据相同，那我们就将这个待插入数据放到这个节点的右子树中(把它当作比它大的值来处理)。</p>
+<p><img src="/images/algorithm/binary-search-tree-query-of-duplicate.png" alt="binary-search-tree-query-of-duplicate"></p>
+<p>当然，这就意味着，当我们查找某一个数据的时候，当已经查到与当前节点数据相等的时候不能停止查找，要去它的右子树中继续遍历查找，直到遇到叶子节点才停止。删除也是。</p>
+<h3 id="二叉查找树的时间复杂度分析"><a href="#二叉查找树的时间复杂度分析" class="headerlink" title="二叉查找树的时间复杂度分析"></a>二叉查找树的时间复杂度分析</h3><p>从图中可以看出来，不管是插入还是删除亦或是查找，它的时间复杂度都与树的高度有关，<strong>与高度成正比，也就是O(height)。</strong>那么，一棵包含n个节点的完全二叉树的高度怎么计算呢？</p>
+<p>树的高度就等于最大层数减一，为了方便计算，我们转换成层来表示。从下图中，我们可以看到，包含n个节点的完全二叉树中，从第一层到倒数第二层的节点数都满足等比，1, 2, 2^2, 2^3 … 2^(k - 1)。设树的最大层数为L，又有，最大层数的节点数在区间 [1, 2^(L-1)]之间，于是L和n满足这样一个关系：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">n &gt;= 1 + 2 + 4 + 8 + ... + 2^(L-2) + 1</span><br><span class="line">n &lt;= 1 + 2 + 4 + 8 + ... + 2^(L-2) + 2^(L-1)</span><br></pre></td></tr></table></figure></p>
+<p>借助等比求和，我们可以计算出L的范围是 [log(2)(n + 1), log(2)n + 1]。完全二叉树的层数小于log(2)n + 1。所以，它的时间复杂度是O(logn)。</p>
+<p><img src="/images/algorithm/binary-search-tree-time.png" alt="binary-search-tree-time"></p>
+<blockquote>
+<p>其实，对于这种时间复杂度我们可以直接估算。观察到，每进行一次操作，剩余的数据量都会在原来的基础上大致减半，这样的操作时间复杂度一般就可以认定为O(logn)了(看到等比求指数，大概率就是logn了 :)。当然，也不能忽略指数的表示形式啦，不然最后变成了nlogn就很尴尬了)。</p>
+</blockquote>
+<h3 id="解答开篇"><a href="#解答开篇" class="headerlink" title="解答开篇"></a>解答开篇</h3><p>散列表和二叉查找树比较：</p>
+<p>第一、散列表中的数据是无序存储的，如果要输出有序数据需要先对数据进行排序。而对于二叉查找树，中序遍历即可以在O(n)的时间复杂度内输出有序数据。</p>
+<p>第二，散列表扩容耗时多，而且当遇到散列冲突时，性能不稳定。虽然二叉查找树有时也会退化成链表影响性能，但是我们常用的平衡二叉查找树的性能非常稳定，时间复杂度是O(logn)。</p>
+<p>第三，笼统的讲，尽管散列表的查找等操作的时间复杂度是常量级的，但是因为存在冲突，所以这个常量不一定比logn小。</p>
+<p>第四，散列表的构造比二叉查找树要复杂的多，需要考虑很多问题。比如散列函数的设计、冲突的解决方法、扩容缩容等问题。而相比之下，二叉查找树就要乖巧的多了。</p>
+<p>最后，为了避免过多的散列冲突，散列表的装载因此也要合适。</p>
+<h3 id="课后问题"><a href="#课后问题" class="headerlink" title="课后问题"></a>课后问题</h3><p>今天我讲了二叉树高度的理论分析方法，给出了粗略的数量级。如何通过编程，求出一棵给定二叉树的确切高度呢？</p>
+<hr>
+<p>@失火的夏天</p>
+<p>确定二叉树高度有两种思路：第一种是深度优先思想的递归，分别求左右子树的高度。当前节点的高度就是左右子树中较大的那个+1；第二种可以采用层次遍历的方式，每一层记录都记录下当前队列的长度，这个是队尾，每一层队头从0开始。然后每遍历一个元素，队头下标+1。直到队头下标等于队尾下标。这个时候表示当前层遍历完成。每一层刚开始遍历的时候，树的高度+1。最后队列为空，就能得到树的高度。</p>
+<p>@拉欧</p>
+<p>递归法，根节点高度 = max(左子树高度，右子树高度) + 1  </p>
+<p>有问题？发送 <a href="http://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/03/22-二叉树基础(上)：什么样的二叉树适合用数组来存储？/" rel="next" title="22-二叉树基础(上)：什么样的二叉树适合用数组来存储？">
+                <i class="fa fa-chevron-left"></i> 22-二叉树基础(上)：什么样的二叉树适合用数组来存储？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉查找树-Binary-Search-Tree"><span class="nav-number">1.</span> <span class="nav-text">二叉查找树(Binary Search Tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查找操作"><span class="nav-number">1.1.</span> <span class="nav-text">1. 查找操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-插入操作"><span class="nav-number">1.2.</span> <span class="nav-text">2. 插入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-删除操作"><span class="nav-number">1.3.</span> <span class="nav-text">3. 删除操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉查找树的其它操作"><span class="nav-number">2.</span> <span class="nav-text">二叉查找树的其它操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持重复数据的二叉查找树"><span class="nav-number">3.</span> <span class="nav-text">支持重复数据的二叉查找树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉查找树的时间复杂度分析"><span class="nav-number">4.</span> <span class="nav-text">二叉查找树的时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答开篇"><span class="nav-number">5.</span> <span class="nav-text">解答开篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课后问题"><span class="nav-number">6.</span> <span class="nav-text">课后问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
