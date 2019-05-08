@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/quickSort.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/M-Q-Summary.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/findEleK.png">
-<meta property="og:updated_time" content="2019-05-08T01:43:14.944Z">
+<meta property="og:updated_time" content="2019-05-08T02:53:40.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12-排序(下)：如何用快排思想在O(n)内查找第k大元素？">
 <meta name="twitter:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
@@ -347,7 +347,7 @@
 <p>我们假设对n个元素进行归并排序需要的时间是T(n)，那分解成子数组排序的时间就是T(n/2)。我们知道<code>merge()</code>函数合并数组的时间复杂度是O(n)。于是就有：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T(1) = C;  // n = 1时， 只需要常量级的执行时间</span><br><span class="line">T(n) = 2*T(n/2) + n;  // n &gt; 1</span><br></pre></td></tr></table></figure></p>
 <p>现在我们知道关于T(n)的表达式了，那么我们应该如何根据已知的式子求出T(n)呢？我们来再将它们分解一下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T(n) = 2*T(n/2) + n</span><br><span class="line">     = 2*(2*T(n/4) + n/2) + n = 4*T(n/4) + 2*n</span><br><span class="line">     = 4*(2*T(n/8) + n/4) + 2*n = 8*T(n/8) + 3*n</span><br><span class="line">     = 8*(2*T(n/16) + n/8) + 3*n = 16*T(n/16) + 4*n</span><br><span class="line">     ......</span><br><span class="line">     = 2^k * T(n/(2^k)) + k * n</span><br><span class="line">     ......</span><br></pre></td></tr></table></figure>
-<p>这样，最后当n/(2^k) = 1时，可知k = $\log_2 n$(以2为底, n的对数)。将k带入就可以得到：T(n) = nlog2(n) + Cn。用O表示法时间复杂度就是O(nlogn)。</p>
+<p>这样，最后当$n/(2^k) = 1$时，可知$k = \log_2 n$(以2为底, n的对数)。将k带入就可以得到：T(n) = nlog2(n) + Cn。用O表示法时间复杂度就是O(nlogn)。</p>
 <p>好啦，时间复杂度搞定了，那么空间复杂度怎么算呢？其实很简单，从概念出发。在任意时刻，CPU只会有一个函数在执行，也就只会有一个临时的内存空间在使用。所以空间复杂度时O(n)啦。正因为这一点，它就 <strong>不是原地排序</strong>，。</p>
 <h3 id="快速排序-Quick-Sort"><a href="#快速排序-Quick-Sort" class="headerlink" title="快速排序(Quick Sort)"></a>快速排序(Quick Sort)</h3><p>快速排序是，如果要排序数组中下标从left到right之间的一组数据，我们选择left到right之间的任意点作为分区点pivot。遍历left到right之间的数据，将小于pivot的放在左边，大于pivot的放在右边，pivot在中间。这样：</p>
 <p><img src="/images/algorithm/quickSort.png" alt="quickSort"></p>
