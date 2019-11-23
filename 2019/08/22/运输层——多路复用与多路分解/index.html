@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目录 运输层和网络层的关系 多路复用与多路分解 无连接的多路复用与多路分解 有连接的多路复用与多路分解  一、运输层和网络层的关系运输层位于应用层和网络层之间，是分层网络体系结构中的重要部分。网络层提供了 主机之间的逻辑通信，而运输层为运行在 不同主机上进程之间提供了逻辑通信。这种差别虽然很细微，但很重要。 二、多路复用与多路分解因特网为应用层提供了两种截然不同的可用运输层协议。他们分别是UDP、">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运输层——多路复用与多路分解">
+<meta property="og:url" content="https://syt-honey.github.io/2019/08/22/运输层——多路复用与多路分解/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="目录 运输层和网络层的关系 多路复用与多路分解 无连接的多路复用与多路分解 有连接的多路复用与多路分解  一、运输层和网络层的关系运输层位于应用层和网络层之间，是分层网络体系结构中的重要部分。网络层提供了 主机之间的逻辑通信，而运输层为运行在 不同主机上进程之间提供了逻辑通信。这种差别虽然很细微，但很重要。 二、多路复用与多路分解因特网为应用层提供了两种截然不同的可用运输层协议。他们分别是UDP、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/network/socket网络.png">
+<meta property="og:updated_time" content="2019-11-23T09:44:09.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运输层——多路复用与多路分解">
+<meta name="twitter:description" content="目录 运输层和网络层的关系 多路复用与多路分解 无连接的多路复用与多路分解 有连接的多路复用与多路分解  一、运输层和网络层的关系运输层位于应用层和网络层之间，是分层网络体系结构中的重要部分。网络层提供了 主机之间的逻辑通信，而运输层为运行在 不同主机上进程之间提供了逻辑通信。这种差别虽然很细微，但很重要。 二、多路复用与多路分解因特网为应用层提供了两种截然不同的可用运输层协议。他们分别是UDP、">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/network/socket网络.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2019/08/22/运输层——多路复用与多路分解/"/>
+
+
+
+
+
+  <title>运输层——多路复用与多路分解 | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/08/22/运输层——多路复用与多路分解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">运输层——多路复用与多路分解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-22T15:22:40+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>运输层和网络层的关系</li>
+<li>多路复用与多路分解</li>
+<li>无连接的多路复用与多路分解</li>
+<li>有连接的多路复用与多路分解</li>
+</ul>
+<h3 id="一、运输层和网络层的关系"><a href="#一、运输层和网络层的关系" class="headerlink" title="一、运输层和网络层的关系"></a>一、运输层和网络层的关系</h3><p>运输层位于应用层和网络层之间，是分层网络体系结构中的重要部分。网络层提供了 <strong>主机之间</strong>的逻辑通信，而运输层为运行在 <strong>不同主机上进程之间</strong>提供了逻辑通信。这种差别虽然很细微，但很重要。</p>
+<h3 id="二、多路复用与多路分解"><a href="#二、多路复用与多路分解" class="headerlink" title="二、多路复用与多路分解"></a>二、多路复用与多路分解</h3><p>因特网为应用层提供了两种截然不同的可用运输层协议。他们分别是UDP、TCP。前者为应用程序提供了一种不可靠的、无连接的服务。而后者则为应用程序提供了一种可靠的、面向连接的服务。TCP和UDP的最基本责任是，将两个端系统间IP的交付服务扩展为运行在端系统上的两个进程之间的服务。这个过程，将主机间交付扩展到进程间交付就被称为 <strong>运输层的多路复用与多路分解</strong>。</p>
+<p>我们知道，应用层的进程通过一个称为 <strong>套接字</strong>的软件接口向网络发送报文和从网络接收报文：<br><img src="/images/network/socket网络.png" alt="网络通信"></p>
+<p>一个进程可以有一个或多个套接字，它相当于从网络向进程传递数据和从进程向网络传递数据的门户。将运输层报文段中的数据交付到正确的套接字的工作我们称为 <strong>多路分解</strong>。相反的，从不同套接字中收集数据块，并为每个数据块封装上首部信息从而生成报文段，然后将报文段传递到网络层，这被称为 <strong>多路复用</strong>。</p>
+<p>我们理解了运输层的多路复用与多路分解的作用，现在就来看看它们在主机中是如何工作的。思考一下，当我们发送一段报文出去，我们应该如何定位到目的主机的套接字呢？毫无疑问，我们至少需要在报文中加上目的主机的IP地址和目的主机的端口号。在主机上，每当我们创建一个套接字时都会分配到一个端口号（如果不指定，则系统默认分配一个未被使用的）。当报文段到达主机时，运输层检查报文段中的目的端口号，并将其定向到相应的套接字。</p>
+<h3 id="三、无连接的多路复用与多路分解"><a href="#三、无连接的多路复用与多路分解" class="headerlink" title="三、无连接的多路复用与多路分解"></a>三、无连接的多路复用与多路分解</h3><p>正如上面说的那样，使用UDP时基本过程就和描述的一样。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">serverName = <span class="string">'hostname'</span></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">clientSocket = socket(AF_INET, SOCK_DGRAM)</span><br><span class="line">message = raw_input(<span class="string">'input lowercase sentence:'</span>)</span><br><span class="line">clientSocket.sendto(message.encode(), (serverName, serverPort))</span><br><span class="line"></span><br><span class="line">modifiedMessage, serverAddress = clientSocket.recvfrom(<span class="number">2048</span>)</span><br><span class="line">print(modifiedMessage.decode())</span><br><span class="line">clientSocket.close()</span><br></pre></td></tr></table></figure>
+<p>这是一段UDP套接字编程的客户端代码。在第五行中，我们利用socket创建了客户的套接字clientSocket。当我们使用这种方式创建时，运输层会自动的为该套接字分配一个端口号。当然，我们也可以自己手动的去指定一个未被使用的端口号：<code>clientSocket.bind((&#39;&#39;, 19157))</code>。通过为UDP套接字分配端口号，我们现在能够精确的描述UDP的复用与分解了。</p>
+<p>假定在主机A中的一个进程具有UDP端口19157，它要发送一个应用程序数据块给位于主机B中的另一进程，该进程具有UDP端口12000。主机A中的运输层创建一个运输层报文段，其中包含应用程序数据、源端口号、目的端口号（在UDP报文中还有其它两个值，将在UDP传输中讨论）。然后，运输层将得到的报文段传递给网络层。网络层将该报文段封装到一个IP数据报中，并尽力而为的发送给接收主机。如果报文段到达接收主机B，接收主机运输层就检查该报文段中的目的端口号(12000)，并将该报文段交付给端口号12000所标识的套接字。</p>
+<p>注意到下述事实是重要的：一个UDP套接字是由一个二元组全面标识的，该二元组包含一个目的IP地址和一个目的端口号。因此，如果两个UDP报文段有不同的源IP地址/端口号，但具有相同的目的IP地址和目的端口号，那么这两个报文段将通过相同的目的套接字被定向到相同的目的进程。</p>
+<h3 id="四、有连接的多路复用与多路分解"><a href="#四、有连接的多路复用与多路分解" class="headerlink" title="四、有连接的多路复用与多路分解"></a>四、有连接的多路复用与多路分解</h3><p>为了理解TCP的多路分解，我们必须更为仔细的研究TCP套接字和TCP连接创建。TCP套接字和UDP套接字之间的一个细微差别是，TCP套接字是由一个四元组来标识的，包含源IP地址、源端口号、目的IP地址和目的端口号。因此，我们可以比较的看出，在使用TCP时，即便是目的IP地址和目的端口号都相同，但源IP地址或端口号不同都不会被定向到同一进程中（除非TCP报文段携带了初始创建连接的请求）。</p>
+<p>仍然给出基于TCP套接字编程的客户端/服务器端代码：<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">serverName = <span class="string">'servername'</span></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">clientSocket = socket(AF_INEF, SOCK_STREAM)</span><br><span class="line">clientSocket.connect((serverName, serverPort))</span><br><span class="line"></span><br><span class="line">sentence = raw_input(<span class="string">'input lowercase sentence:'</span>)</span><br><span class="line">clientSocket.send(sentence.encode())</span><br><span class="line">modifiedSentence = clientSocket.recv(<span class="number">1024</span>)</span><br><span class="line">print(<span class="string">'from server: '</span>, modifiedSentence.decode())</span><br><span class="line">clientSocket.close()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// 服务器端代码</span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">serverPort = <span class="number">12000</span></span><br><span class="line">serverSocket = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">serverSocket.bind((<span class="string">''</span>, serverPort))</span><br><span class="line">serverSocket.listen(<span class="number">1</span>)</span><br><span class="line">print(<span class="string">'the server is ready to receive'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">  connectionSocket, addr = serverSocket.accept()</span><br><span class="line">  sentence = connectionSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line">  capitalizedSentence = sentence.upper()</span><br><span class="line">  connectionSocket.send(capitalizedSentence.encode())</span><br><span class="line">  connectionSocket.close()</span><br></pre></td></tr></table></figure>
+<p>由于TCP服务是面向连接的，所以，在第一段代码中，创建了套接字后紧跟着第六行代码向服务器发送了连接请求。这行代码执行完后，执行三次握手，并在客户端和服务器之间创建一条TCP连接。</p>
+<p>正如我们看见的服务器端代码，服务器端会有一个“欢迎套接字”，它会在12000号端口上等待来自TCP客户端的连接建立请求。客户端创建一个套接字并发送一个连接请求报文段，该报文段不仅包含TCP首部特定的“连接建立位”，还包含客户端选择的端口号。当运行服务器进程的主机操作系统接收到具有端口号12000的入连接请求报文，它就定位服务器进程，该进程正在端口号12000等待接收连接。服务器的运输层还注意到（虽然我们在应用层的代码中看不到），连接请求报文段中的四个值：该报文段的源端口号、源主机IP地址、目的端口号以及目的IP地址。新创建的连接套接字通过这四个值来标识。所有后续到达的报文段，若它们的这四个值都匹配，就将它们分配到同一套接字中。</p>
+<p>服务器主机可以支持很多并行的TCP套接字，每个套接字与一个进程相联系，并由其四元组来标识每个套接字。另外，不得不再次提及的是，连接套接字与进程并不总是有着一一对应的关系。事实上，当今的高性能Web服务器通常只使用一个进程，但是为每个新的客户连接创建一个具有新连接套接字的新线程（线程可以被看做是一个轻量级的子进程）。对于这样一台服务器，在任意给定的时间内都有可能有许多连接套接字连接到相同的进程。</p>
+<p>以上内容整理自《计算机网络自顶向下方法》第七版。有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/19/this全面解析/" rel="next" title="this全面解析">
+                <i class="fa fa-chevron-left"></i> this全面解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、运输层和网络层的关系"><span class="nav-number">2.</span> <span class="nav-text">一、运输层和网络层的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、多路复用与多路分解"><span class="nav-number">3.</span> <span class="nav-text">二、多路复用与多路分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、无连接的多路复用与多路分解"><span class="nav-number">4.</span> <span class="nav-text">三、无连接的多路复用与多路分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、有连接的多路复用与多路分解"><span class="nav-number">5.</span> <span class="nav-text">四、有连接的多路复用与多路分解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
