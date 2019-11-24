@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法与数据结构," />
+  <meta name="keywords" content="计算机网络," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="任务 给定一个正整数N，求出[2, N]中的所有素数。  说明 数组valid[i]是否为素数。初始所有的valid[i]为true。从2开始从小到大开始枚举i，若valid[i] = true,则把从i^2开始的每一个i的倍数的valid赋为false。结束之后valid[i] = true的就是素数。  接口  void getPrime(int n, int &amp;amp;tot, int an">
-<meta name="keywords" content="算法与数据结构">
+<meta name="description" content="目录 概述 UDP报文段结构 UDP检验和  一、概述前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 RFC 768 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="素数筛选算法">
-<meta property="og:url" content="https://syt-honey.github.io/2019/02/21/素数筛选算法/index.html">
+<meta property="og:title" content="运输层——无连接运输的UDP">
+<meta property="og:url" content="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="任务 给定一个正整数N，求出[2, N]中的所有素数。  说明 数组valid[i]是否为素数。初始所有的valid[i]为true。从2开始从小到大开始枚举i，若valid[i] = true,则把从i^2开始的每一个i的倍数的valid赋为false。结束之后valid[i] = true的就是素数。  接口  void getPrime(int n, int &amp;amp;tot, int an">
+<meta property="og:description" content="目录 概述 UDP报文段结构 UDP检验和  一、概述前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 RFC 768 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-04T04:31:33.582Z">
+<meta property="og:image" content="https://syt-honey.github.io/images/network/UDPdatagram.png">
+<meta property="og:updated_time" content="2019-11-24T12:25:57.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="素数筛选算法">
-<meta name="twitter:description" content="任务 给定一个正整数N，求出[2, N]中的所有素数。  说明 数组valid[i]是否为素数。初始所有的valid[i]为true。从2开始从小到大开始枚举i，若valid[i] = true,则把从i^2开始的每一个i的倍数的valid赋为false。结束之后valid[i] = true的就是素数。  接口  void getPrime(int n, int &amp;amp;tot, int an">
+<meta name="twitter:title" content="运输层——无连接运输的UDP">
+<meta name="twitter:description" content="目录 概述 UDP报文段结构 UDP检验和  一、概述前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 RFC 768 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/network/UDPdatagram.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://syt-honey.github.io/2019/02/21/素数筛选算法/"/>
+  <link rel="canonical" href="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/"/>
 
 
 
 
 
-  <title>素数筛选算法 | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>运输层——无连接运输的UDP | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/02/21/素数筛选算法/">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="honeysyt">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">素数筛选算法</h1>
+          <h1 class="post-title" itemprop="name headline">运输层——无连接运输的UDP</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T16:59:13+08:00">
-                2019-02-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-23T21:10:59+08:00">
+                2019-11-23
               </time>
             
 
@@ -320,22 +322,88 @@
       
 
       
-        <h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><blockquote>
-<p>给定一个正整数N，求出[2, N]中的所有素数。</p>
-</blockquote>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><blockquote>
-<p>数组valid[i]是否为素数。初始所有的valid[i]为true。从2开始从小到大开始枚举i，若valid[i] = true,则把从i^2开始的每一个i的倍数的valid赋为false。结束之后valid[i] = true的就是素数。</p>
-</blockquote>
-<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><blockquote>
-<ul>
-<li>void getPrime(int n, int &amp;tot, int ans[maxn])</li>
-<li>复杂度：　O(NlogN),O(N)　　两种实现</li>
-<li>输入：　　N　　　　　　　　所需素数的范围</li>
-<li>输出：<br>　　　　　&amp;tot  　　　　　　引用，素数总数　<br>　　　　　ans　　　　　　　素数表</li>
+        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>概述</li>
+<li>UDP报文段结构</li>
+<li>UDP检验和</li>
 </ul>
+<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 <a href="https://tools.ietf.org/html/rfc768" target="_blank" rel="noopener">RFC 768</a> 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元组），以及其它的两个小字段（马上就会介绍），然后将形成的报文段交给网络层。</p>
+<p>我们知道，由于TCP提供的可靠传输服务，web应用使用的HTTP协议以及FTP等应用层协议都是基于它。现在你也许也想知道，什么样的应用会基于UDP这个无连接的协议呢？要回答这个问题，我想我们需要来看看，UDP相比较于TCP有哪些特点：</p>
+<ul>
+<li>关于发送什么数据以及何时发送的应用层控制更为精细。我们知道，TCP有一个拥塞控制机制，它让每一个发送方感知当前网络的拥塞程度，从而限制其向连接发送流量的速率。但是，即便是这样，TCP仍然会继续重新发送数据报文段，直到目的主机收到此报文并加以确认。而UDP不同，一旦应用进程将数据传递给它，它就会将此数据打包进UDP报文段并立即将其传递给网络层。</li>
+<li>无需建立连接。TCP在数据开始传输之前需要建立三次握手，UDP则不需要。也因此，UDP不会引入建立连接的时延。这也可能是DNS运行在UDP上而不是TCP的主要原因。</li>
+<li>无连接状态。TCP需要在端系统中维护连接状态。此连接状态包括接收和发送缓存、拥塞控制参数以及序号与确认号等参数（后面TCP将介绍）。UDP则不需要维护这些连接状态，也不跟踪这些参数。</li>
+<li>分组首部开销小。每个TCP报文段都有20字节的首部开销，而UDP仅有8字节。</li>
+</ul>
+<blockquote>
+<p>我们都知道，TCP被广泛应用很大部分是由于其可提供可靠的运输机制。但是需要注意的是，基于UDP的应用也是可能实现可靠数据传输的。这可通过在应用程序自身中建立可靠性机制来完成。谷歌的Chrome浏览器中所使用的QUIC协议就是在UDP之上的应用层协议中实现了可靠性。</p>
 </blockquote>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 素数筛选法 O(NlogN)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> valid[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getPrime</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> &amp;tot,<span class="keyword">int</span> ans[maxn])</span> </span>&#123;</span><br><span class="line">  tot = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    valid[i] = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span>(valid[i]) &#123;</span><br><span class="line">      <span class="keyword">if</span>(n/i &lt; i) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span>(j = i * i; j &lt;= n; j += i) &#123;</span><br><span class="line">        valid[j] = <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span>(valid[i]) &#123;</span><br><span class="line">      ans[++tot] = i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 素数筛选法 O(N)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getPrime</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> &amp;tot, <span class="keyword">int</span> ans[maxn])</span> </span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(valid, <span class="literal">true</span>, <span class="keyword">sizeof</span>(valid));</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span>(valid[i]) &#123;</span><br><span class="line">      ++tot;</span><br><span class="line">      ans[tot] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; ((j &lt;= tot) &amp;&amp; (i * ans[j] &lt;= n)); ++j) &#123;</span><br><span class="line">      valid[i * ans[j]] = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">if</span>(i % ans[j] == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+<p>UDP也有它适用的场景。下面是流行的因特网应用及其下面的运输层协议：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">应用</th>
+<th style="text-align:center">应用层协议</th>
+<th style="text-align:center">对应的运输层协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">电子邮件</td>
+<td style="text-align:center">SMTP</td>
+<td style="text-align:center">TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">远程终端访问</td>
+<td style="text-align:center">Telnet</td>
+<td style="text-align:center">TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">Web</td>
+<td style="text-align:center">HTTP</td>
+<td style="text-align:center">TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">文件传输</td>
+<td style="text-align:center">FTP</td>
+<td style="text-align:center">TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">远程文件服务器</td>
+<td style="text-align:center">NFS</td>
+<td style="text-align:center">通常UDP</td>
+</tr>
+<tr>
+<td style="text-align:center">流式多媒体</td>
+<td style="text-align:center">通常专用</td>
+<td style="text-align:center">UDP或TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">因特网电话</td>
+<td style="text-align:center">通常专用</td>
+<td style="text-align:center">UDP或TCP</td>
+</tr>
+<tr>
+<td style="text-align:center">网络管理</td>
+<td style="text-align:center">SNMP</td>
+<td style="text-align:center">通常UDP</td>
+</tr>
+<tr>
+<td style="text-align:center">名字转换</td>
+<td style="text-align:center">DNS</td>
+<td style="text-align:center">通常UDP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二、UDP报文段结构"><a href="#二、UDP报文段结构" class="headerlink" title="二、UDP报文段结构"></a>二、UDP报文段结构</h3><p><img src="/images/network/UDPdatagram.png" alt="UDP报文"></p>
+<p>上图是UDP的报文段结构。它的首部只有4个字段，每个字段由两个字节组成。和前面讨论的一样，通过端口号可以使目的主机将应用数据交给运行在目的端系统中的相应进程（多路分解）。长度字段指示了UDP报文中的字节数（包括首部，以字节为单位）。接收方使用这四个字段来检查在该报文段传输过程中是否出现了差错。</p>
+<h3 id="三、UDP检验和"><a href="#三、UDP检验和" class="headerlink" title="三、UDP检验和"></a>三、UDP检验和</h3><p>UDP检验和提供了差错检测功能。也就是说，检验和用于检验报文段从源到目的过程中是否发生了改变。发送方的UDP对报文段中所有的16比特字的和进行反码运算（先求和再进行反码运算），若求和时发生溢出则回卷。然后将计算得到的值放入报文的检验和字段。</p>
+<p>当报文段到达接收端运输层时，接收端将对报文段中的所有字段相加，判断最后得到的和是否为1111111111111111。之后的动作随实现而定。比如有些实现是将受损的报文段交给应用程序并给出警告，但有的实现仅仅只是将出错的报文段丢弃。。。</p>
+<p>关于检验和的计算，我们来举个小例子：假定我们由三个16比特的字：</p>
+<p>0110011001100000<br>0101010101010101<br>1000111100001100  </p>
+<p>前两个16比特字之和是：1011101110110101<br>再加上第三个字，得出：0100101011000010  </p>
+<p>我们注意到最后一次加法有溢出，它要被回卷。而反码的运算就是将所有的0换成1。因此，最后的检验和为1011010100111101。若在传输过程中没有引入差错，显然，四个值相加为1111111111111111。</p>
+<p>以上内容整理自《计算机网络自顶向下方法》第七版。有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       
     </div>
@@ -353,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
           
         </div>
       
@@ -366,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/21/正则表达式/" rel="next" title="常用的正则表达式">
-                <i class="fa fa-chevron-left"></i> 常用的正则表达式
+              <a href="/2019/11/23/运输层——多路复用多路分解/" rel="next" title="运输层——多路复用与多路分解">
+                <i class="fa fa-chevron-left"></i> 运输层——多路复用与多路分解
               </a>
             
           </div>
@@ -375,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/04/10-递归：如何用三行代码找到最终推荐人？/" rel="prev" title="10-递归：如何用三行代码找到最终推荐人？">
-                10-递归：如何用三行代码找到最终推荐人？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口"><span class="nav-number">3.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">2.</span> <span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、UDP报文段结构"><span class="nav-number">3.</span> <span class="nav-text">二、UDP报文段结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、UDP检验和"><span class="nav-number">4.</span> <span class="nav-text">三、UDP检验和</span></a></li></ol></div>
             
 
           </div>
