@@ -83,12 +83,12 @@
 <meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运输层——无连接运输的UDP">
-<meta property="og:url" content="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/index.html">
+<meta property="og:url" content="https://syt-honey.github.io/2019/11/24/运输层——无连接的UDP/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="目录 概述 UDP报文段结构 UDP检验和  一、概述前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 RFC 768 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/network/UDPdatagram.png">
-<meta property="og:updated_time" content="2019-11-24T12:25:57.280Z">
+<meta property="og:updated_time" content="2019-11-24T12:39:00.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运输层——无连接运输的UDP">
 <meta name="twitter:description" content="目录 概述 UDP报文段结构 UDP检验和  一、概述前面我们讲了，运输层最低限度必须提供一种复用分解服务，以便在网络层与正确的应用级进程之间传递数据。我们这一节所要讨论的，由 RFC 768 定义的UDP就是只做了运输层能做的最少工作。除了复用/分解及少量差错检测外，它几乎没有对IP增加别的东西。UDP从应用进程得到数据，附加上用于多路复用/多路分解的源和目的端口号字段（可以联想上一节介绍的二元">
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/"/>
+  <link rel="canonical" href="https://syt-honey.github.io/2019/11/24/运输层——无连接的UDP/"/>
 
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/11/23/运输层——无连接的UDP/">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/11/24/运输层——无连接的UDP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="honeysyt">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-23T21:10:59+08:00">
-                2019-11-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T20:31:44+08:00">
+                2019-11-24
               </time>
             
 
@@ -336,9 +336,8 @@
 <li>分组首部开销小。每个TCP报文段都有20字节的首部开销，而UDP仅有8字节。</li>
 </ul>
 <blockquote>
-<p>我们都知道，TCP被广泛应用很大部分是由于其可提供可靠的运输机制。但是需要注意的是，基于UDP的应用也是可能实现可靠数据传输的。这可通过在应用程序自身中建立可靠性机制来完成。谷歌的Chrome浏览器中所使用的QUIC协议就是在UDP之上的应用层协议中实现了可靠性。</p>
+<p>我们都知道，TCP被广泛应用很大部分是由于其可提供可靠的运输机制。但是需要注意的是，基于UDP的应用也是可能实现可靠数据传输的。这可通过在应用程序自身中建立可靠性机制来完成。谷歌的Chrome浏览器中所使用的QUIC协议就是在UDP之上的应用层协议中实现了可靠性。<br>UDP也有它适用的场景。下面是流行的因特网应用及其下面的运输层协议：</p>
 </blockquote>
-<p>UDP也有它适用的场景。下面是流行的因特网应用及其下面的运输层协议：</p>
 <table>
 <thead>
 <tr>
