@@ -302,6 +302,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/25/18-散列表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/25/18-散列表/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -309,6 +320,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -362,7 +404,7 @@
 <p>所谓二次探测，和线性探测很像。线性探测每次探测的步长是1，它的探测的下标序列就是hash(key) + 0、hash(key) + 1、hash(key) + 2……而二次探测的步长就变成了原来的平方，hash(key) + 0、hash(key) + 1^2、hash(key) + 2^2……</p>
 <p>所谓双重散列，意思就是，不仅使用一个散列函数。我们使用一组散列函数hash1(key)，hash2(key)，hash3(key)……我们先用第一个散列函数，如果计算得到的存储位置已经被占用就使用第二个，以此类推。</p>
 <p>不管使用哪种探测方法，当散列表中空闲位置不多的时候，散列冲突的概率就会大大提高。为了尽可能保证散列表的操作效率，一般情况下，我们会尽可能保证散列表中有一定比例的空闲槽位。我们用装载因子(load factor)来表示空位的多少。</p>
-<p>装载因子的计算公式是：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">散列表的装载因子 = 填入表中的元素个数 / 散列表的长度</span><br></pre></td></tr></table></figure></p>
+<p>装载因子的计算公式是：<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">散列表的装载因子 </span>=<span class="string"> 填入表中的元素个数 / 散列表的长度</span></span><br></pre></td></tr></table></figure></p>
 <p>装载因子越大，说明空闲位置越少，冲突越多，散列表的性能越低。</p>
 <h5 id="2-链表法"><a href="#2-链表法" class="headerlink" title="2. 链表法"></a>2. 链表法</h5><p>链表法是一种更加常用的散列冲突解决办法。我们来看下面这张图，在散列表中，每个“桶”或“槽”会对应一张链表，所有散列值相同的元素都被放到相同槽位对应的链表中。</p>
 <p><img src="/images/algorithm/hash-link.png" alt="hash-link"></p>
@@ -420,8 +462,8 @@
 <blockquote>
 <p>在JDK1.8版本中，为了对<code>HashMap</code>做进一步优化，引入了红黑树。而当链表长度太长(默认是8)，链表就会转换为红黑树。我们可以利用红黑树快速增删改查的特点，提高<code>HashMap</code>的性能。</p>
 </blockquote>
-<p>4.散列函数<br>散列函数的设计并不复杂，追求的简单高效、分布均匀。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> h = key.hashCode();</span><br><span class="line">  <span class="keyword">return</span> (h ^ (h &gt;&gt;&gt; <span class="number">16</span>)) &amp; (capacity - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中，<code>hashCode()</code>返回的是java对象的hash code。<br>比如String类型的对象的<code>hashCode()</code>就是下面这样：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> var1 = <span class="keyword">this</span>.hash;</span><br><span class="line">  <span class="keyword">if</span>(var1 == <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>.value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] var2 = <span class="keyword">this</span>.value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> var3 = <span class="number">0</span>; var3 &lt; <span class="keyword">this</span>.value.length; ++var3) &#123;</span><br><span class="line">      var1 = <span class="number">31</span> * var1 + var2[var3];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.hash = var1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.散列函数<br>散列函数的设计并不复杂，追求的简单高效、分布均匀。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> h = key.hashCode();</span><br><span class="line">  <span class="keyword">return</span> (h ^ (h &gt;&gt;&gt; <span class="number">16</span>)) &amp; (capacity - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，<code>hashCode()</code>返回的是java对象的hash code。<br>比如String类型的对象的<code>hashCode()</code>就是下面这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> var1 = <span class="keyword">this</span>.hash;</span><br><span class="line">  <span class="keyword">if</span>(var1 == <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>.value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">char</span>[] var2 = <span class="keyword">this</span>.value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> var3 = <span class="number">0</span>; var3 &lt; <span class="keyword">this</span>.value.length; ++var3) &#123;</span><br><span class="line">      var1 = <span class="number">31</span> * var1 + var2[var3];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.hash = var1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h3><p>如果现在有个面试题摆在你的面前，问你，如何设计一个工业级的散列表，你会怎么回答呢？</p>
 <p>首先，要思考，<strong>何为一个工业级的散列表？工业级的散列表应该具有哪些特性？</strong></p>
 <p>有这样几点要求：</p>
@@ -511,6 +553,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -562,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -644,6 +696,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -761,7 +822,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/25/18-散列表/';
+          this.page.identifier = '2019/03/25/18-散列表/';
+          this.page.title = '18-散列表';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -779,11 +864,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

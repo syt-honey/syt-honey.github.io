@@ -298,6 +298,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -305,6 +316,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -327,11 +369,11 @@
 <p><img src="/images/algorithm/binarySearchVariant.png" alt="binarySearchVariant"></p>
 <h3 id="变体一：查找第一个值等于给定值的元素"><a href="#变体一：查找第一个值等于给定值的元素" class="headerlink" title="变体一：查找第一个值等于给定值的元素"></a>变体一：查找第一个值等于给定值的元素</h3><p>显然，如果要查找第一个值等于给定值的元素，之前简单进行比较得出元素的方法便不再适用了。现在我们需要判断给定值在数组中是否有重复。</p>
 <p>下面我们来看看代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找第一个值等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>); <span class="comment">// 如果不明白这种写法可以看看前面的一篇文章</span></span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; value)&#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == <span class="number">0</span>) || (a[mid - <span class="number">1</span>] != value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找第一个值等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>); <span class="comment">// 如果不明白这种写法可以看看前面的一篇文章</span></span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; value)&#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == <span class="number">0</span>) || (a[mid - <span class="number">1</span>] != value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="变体二：查找最后一个值等于给定值的元素"><a href="#变体二：查找最后一个值等于给定值的元素" class="headerlink" title="变体二：查找最后一个值等于给定值的元素"></a>变体二：查找最后一个值等于给定值的元素</h3><p>同样的：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找最后一个值等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low +((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; value) &#123;</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == n - <span class="number">1</span>) || (a[mid + <span class="number">1</span>] != value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="变体三：查找第一个大于等于给定值的元素"><a href="#变体三：查找第一个大于等于给定值的元素" class="headerlink" title="变体三：查找第一个大于等于给定值的元素"></a>变体三：查找第一个大于等于给定值的元素</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找第一个大于等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == <span class="number">0</span>) || (a[mid - <span class="number">1</span>] &lt; value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="变体四：查找最后一个小于等于给定值的元素"><a href="#变体四：查找最后一个小于等于给定值的元素" class="headerlink" title="变体四：查找最后一个小于等于给定值的元素"></a>变体四：查找最后一个小于等于给定值的元素</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//二分查找：查找最后一个小于等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == n - <span class="number">1</span>) || (a[mid + <span class="number">1</span>] &gt; value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找最后一个值等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low +((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; value) &#123;</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == n - <span class="number">1</span>) || (a[mid + <span class="number">1</span>] != value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变体三：查找第一个大于等于给定值的元素"><a href="#变体三：查找第一个大于等于给定值的元素" class="headerlink" title="变体三：查找第一个大于等于给定值的元素"></a>变体三：查找第一个大于等于给定值的元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二分查找：查找第一个大于等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == <span class="number">0</span>) || (a[mid - <span class="number">1</span>] &lt; value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变体四：查找最后一个小于等于给定值的元素"><a href="#变体四：查找最后一个小于等于给定值的元素" class="headerlink" title="变体四：查找最后一个小于等于给定值的元素"></a>变体四：查找最后一个小于等于给定值的元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二分查找：查找最后一个小于等于给定值的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bSearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; value) &#123;</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>((mid == n - <span class="number">1</span>) || (a[mid + <span class="number">1</span>] &gt; value)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="解答开篇"><a href="#解答开篇" class="headerlink" title="解答开篇"></a>解答开篇</h3><p>我们来看看开头提出的问题：如何快速定位一个IP地址的归属地？</p>
 <p>如果IP区间与归属地对应关系不经常更新，我们就可以预先处理这12万条数据，让其按照起始IP从小到大排序。如何来排序呢？我们知道，IP地址可以转化为32位的整形数。所以，我们可以将起始地址，按照对应的整型值的大小关系，从小到大进行排序。</p>
 <p>然后，这个问题就可以转化为我刚讲的第四种变形问题“在有序数组中，查找最后一个小于等于某个给定值的元素”了。当我们要查询某个 IP 归属地时，我们可以先通过二分查找，找到最后一个起始 IP 小于等于这个 IP 的 IP 区间，然后，检查这个 IP 是否在这个 IP 区间内，如果在，我们就取出对应的归属地显示；如果不在，就返回未查找到。</p>
@@ -412,6 +454,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -463,7 +515,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -545,6 +597,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -662,7 +723,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/';
+          this.page.identifier = '2019/03/18/16-二分查找（下）：如何快速根据IP定位对应的省份地址？/';
+          this.page.title = '16-二分查找（下）：如何快速根据IP定位对应的省份地址？';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -680,11 +765,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

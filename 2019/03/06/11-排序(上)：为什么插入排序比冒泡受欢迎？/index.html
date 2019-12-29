@@ -303,6 +303,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -310,6 +321,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -349,7 +391,7 @@
 <p>下面我们来看看这三种算法之间的比较：</p>
 <h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><p>它只会操作相邻的两个数据。每次冒泡操作都会对相邻的两个元素进行 比较，看是否满足大小关系要求。</p>
 <p>如图：<br><img src="/images/algorithm/bubbleSort.png" alt="bubbleSort"></p>
-<p>算法实现：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//冒泡，在此添加一个标志位，减少交换次数。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n; ++i) &#123;</span><br><span class="line">    boolean flag = <span class="literal">false</span>;  <span class="comment">// 创建一个标志位，如果为true表示有数据交换，反之没有。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; n - i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      <span class="keyword">if</span>(a[j] &gt; a[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = a[j];</span><br><span class="line">        a[j] = a[j+<span class="number">1</span>];</span><br><span class="line">        a[j+<span class="number">1</span>] = temp;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!flag) &#123;  <span class="comment">// 如果没有数据交换就跳出</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//冒泡，在此添加一个标志位，减少交换次数。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n; ++i) &#123;</span><br><span class="line">    boolean flag = <span class="literal">false</span>;  <span class="comment">// 创建一个标志位，如果为true表示有数据交换，反之没有。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; n - i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      <span class="keyword">if</span>(a[j] &gt; a[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = a[j];</span><br><span class="line">        a[j] = a[j+<span class="number">1</span>];</span><br><span class="line">        a[j+<span class="number">1</span>] = temp;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!flag) &#123;  <span class="comment">// 如果没有数据交换就跳出</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>稳定性：当元素相等时不交换位置，所以是稳定的。<br>空间复杂度：原地排序算法，为O(1)。<br>时间复杂度：</p>
 <ol>
 <li>最好的情况也叫做满有序度：O(n)。</li>
@@ -358,7 +400,7 @@
 </ol>
 <h3 id="插入排序（Insertion-Sort）"><a href="#插入排序（Insertion-Sort）" class="headerlink" title="插入排序（Insertion Sort）"></a>插入排序（Insertion Sort）</h3><p>插入排序将数组分为两个区，已排序区、未排序区。每次都在未排序区中取出一个数插入到已排序区中的合适位置，直至未排序区为空。</p>
 <p>如图：<br><img src="/images/algorithm/insertionSort.png" alt="insertionSort"></p>
-<p>算法实现：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> value = a[i];</span><br><span class="line">    <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">      <span class="keyword">if</span>(a[j] &gt; value) &#123;</span><br><span class="line">        a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[j+<span class="number">1</span>] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> value = a[i];</span><br><span class="line">    <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">      <span class="keyword">if</span>(a[j] &gt; value) &#123;</span><br><span class="line">        a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[j+<span class="number">1</span>] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>稳定性：是稳定的。<br>空间复杂度：原地排序法，为O(1)。<br>时间复杂度：</p>
 <ol>
 <li>最好情况：O(n)。</li>
@@ -367,7 +409,7 @@
 </ol>
 <h3 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h3><p>选择排序类似于插入排序，也分为已排序和未排序两个区间。但是选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。</p>
 <p>如图：<br><img src="/images/algorithm/selectionSort.png" alt="selectionSort"></p>
-<p>算法实现：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> min = a[i];</span><br><span class="line">    <span class="keyword">int</span> flag = i;   <span class="comment">// 最小元素的下标</span></span><br><span class="line">    <span class="keyword">int</span> j = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(; j &lt; n; ++j) &#123;    <span class="comment">// 寻找最小元素的下标</span></span><br><span class="line">      <span class="keyword">if</span>(a[j] &lt; min) &#123;</span><br><span class="line">        flag = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag != i) &#123;</span><br><span class="line">      <span class="keyword">int</span> temp = a[i];</span><br><span class="line">      a[i] = a[flag];</span><br><span class="line">      a[flag] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算法实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> min = a[i];</span><br><span class="line">    <span class="keyword">int</span> flag = i;   <span class="comment">// 最小元素的下标</span></span><br><span class="line">    <span class="keyword">int</span> j = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(; j &lt; n; ++j) &#123;    <span class="comment">// 寻找最小元素的下标</span></span><br><span class="line">      <span class="keyword">if</span>(a[j] &lt; min) &#123;</span><br><span class="line">        flag = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag != i) &#123;</span><br><span class="line">      <span class="keyword">int</span> temp = a[i];</span><br><span class="line">      a[i] = a[flag];</span><br><span class="line">      a[flag] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>稳定性：由于该排序每次都要寻找未排序元素中的最小值，并和前面的元素交换位置，这样就破坏了稳定性。<br>空间复杂度：原地排序。<br>时间复杂度：</p>
 <ol>
 <li>最好情况：O(n^2)。</li>
@@ -453,6 +495,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -504,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -586,6 +638,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -703,7 +764,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/';
+          this.page.identifier = '2019/03/06/11-排序(上)：为什么插入排序比冒泡受欢迎？/';
+          this.page.title = '11-排序(上)：为什么插入排序比冒泡受欢迎？';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -721,11 +806,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

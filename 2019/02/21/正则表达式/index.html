@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="匹配 username/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d">
+<meta name="description" content="匹配 username1/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password1/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card1/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1]">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用的正则表达式">
 <meta property="og:url" content="https://syt-honey.github.io/2019/02/21/正则表达式/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="匹配 username/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d">
+<meta property="og:description" content="匹配 username1/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password1/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card1/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-04T04:31:25.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的正则表达式">
-<meta name="twitter:description" content="匹配 username/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d">
+<meta name="twitter:description" content="匹配 username1/^[a-z0-9_-\u4E00-\u9FA5\uf900-\ufa2d]&amp;#123;3,16&amp;#125;$/ 匹配 password1/^[a-z0-9_-]&amp;#123;6,18&amp;#125;$/ 匹配 ID card1/^[1-9]\d&amp;#123;5&amp;#125;[1-9]\d&amp;#123;3&amp;#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1]">
 
 
 
@@ -296,6 +296,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/正则表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/21/正则表达式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -303,6 +314,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -320,18 +362,18 @@
       
 
       
-        <h4 id="匹配-username"><a href="#匹配-username" class="headerlink" title="匹配 username"></a>匹配 <code>username</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>_-\u4E00-\u9FA5\uf900-\ufa2d]&#123;<span class="number">3</span>,<span class="number">16</span>&#125;$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-password"><a href="#匹配-password" class="headerlink" title="匹配 password"></a>匹配 <code>password</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>_-]&#123;<span class="number">6</span>,<span class="number">18</span>&#125;$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-ID-card"><a href="#匹配-ID-card" class="headerlink" title="匹配 ID card"></a>匹配 <code>ID card</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">5</span>&#125;[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">3</span>&#125;((<span class="number">0</span>\d)|(<span class="number">1</span>[<span class="number">0</span><span class="number">-2</span>]))(([<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>]\d)|<span class="number">3</span>[<span class="number">0</span><span class="number">-1</span>])\d&#123;<span class="number">4</span>&#125;$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-cellphone"><a href="#匹配-cellphone" class="headerlink" title="匹配 cellphone"></a>匹配 <code>cellphone</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^<span class="number">1</span>[<span class="number">3</span><span class="number">-9</span>](\d&#123;<span class="number">9</span>&#125;)$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-hex-value"><a href="#匹配-hex-value" class="headerlink" title="匹配 hex value"></a>匹配 <code>hex value</code></h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">/^#?([a-f0-9]&#123;6&#125;|[a-f0-9]&#123;3&#125;)$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-slug"><a href="#匹配-slug" class="headerlink" title="匹配 slug"></a>匹配 <code>slug</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>-]+$/</span><br></pre></td></tr></table></figure>
+        <h4 id="匹配-username"><a href="#匹配-username" class="headerlink" title="匹配 username"></a>匹配 <code>username</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>_-\u4E00-\u9FA5\uf900-\ufa2d]&#123;<span class="number">3</span>,<span class="number">16</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-password"><a href="#匹配-password" class="headerlink" title="匹配 password"></a>匹配 <code>password</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>_-]&#123;<span class="number">6</span>,<span class="number">18</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-ID-card"><a href="#匹配-ID-card" class="headerlink" title="匹配 ID card"></a>匹配 <code>ID card</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">5</span>&#125;[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">3</span>&#125;((<span class="number">0</span>\d)|(<span class="number">1</span>[<span class="number">0</span><span class="number">-2</span>]))(([<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>]\d)|<span class="number">3</span>[<span class="number">0</span><span class="number">-1</span>])\d&#123;<span class="number">4</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-cellphone"><a href="#匹配-cellphone" class="headerlink" title="匹配 cellphone"></a>匹配 <code>cellphone</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^<span class="number">1</span>[<span class="number">3</span><span class="number">-9</span>](\d&#123;<span class="number">9</span>&#125;)$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-hex-value"><a href="#匹配-hex-value" class="headerlink" title="匹配 hex value"></a>匹配 <code>hex value</code></h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^#?([a-f0-9]&#123;6&#125;|[a-f0-9]&#123;3&#125;)$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-slug"><a href="#匹配-slug" class="headerlink" title="匹配 slug"></a>匹配 <code>slug</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[a-z0<span class="number">-9</span>-]+$/</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注：详情见： <a href="https://en.wikipedia.org/wiki/Clean_URL" target="_blank" rel="noopener">slug</a></p>
 </blockquote>
-<h4 id="匹配-email"><a href="#匹配-email" class="headerlink" title="匹配 email"></a>匹配 <code>email</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>_\.-]+)@([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-URL"><a href="#匹配-URL" class="headerlink" title="匹配 URL"></a>匹配 <code>URL</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)([\/\w \.-]*)*\/?$/</span><br></pre></td></tr></table></figure>
-<h4 id="匹配-IP-Address"><a href="#匹配-IP-Address" class="headerlink" title="匹配 IP Address"></a>匹配 <code>IP Address</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">/^(?:(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)\.)&#123;<span class="number">3</span>&#125;(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-email"><a href="#匹配-email" class="headerlink" title="匹配 email"></a>匹配 <code>email</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>_\.-]+)@([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-URL"><a href="#匹配-URL" class="headerlink" title="匹配 URL"></a>匹配 <code>URL</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)([\/\w \.-]*)*\/?$/</span><br></pre></td></tr></table></figure>
+<h4 id="匹配-IP-Address"><a href="#匹配-IP-Address" class="headerlink" title="匹配 IP Address"></a>匹配 <code>IP Address</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(?:(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)\.)&#123;<span class="number">3</span>&#125;(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)$/</span><br></pre></td></tr></table></figure>
 <p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       
@@ -405,6 +447,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -456,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -538,6 +590,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -655,7 +716,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/02/21/正则表达式/';
+          this.page.identifier = '2019/02/21/正则表达式/';
+          this.page.title = '常用的正则表达式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -673,11 +758,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

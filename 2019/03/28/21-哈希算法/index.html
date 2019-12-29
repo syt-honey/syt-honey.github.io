@@ -298,6 +298,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/28/21-哈希算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/28/21-哈希算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -305,6 +316,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -335,7 +377,7 @@
 <li>哈希算法的执行效率要尽量高效，针对较长的文本，也能快速的计算出哈希值。</li>
 </ol>
 <p>下面就是MD5这种哈希算法得出的结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MD5(&quot; 我今天讲哈希算法！&quot;) = 425f0d5a917188d2c3c3dc85b5e4f2cb</span><br><span class="line">MD5(&quot; 我今天讲哈希算法 &quot;) = a1fb91ac128e6aa37fe42c663971ac3d</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">MD5</span><span class="params">(<span class="string">" 我今天讲哈希算法！"</span>)</span></span> = <span class="number">425</span>f0d5a917188d2c3c3dc85b5e4f2cb</span><br><span class="line"><span class="function"><span class="title">MD5</span><span class="params">(<span class="string">" 我今天讲哈希算法 "</span>)</span></span> = a1fb91ac128e6aa37fe42c663971ac3d</span><br></pre></td></tr></table></figure>
 <p>哈希算法的应用非常非常多，接下来我们就讲讲常见的七个，分别是安全加密、唯一标识、数据校验、散列函数、负载均衡、数据分片、分布式存储。</p>
 <h3 id="1-安全加密"><a href="#1-安全加密" class="headerlink" title="1. 安全加密"></a>1. 安全加密</h3><p>我们比较熟知、最常用的加密哈希算法是MD5(MD5 Message-Digest Algorithm, MD5消息摘要算法)和SHA(Secure Hash Algorithm，安全散列算法)。</p>
 <p>上面讲到的哈希算法四点要求中，有两点对于加密哈希算法来说特别重要。<strong>第一点是很难根据哈希值反向推导出原始数据，第二点是散列冲突的概率要很小。</strong></p>
@@ -462,6 +504,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -513,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -595,6 +647,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -712,7 +773,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/28/21-哈希算法/';
+          this.page.identifier = '2019/03/28/21-哈希算法/';
+          this.page.title = '21-哈希算法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -730,11 +815,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

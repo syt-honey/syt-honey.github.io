@@ -300,6 +300,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/11/13-线性排序：如何根据年龄给100万用户数据排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/11/13-线性排序：如何根据年龄给100万用户数据排序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -307,6 +318,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -346,7 +388,7 @@
 <p><img src="/images/algorithm/countingSortArray.png" alt="countingSortArray"></p>
 <p>好了，现在我们来整理一下，这会儿呢我们有三个数组，A、R、C。现在倒序遍历A。第一个元素a[n-1]为3，那么我们就去找c[3],它的值为7，也就是说，小于等于分数3的个数有7个，对应了r中第七个元素的位置(下标为6)，并且这是有序数组中最后一个3。这时，让c[3]中的值减一变为6(当下次遍历到3时就直接可以放入到r[5]的位置)。</p>
 <p>下面我们来看看代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 计数排序，a是数组，n是数组大小，假设数组中存储的都是非负整数。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countingSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 查找数组中数据的范围</span></span><br><span class="line">  <span class="keyword">int</span> max = a[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span>(max &lt; a[i]) &#123;</span><br><span class="line">      max = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 申请一个计数数组c，下标大小为[0, max], 初始化c</span></span><br><span class="line">  <span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[max + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= max; ++i) &#123;</span><br><span class="line">    c[i] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 将当前值与前一个值求和最后又赋值还给当前值</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= max; ++i) &#123;</span><br><span class="line">    c[i] = c[i-<span class="number">1</span>] + c[i];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 申请临时数组r，存储排序之后的结果</span></span><br><span class="line">  <span class="keyword">int</span>[] r = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="keyword">int</span> index = c[a[i]] - <span class="number">1</span>;  <span class="comment">// 取出c中下标为a[i]的值，另其-1赋值给数组r的下标</span></span><br><span class="line">    r[index] = a[i];  <span class="comment">// 找到a[i]在r中的位置，放入r中</span></span><br><span class="line">    c[a[i]]--;  <span class="comment">// 将c中下标为a[i]的值-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 将结果拷贝给还数组a</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    a[i] = r[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计数排序，a是数组，n是数组大小，假设数组中存储的都是非负整数。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countingSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 查找数组中数据的范围</span></span><br><span class="line">  <span class="keyword">int</span> max = a[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span>(max &lt; a[i]) &#123;</span><br><span class="line">      max = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 申请一个计数数组c，下标大小为[0, max], 初始化c</span></span><br><span class="line">  <span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[max + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= max; ++i) &#123;</span><br><span class="line">    c[i] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 将当前值与前一个值求和最后又赋值还给当前值</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= max; ++i) &#123;</span><br><span class="line">    c[i] = c[i-<span class="number">1</span>] + c[i];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 申请临时数组r，存储排序之后的结果</span></span><br><span class="line">  <span class="keyword">int</span>[] r = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="keyword">int</span> index = c[a[i]] - <span class="number">1</span>;  <span class="comment">// 取出c中下标为a[i]的值，另其-1赋值给数组r的下标</span></span><br><span class="line">    r[index] = a[i];  <span class="comment">// 找到a[i]在r中的位置，放入r中</span></span><br><span class="line">    c[a[i]]--;  <span class="comment">// 将c中下标为a[i]的值-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 将结果拷贝给还数组a</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    a[i] = r[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>计数排序只能用数据范围不大的场景，如果数据范围k比要排序的数组n大很多这个排序就不适用了。而且，计数排序只能给非负整数排序，如果要排序的数组是其它类型的，就要将其在不改变大小的情况下转换为非负整数。</strong></p>
 <h3 id="基数排序-Radix-sort"><a href="#基数排序-Radix-sort" class="headerlink" title="基数排序(Radix sort)"></a>基数排序(Radix sort)</h3><p>我们再来看一个排序问题：假设我们有10万个手机号码，希望将这十万个手机号码从小到大排序，有什么比较快速的算法呢？</p>
 <p>我们之前有讲到快排，时间复杂度可以做到O(nlogn)，那么还有更高效的方法嘛？桶排序和计数排序显然不行，手机号码有11位，范围太大。针对这个问题，我们来介绍一下基数排序。</p>
@@ -436,6 +478,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -487,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -569,6 +621,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -686,7 +747,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/11/13-线性排序：如何根据年龄给100万用户数据排序/';
+          this.page.identifier = '2019/03/11/13-线性排序：如何根据年龄给100万用户数据排序/';
+          this.page.title = '13-线性排序：如何根据年龄给100万用户数据排序？';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -704,11 +789,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 
