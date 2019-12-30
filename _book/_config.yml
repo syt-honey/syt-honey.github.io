@@ -78,7 +78,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 
-mathjax:
+math.mathjax:
   enable: true
   per_page: true
 

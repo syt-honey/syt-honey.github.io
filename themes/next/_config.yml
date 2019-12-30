@@ -338,7 +338,7 @@ font:
 # ---------------------------------------------------------------
 
 # MathJax Support
-mathjax:
+math.mathjax:
   enable: true
   per_page: true
   cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
@@ -357,7 +357,7 @@ han: false
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname:
   count: true
 
