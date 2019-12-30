@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 var expression = /pattern[/flags];// 例子var pattern1 = /at/g;v">
+<meta name="description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 123456var expression = /pattern[/flags];// 例子var pattern1 = /">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RegExp">
 <meta property="og:url" content="https://syt-honey.github.io/2019/02/21/RegExp/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 var expression = /pattern[/flags];// 例子var pattern1 = /at/g;v">
+<meta property="og:description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 123456var expression = /pattern[/flags];// 例子var pattern1 = /">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-04T04:26:21.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RegExp">
-<meta name="twitter:description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 var expression = /pattern[/flags];// 例子var pattern1 = /at/g;v">
+<meta name="twitter:description" content="前言  前言：(等等，前言？怎么又是前言？哈哈，每回记录都是有背景的嘛。)写这篇文章是因为想系统的记录一下js中正则表达式的用法，以后忘记了也方便查询。还有一件值得一提的事，和别的地方一样[]括起来的表示该项可选。  定义正则表达式 定义正则表达式的方式有两种：  字面量方法 123456var expression = /pattern[/flags];// 例子var pattern1 = /">
 
 
 
@@ -296,6 +296,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/RegExp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/21/RegExp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -303,6 +314,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -328,10 +370,10 @@
 <p>定义正则表达式的方式有两种：</p>
 <ul>
 <li><p>字面量方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="regexp">/pattern[/flags];</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 例子</span></span><br><span class="line"><span class="regexp">var pattern1 = /</span>at/g;</span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[bc]at/i</span>;</span><br><span class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/.at/gi</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="regexp">/pattern[/flags];</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 例子</span></span><br><span class="line"><span class="regexp">var pattern1 = /</span>at/g;</span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[bc]at/i</span>;</span><br><span class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/.at/gi</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用RegExp构造函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="keyword">new</span> <span class="built_in">RegExp</span>(pattern [, flags]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="keyword">new</span> <span class="built_in">RegExp</span>(pattern [, flags]);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -375,7 +417,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/\[bc\]at/i</span>;</span><br><span class="line"></span><br><span class="line">alert(pattern1.global);           <span class="comment">// false</span></span><br><span class="line">alert(pattern1.ignoreCase);       <span class="comment">// true</span></span><br><span class="line">alert(pattern1.multiline);        <span class="comment">// false</span></span><br><span class="line">alert(pattern1.lastIndex);        <span class="comment">// 0</span></span><br><span class="line">alert(pattern1.source);           <span class="comment">// "\[bc\]at"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>, <span class="string">"i"</span>);</span><br><span class="line"></span><br><span class="line">alert(pattern2.global);           <span class="comment">// false</span></span><br><span class="line">alert(pattern2.ignoreCase);       <span class="comment">// true</span></span><br><span class="line">alert(pattern2.multiline);        <span class="comment">// false</span></span><br><span class="line">alert(pattern2.lastIndex);        <span class="comment">// 0</span></span><br><span class="line">alert(pattern2.source);           <span class="comment">// "\[bc\]at"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/\[bc\]at/i</span>;</span><br><span class="line"></span><br><span class="line">alert(pattern1.global);           <span class="comment">// false</span></span><br><span class="line">alert(pattern1.ignoreCase);       <span class="comment">// true</span></span><br><span class="line">alert(pattern1.multiline);        <span class="comment">// false</span></span><br><span class="line">alert(pattern1.lastIndex);        <span class="comment">// 0</span></span><br><span class="line">alert(pattern1.source);           <span class="comment">// "\[bc\]at"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>, <span class="string">"i"</span>);</span><br><span class="line"></span><br><span class="line">alert(pattern2.global);           <span class="comment">// false</span></span><br><span class="line">alert(pattern2.ignoreCase);       <span class="comment">// true</span></span><br><span class="line">alert(pattern2.multiline);        <span class="comment">// false</span></span><br><span class="line">alert(pattern2.lastIndex);        <span class="comment">// 0</span></span><br><span class="line">alert(pattern2.source);           <span class="comment">// "\[bc\]at"</span></span><br></pre></td></tr></table></figure>
 <h3 id="RegExp实例方法"><a href="#RegExp实例方法" class="headerlink" title="RegExp实例方法"></a>RegExp实例方法</h3><hr>
 <ul>
 <li><code>exec()</code></li>
@@ -384,7 +426,7 @@
 <li><code>toString()</code></li>
 <li><code>valueOf()</code></li>
 </ul>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"># `exec()`</span><br><span class="line"><span class="keyword">var</span> text = <span class="string">"cat, bat, sat, fat"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/.at/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> matches = pattern1.exec(text);</span><br><span class="line">alert(matches.index);              <span class="comment">// 0</span></span><br><span class="line">alert(matches[<span class="number">0</span>]);                 <span class="comment">// cat</span></span><br><span class="line">alert(pattern1.lastIndex);         <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"># `test()`</span><br><span class="line"><span class="keyword">var</span> text = <span class="string">"000-00-0000"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/\s&#123;3&#125;-\d&#123;2&#125;-\d&#123;4&#125;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</span><br><span class="line">  alert(<span class="string">"The pattern was matched."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># `toLocaleString()`和`toString()`方法都会返回正则表达式的字面量，与创建正则表达式的方式无关。</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>, <span class="string">"gi"</span>);</span><br><span class="line">alert(pattern.toString());                 <span class="comment">// /\[bc\]at/gi</span></span><br><span class="line">alert(pattern.toLocaleString());           <span class="comment">// /\[bc\]at/gi</span></span><br><span class="line"></span><br><span class="line"># `valueOf()`</span><br><span class="line">#返回正则表达式本身</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># `exec()`</span><br><span class="line"><span class="keyword">var</span> text = <span class="string">"cat, bat, sat, fat"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/.at/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> matches = pattern1.exec(text);</span><br><span class="line">alert(matches.index);              <span class="comment">// 0</span></span><br><span class="line">alert(matches[<span class="number">0</span>]);                 <span class="comment">// cat</span></span><br><span class="line">alert(pattern1.lastIndex);         <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"># `test()`</span><br><span class="line"><span class="keyword">var</span> text = <span class="string">"000-00-0000"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/\s&#123;3&#125;-\d&#123;2&#125;-\d&#123;4&#125;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</span><br><span class="line">  alert(<span class="string">"The pattern was matched."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># `toLocaleString()`和`toString()`方法都会返回正则表达式的字面量，与创建正则表达式的方式无关。</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>, <span class="string">"gi"</span>);</span><br><span class="line">alert(pattern.toString());                 <span class="comment">// /\[bc\]at/gi</span></span><br><span class="line">alert(pattern.toLocaleString());           <span class="comment">// /\[bc\]at/gi</span></span><br><span class="line"></span><br><span class="line"># `valueOf()`</span><br><span class="line">#返回正则表达式本身</span><br></pre></td></tr></table></figure>
 <h3 id="RegExp构造函数属性"><a href="#RegExp构造函数属性" class="headerlink" title="RegExp构造函数属性"></a>RegExp构造函数属性</h3><hr>
 <p>RegExp构造函包含一些属性(这些属性在其他语言中被看作是静态属性)。关于这些属性的另一个独特之处就是，可以通过两种方式访问他们。分别为：</p>
 <ul>
@@ -409,7 +451,7 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"this has been a short summer"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/(.)hort/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</span><br><span class="line">  alert(<span class="built_in">RegExp</span>.input);             <span class="comment">// this has been a short summer</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.lastMatch);         <span class="comment">// this has been a</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.lastParen);         <span class="comment">// summer</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.leftContext);       <span class="comment">// short</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.multiline);         <span class="comment">// s</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.rightContext);      <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"this has been a short summer"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/(.)hort/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</span><br><span class="line">  alert(<span class="built_in">RegExp</span>.input);             <span class="comment">// this has been a short summer</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.lastMatch);         <span class="comment">// this has been a</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.lastParen);         <span class="comment">// summer</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.leftContext);       <span class="comment">// short</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.multiline);         <span class="comment">// s</span></span><br><span class="line">  alert(<span class="built_in">RegExp</span>.rightContext);      <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>注：</strong>值得注意的是，Opera不支持短属性名，且Opera不支持input、lastMatch、lastParen、multiline属性，IE不支持multiline属性。</p>
 </blockquote>
@@ -486,6 +528,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -537,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -619,6 +671,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -736,7 +797,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/02/21/RegExp/';
+          this.page.identifier = '2019/02/21/RegExp/';
+          this.page.title = 'RegExp';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -754,11 +839,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

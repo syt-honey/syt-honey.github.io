@@ -301,6 +301,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/12-排序(下)：如何用快排思想在O(n)内查找第k大元素？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/06/12-排序(下)：如何用快排思想在O(n)内查找第k大元素？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -308,6 +319,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -335,8 +377,8 @@
 <p>原理：先把数组从中间分成前后两个部分，然后对前后两个部分分别进行排序，再将排序好的两个部分合并到一起。</p>
 <p>如图：<br><img src="/images/algorithm/mergeSort.png" alt="mergeSort"></p>
 <p>我们前面讲到，分治算法一般都是由递归来实现的，那么我们应该如何用递归来实现归并算法呢？前面我们讲过，递归最重要的是要找到递推公式和终止条件。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 递推公式：</span><br><span class="line">merge_sort(left...right) = merge(merge_sort(left...middle), merge_sort(middle+1...right));</span><br><span class="line"></span><br><span class="line">// 终止条件, 不用再继续分解</span><br><span class="line">left &gt;= right</span><br></pre></td></tr></table></figure>
-<p>算法实现：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 归并排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge_sort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//终止条件</span></span><br><span class="line">  <span class="keyword">if</span>(left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> middle = (left + right) / <span class="number">2</span>;</span><br><span class="line">  merge_sort(a, left, middle);</span><br><span class="line">  merge_sort(a, middle + <span class="number">1</span>, right);</span><br><span class="line">  merge(a, left, middle, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并两个有序的数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> left,<span class="keyword">int</span> middle,<span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = left, j = middle + <span class="number">1</span>, k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> *temp = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>((right - left + <span class="number">1</span>)*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">  <span class="keyword">while</span>(i &lt;= middle &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a[i] &lt;= a[j]) &#123;</span><br><span class="line">      temp[k++] = a[i++];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断哪个子数组中有剩余的数据</span></span><br><span class="line">  <span class="keyword">if</span> (i &gt; middle) &#123;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= right) &#123;</span><br><span class="line">      temp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= middle) &#123;</span><br><span class="line">      temp[k++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递推公式：</span></span><br><span class="line">merge_sort(<span class="keyword">left</span>...<span class="keyword">right</span>) = merge(merge_sort(<span class="keyword">left</span>...middle), merge_sort(middle+<span class="number">1</span>...<span class="keyword">right</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终止条件, 不用再继续分解</span></span><br><span class="line"><span class="keyword">left</span> &gt;= <span class="keyword">right</span></span><br></pre></td></tr></table></figure>
+<p>算法实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 归并排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge_sort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//终止条件</span></span><br><span class="line">  <span class="keyword">if</span>(left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> middle = (left + right) / <span class="number">2</span>;</span><br><span class="line">  merge_sort(a, left, middle);</span><br><span class="line">  merge_sort(a, middle + <span class="number">1</span>, right);</span><br><span class="line">  merge(a, left, middle, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并两个有序的数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> left,<span class="keyword">int</span> middle,<span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = left, j = middle + <span class="number">1</span>, k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> *temp = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>((right - left + <span class="number">1</span>)*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">  <span class="keyword">while</span>(i &lt;= middle &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a[i] &lt;= a[j]) &#123;</span><br><span class="line">      temp[k++] = a[i++];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断哪个子数组中有剩余的数据</span></span><br><span class="line">  <span class="keyword">if</span> (i &gt; middle) &#123;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= right) &#123;</span><br><span class="line">      temp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= middle) &#123;</span><br><span class="line">      temp[k++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>稳定性：我们通过代码可以观察到，<code>merge_sort()</code>是不会改变元素的顺序的，稳定性怎么样还是要看<code>merge()</code>函数。再观察，在<code>merge()</code>函数中是先将<code>a[left..middle]</code>中的数放入临时数组temp中，所以它不会改变相同元素原先的顺序，因此它是一个稳定的排序算法。<br>空间复杂度：O(n)<br>时间复杂度：</p>
 <ol>
 <li>最好情况：O(nlogn)</li>
@@ -344,16 +386,16 @@
 <li>平均时间复杂度：O(nlogn)</li>
 </ol>
 <p>先来看时间复杂度。这里涉及递归的时间复杂度计算。在计算递归时间复杂度时，我们可以 <strong>将求解的问题写出递推公式，将代码的时间复杂度也用递推公式表示出来，从而求解出时间复杂度。</strong>当然，除了这种方法外，在树的那一节中会介绍到另一种求解方法 <strong>递归树</strong>。下面我们就用递推的方式来求一下时间复杂度。</p>
-<p>我们假设对n个元素进行归并排序需要的时间是T(n)，那分解成子数组排序的时间就是T(n/2)。我们知道<code>merge()</code>函数合并数组的时间复杂度是O(n)。于是就有：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T(1) = C;  // n = 1时， 只需要常量级的执行时间</span><br><span class="line">T(n) = 2*T(n/2) + n;  // n &gt; 1</span><br></pre></td></tr></table></figure></p>
+<p>我们假设对n个元素进行归并排序需要的时间是T(n)，那分解成子数组排序的时间就是T(n/2)。我们知道<code>merge()</code>函数合并数组的时间复杂度是O(n)。于是就有：<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">T</span>(<span class="number">1</span>) = C;  // <span class="built_in">n</span> = <span class="number">1</span>时， 只需要常量级的执行时间</span><br><span class="line"><span class="built_in">T</span>(<span class="built_in">n</span>) = <span class="number">2</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">2</span>) + <span class="built_in">n</span>;  // <span class="built_in">n</span> &gt; <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>现在我们知道关于T(n)的表达式了，那么我们应该如何根据已知的式子求出T(n)呢？我们来再将它们分解一下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T(n) = 2*T(n/2) + n</span><br><span class="line">     = 2*(2*T(n/4) + n/2) + n = 4*T(n/4) + 2*n</span><br><span class="line">     = 4*(2*T(n/8) + n/4) + 2*n = 8*T(n/8) + 3*n</span><br><span class="line">     = 8*(2*T(n/16) + n/8) + 3*n = 16*T(n/16) + 4*n</span><br><span class="line">     ......</span><br><span class="line">     = 2^k * T(n/(2^k)) + k * n</span><br><span class="line">     ......</span><br></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">T</span>(<span class="built_in">n</span>) = <span class="number">2</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">2</span>) + <span class="built_in">n</span></span><br><span class="line">     = <span class="number">2</span>*(<span class="number">2</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">4</span>) + <span class="built_in">n</span>/<span class="number">2</span>) + <span class="built_in">n</span> = <span class="number">4</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">4</span>) + <span class="number">2</span>*<span class="built_in">n</span></span><br><span class="line">     = <span class="number">4</span>*(<span class="number">2</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">8</span>) + <span class="built_in">n</span>/<span class="number">4</span>) + <span class="number">2</span>*<span class="built_in">n</span> = <span class="number">8</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">8</span>) + <span class="number">3</span>*<span class="built_in">n</span></span><br><span class="line">     = <span class="number">8</span>*(<span class="number">2</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">16</span>) + <span class="built_in">n</span>/<span class="number">8</span>) + <span class="number">3</span>*<span class="built_in">n</span> = <span class="number">16</span>*<span class="built_in">T</span>(<span class="built_in">n</span>/<span class="number">16</span>) + <span class="number">4</span>*<span class="built_in">n</span></span><br><span class="line">     ......</span><br><span class="line">     = <span class="number">2</span>^k * <span class="built_in">T</span>(<span class="built_in">n</span>/(<span class="number">2</span>^k)) + k * <span class="built_in">n</span></span><br><span class="line">     ......</span><br></pre></td></tr></table></figure>
 <p>这样，最后当$n/(2^k) = 1$时，可知$k = \log_2 n$(以2为底, n的对数)。将k带入就可以得到：T(n) = nlog2(n) + Cn。用O表示法时间复杂度就是O(nlogn)。</p>
 <p>好啦，时间复杂度搞定了，那么空间复杂度怎么算呢？其实很简单，从概念出发。在任意时刻，CPU只会有一个函数在执行，也就只会有一个临时的内存空间在使用。所以空间复杂度时O(n)啦。正因为这一点，它就 <strong>不是原地排序</strong>，。</p>
 <h3 id="快速排序-Quick-Sort"><a href="#快速排序-Quick-Sort" class="headerlink" title="快速排序(Quick Sort)"></a>快速排序(Quick Sort)</h3><p>快速排序是，如果要排序数组中下标从left到right之间的一组数据，我们选择left到right之间的任意点作为分区点pivot。遍历left到right之间的数据，将小于pivot的放在左边，大于pivot的放在右边，pivot在中间。这样：</p>
 <p><img src="/images/algorithm/quickSort.png" alt="quickSort"></p>
 <p>再根据分治、递归的思想，我们可以用递归排序下标从left到middle - 1之间的数据和下标 middle + 1到right之间的数据，直到区间缩短为1。所以递推公式和终止条件是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 递推公式：</span><br><span class="line">quick_sort(left…right) = quick_sort(left…middle-1) + quick_sort(middle+1, right)</span><br><span class="line"></span><br><span class="line">// 终止条件：</span><br><span class="line">left &gt;= right</span><br></pre></td></tr></table></figure>
-<p>算法实现：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 快排</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> middle = partition(a, left, right);  <span class="comment">// 函数返回pivot的下标</span></span><br><span class="line">  quick_sort(a, left, middle - <span class="number">1</span>);</span><br><span class="line">  quick_sort(a, middle + <span class="number">1</span>， right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原地分区</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = a[right];</span><br><span class="line">  <span class="keyword">int</span> i = left;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j = left; j &lt; right - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a[j] &lt; pivot) &#123;</span><br><span class="line">      swap(a[i], a[j]);</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(a[i], a[right]);</span><br><span class="line">  <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递推公式：</span></span><br><span class="line">quick_sort(<span class="keyword">left</span>…<span class="keyword">right</span>) = quick_sort(<span class="keyword">left</span>…middle-<span class="number">1</span>) + quick_sort(middle+<span class="number">1</span>, <span class="keyword">right</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终止条件：</span></span><br><span class="line"><span class="keyword">left</span> &gt;= <span class="keyword">right</span></span><br></pre></td></tr></table></figure>
+<p>算法实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快排</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(left &gt;= right) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> middle = partition(a, left, right);  <span class="comment">// 函数返回pivot的下标</span></span><br><span class="line">  quick_sort(a, left, middle - <span class="number">1</span>);</span><br><span class="line">  quick_sort(a, middle + <span class="number">1</span>， right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原地分区</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> pivot = a[right];</span><br><span class="line">  <span class="keyword">int</span> i = left;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j = left; j &lt; right - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a[j] &lt; pivot) &#123;</span><br><span class="line">      swap(a[i], a[j]);</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(a[i], a[right]);</span><br><span class="line">  <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法分析：<br>稳定性：因为在分区的过程中会涉及交换操作，如果数组中有两个相同的数据，经过分区操作后也会交换位置，所以 <strong>快速排序是一个不稳定的排序算法</strong>。<br>空间复杂度：O(1)。<br>时间复杂度：</p>
 <ol>
 <li>最好O(nlogn)</li>
@@ -445,6 +487,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -496,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -578,6 +630,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -695,7 +756,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/03/06/12-排序(下)：如何用快排思想在O(n)内查找第k大元素？/';
+          this.page.identifier = '2019/03/06/12-排序(下)：如何用快排思想在O(n)内查找第k大元素？/';
+          this.page.title = '12-排序(下)：如何用快排思想在O(n)内查找第k大元素？';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -713,11 +798,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

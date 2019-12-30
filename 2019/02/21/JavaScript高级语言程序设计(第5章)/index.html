@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： var c">
+<meta name="description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： 123va">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Object和Array类型">
 <meta property="og:url" content="https://syt-honey.github.io/2019/02/21/JavaScript高级语言程序设计(第5章)/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： var c">
+<meta property="og:description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： 123va">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-04T04:30:32.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Object和Array类型">
-<meta name="twitter:description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： var c">
+<meta name="twitter:description" content="Object类型  创建Object示例的方式： new 使用对象字面量      注：对象字面量定义对象时，不会调用object构造函数。   访问属性方式： 点表示 方括号     注：如不强制要求，则使用点表示法访问属性。   Array类型  创建的基本方式： new 使用对象字面量     注：对象字面量定义对象时，也不会调用构造函数。   数组的length不是只读的，如： 123va">
 
 
 
@@ -296,6 +296,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/JavaScript高级语言程序设计(第5章)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/21/JavaScript高级语言程序设计(第5章)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -303,6 +314,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -355,19 +397,19 @@
 </blockquote>
 <ol start="2">
 <li><p>数组的<code>length</code>不是只读的，如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];   <span class="comment">// 创建一个包含3个字符串的数组</span></span><br><span class="line">colors.length = <span class="number">4</span>;</span><br><span class="line">alert(colors[<span class="number">3</span>]);         <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];   <span class="comment">// 创建一个包含3个字符串的数组</span></span><br><span class="line">colors.length = <span class="number">4</span>;</span><br><span class="line">alert(colors[<span class="number">3</span>]);         <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>检测数组</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(value <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">    <span class="comment">// 对数组执行某些操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(value <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line">    <span class="comment">// 对数组执行某些操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>存在的问题：它假定只有一个全局执行环境。如果网页中有多个框架，那实际上就有多个不同的全局执行环境，从而存在多个不同版本的构造函数。</p>
-<p><code>ECMAScript5</code>解决方法：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(value))&#123;</span><br><span class="line">    <span class="comment">// 对数组执行某些操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>对于尚未实现该方法的浏览器中准确的检测数组：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object Array]"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由于原生数组的构造函数与全局作用域无关，因此使用<code>toString()</code>就能保证返回一致的值。<br>同样，也可以基于这一思想来测试某个值是不是原生函数或正则表达式：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object Function]"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//正则表达式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isRegExp</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object RegExp]"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ECMAScript5</code>解决方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(value))&#123;</span><br><span class="line">    <span class="comment">// 对数组执行某些操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于尚未实现该方法的浏览器中准确的检测数组：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object Array]"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于原生数组的构造函数与全局作用域无关，因此使用<code>toString()</code>就能保证返回一致的值。<br>同样，也可以基于这一思想来测试某个值是不是原生函数或正则表达式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object Function]"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//正则表达式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isRegExp</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) == <span class="string">"[object RegExp]"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ol start="4">
 <li><p>转换方法<br>数组继承的<code>toLocaleString()</code>,<code>toString()</code>和<code>valueOf()</code>方法，在默认情况下都会以逗号分隔的字符串形式返回数组项。而如果使用<code>join()</code>方法，则可以使用不同的分隔符来创建这个字符串。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line">alert(colors.join(<span class="string">","</span>)); </span><br><span class="line">alert(colors.join(<span class="string">"||"</span>));        <span class="comment">// red||green||blue</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line">alert(colors.join(<span class="string">","</span>)); </span><br><span class="line">alert(colors.join(<span class="string">"||"</span>));        <span class="comment">// red||green||blue</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>栈方法<br><code>pop()</code>和<code>push()</code>是数组默认的删除元素和添加元素方法。</p>
 </li>
@@ -378,12 +420,12 @@
 </ul>
 </li>
 <li><p>重排序方法<br>数组中已经存在的两个可以直接用来重排序的方法：<code>reverse()</code>和<code>sort()</code>。<br>由于<code>reverse()</code>不够灵活才有的<code>sort()</code>。<code>sort()</code>方法默认的升序排列，排列时会调用数组项的<code>toString()</code>转型方法然后比较得到的字符串。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> value = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line">value.sort();</span><br><span class="line">alert(value);   <span class="comment">// 0,1,10,15,5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line">value.sort();</span><br><span class="line">alert(value);   <span class="comment">// 0,1,10,15,5</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>即便是数组为数值类型，该方法仍然会调用<code>toString()</code>方法来对数组项进行比较。可见，这不是我们想要的结果。<code>sort()</code>方法可以接受一个比较函数作为参数。一个简单的比较函数：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(value1 &lt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(value1 &gt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>将此函数传给<code>sort()</code>方法，如下：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line">values.sort(compare);</span><br><span class="line">alert(values);      <span class="comment">// 0,1,5,10,15</span></span><br></pre></td></tr></table></figure></p>
-<p>对于数值类型或者其<code>valueOf()</code>方法会返回数值类型的对象类型，可以使用一个更简单的比较函数：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>即便是数组为数值类型，该方法仍然会调用<code>toString()</code>方法来对数组项进行比较。可见，这不是我们想要的结果。<code>sort()</code>方法可以接受一个比较函数作为参数。一个简单的比较函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(value1 &lt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(value1 &gt; value2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将此函数传给<code>sort()</code>方法，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line">values.sort(compare);</span><br><span class="line">alert(values);      <span class="comment">// 0,1,5,10,15</span></span><br></pre></td></tr></table></figure></p>
+<p>对于数值类型或者其<code>valueOf()</code>方法会返回数值类型的对象类型，可以使用一个更简单的比较函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>具体实现原理请参见：<a href="https://blog.csdn.net/coder_chenz/article/details/77156047" target="_blank" rel="noopener">js中Array.sort()实现原理</a></p>
 <ol start="8">
 <li><p>操作方法</p>
@@ -393,7 +435,7 @@
 <li><code>splice()</code>，向数组中部插入项,会改变原始数组<ul>
 <li>删除，需指定两个参数</li>
 <li>插入</li>
-<li>替换<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// concat()</span></span><br><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2 = colors.concat(<span class="string">"yellow"</span>,[<span class="string">"black"</span>,<span class="string">"brown"</span>]);</span><br><span class="line"></span><br><span class="line">alert(colors);       <span class="comment">// red,green,blue</span></span><br><span class="line">alert(colors2);      <span class="comment">// red,green,blue,yellow,brown</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// slice()</span></span><br><span class="line"><span class="keyword">var</span> colors3 = colors.slice(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">var</span> colors4 = colors.slice(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">alert(colors3);      <span class="comment">// red,green,blue</span></span><br><span class="line">alert(colors4);      <span class="comment">// green,blue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// splice()</span></span><br><span class="line"><span class="comment">// 删除第一项</span></span><br><span class="line"><span class="keyword">var</span> removed = colors.splice(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从位置1开始插入两项</span></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="string">"yellow"</span>, <span class="string">"orange"</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,yellow,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// 返回一个空数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入两项，删除1项</span></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">1</span>, <span class="string">"red"</span>, <span class="string">"purple"</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,red,pruple,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// yellow</span></span><br></pre></td></tr></table></figure>
+<li>替换<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// concat()</span></span><br><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2 = colors.concat(<span class="string">"yellow"</span>,[<span class="string">"black"</span>,<span class="string">"brown"</span>]);</span><br><span class="line"></span><br><span class="line">alert(colors);       <span class="comment">// red,green,blue</span></span><br><span class="line">alert(colors2);      <span class="comment">// red,green,blue,yellow,brown</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// slice()</span></span><br><span class="line"><span class="keyword">var</span> colors3 = colors.slice(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">var</span> colors4 = colors.slice(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">alert(colors3);      <span class="comment">// red,green,blue</span></span><br><span class="line">alert(colors4);      <span class="comment">// green,blue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// splice()</span></span><br><span class="line"><span class="comment">// 删除第一项</span></span><br><span class="line"><span class="keyword">var</span> removed = colors.splice(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从位置1开始插入两项</span></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="string">"yellow"</span>, <span class="string">"orange"</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,yellow,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// 返回一个空数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入两项，删除1项</span></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">1</span>, <span class="string">"red"</span>, <span class="string">"purple"</span>);</span><br><span class="line">alert(colors);      <span class="comment">// green,red,pruple,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">// yellow</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -402,7 +444,7 @@
 <li><p>位置方法：都接受两个参数，第一个是要查找的项和表示要查找的起点位置(可选)。</p>
 <ul>
 <li><code>indexOf()</code>：从头部开始往后查找(0开始)。</li>
-<li><code>lastIndexOf()</code>：从尾部开始往前查找。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">alert(numbers.indexOf(<span class="number">4</span>));     <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<li><code>lastIndexOf()</code>：从尾部开始往前查找。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">alert(numbers.indexOf(<span class="number">4</span>));     <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -412,14 +454,14 @@
 <li><code>some()</code>：和上面一个方法否是返回<code>true</code>或<code>false</code></li>
 <li><code>filter()</code></li>
 <li><code>map()</code>：和上面一个方法都是返回一个数组</li>
-<li><code>forEach()</code>：无返回值<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//filter()</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> filterResult = numbers.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (item &gt; <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(filterResult);             <span class="comment">// [ 3, 4, 5, 4, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// map()</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> mapResult = numbers.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(mapResult);             <span class="comment">// [ 2, 4, 6, 8, 10, 8, 6, 4, 2]</span></span><br></pre></td></tr></table></figure>
+<li><code>forEach()</code>：无返回值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//filter()</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> filterResult = numbers.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (item &gt; <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(filterResult);             <span class="comment">// [ 3, 4, 5, 4, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// map()</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> mapResult = numbers.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(mapResult);             <span class="comment">// [ 2, 4, 6, 8, 10, 8, 6, 4, 2]</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>归并方法：<br>都接受两个参数：一个在每一项上调用的函数和作为归并基础的初始值。</p>
 <ul>
 <li><code>reduce()</code></li>
-<li><code>reduceRight()</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> sum = values.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> prev + cur;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(sum);   <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<li><code>reduceRight()</code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> sum = values.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> prev + cur;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(sum);   <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -497,6 +539,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -548,7 +600,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -630,6 +682,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -747,7 +808,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/02/21/JavaScript高级语言程序设计(第5章)/';
+          this.page.identifier = '2019/02/21/JavaScript高级语言程序设计(第5章)/';
+          this.page.title = 'Object和Array类型';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -765,11 +850,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 

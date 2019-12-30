@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在提交代码到远程仓库时，遇见如下问题： warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被替换">
+<meta name="description" content="在提交代码到远程仓库时，遇见如下问题： 12warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LF &amp; CRLF">
 <meta property="og:url" content="https://syt-honey.github.io/2019/02/21/LF&CRLF/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="在提交代码到远程仓库时，遇见如下问题： warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被替换">
+<meta property="og:description" content="在提交代码到远程仓库时，遇见如下问题： 12warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-04T04:30:39.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LF &amp; CRLF">
-<meta name="twitter:description" content="在提交代码到远程仓库时，遇见如下问题： warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被替换">
+<meta name="twitter:description" content="在提交代码到远程仓库时，遇见如下问题： 12warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.The file will have its original line endings in your working directory. 原因：在Windows系统下，他们的行尾可能会被">
 
 
 
@@ -296,6 +296,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/LF&CRLF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/21/LF&CRLF/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -303,6 +314,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -322,7 +364,7 @@
       
         <hr>
 <p>在提交代码到远程仓库时，遇见如下问题：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in knowledge_sharing_doc/2018-07-06-分享总结.md.</span><br><span class="line">The file will have its original line endings in your working directory.</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced <span class="keyword">by</span> <span class="literal">CRLF</span> <span class="keyword">in</span> knowledge_sharing_doc/<span class="number">2018</span><span class="number">-07</span><span class="number">-06</span>-分享总结.md.</span><br><span class="line">The <span class="built_in">file</span> will have its original <span class="built_in">line</span> endings <span class="keyword">in</span> your working <span class="built_in">directory</span>.</span><br></pre></td></tr></table></figure>
 <p><strong>原因</strong>：在Windows系统下，他们的行尾可能会被替换，使用回车或换行符，在Unix系统中则只用换行符来表示。 </p>
 <p><strong>解决办法</strong>： 在当前目录下执行如下命令：<code>git config core.autocrlf true</code>。想要在全局有效，执行<code>git config --global core.autocrlf true</code>。</p>
 <p>详情请参见：<a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace" target="_blank" rel="noopener">说明文档</a></p>
@@ -331,16 +373,16 @@
 <p>Formatting and Whitespace</p>
 </blockquote>
 <blockquote>
-<p>Formatting and whitespace issues are some of the more frustrating and subtle problems that many developers encounter when collaborating, especially cross-platform. It’s very easy for patches or other collaborated work to introduce subtle whitespace changes because editors silently introduce them, and if your files ever touch a Windows system, their line endings might be replaced. Git has a few configuration options to help with these issues.<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">core.autocrlf</span><br></pre></td></tr></table></figure></p>
+<p>Formatting and whitespace issues are some of the more frustrating and subtle problems that many developers encounter when collaborating, especially cross-platform. It’s very easy for patches or other collaborated work to introduce subtle whitespace changes because editors silently introduce them, and if your files ever touch a Windows system, their line endings might be replaced. Git has a few configuration options to help with these issues.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">core</span><span class="selector-class">.autocrlf</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>If you’re programming on Windows and working with people who are not (or vice-versa), you’ll probably run into line-ending issues at some point. This is because Windows uses both a carriage-return character and a linefeed character for newlines in its files, whereas Mac and Linux systems use only the linefeed character. This is a subtle but incredibly annoying fact of cross-platform work; many editors on Windows silently replace existing LF-style line endings with CRLF, or insert both line-ending characters when the user hits the enter key.<br>Git can handle this by auto-converting CRLF line endings into LF when you add a file to the index, and vice versa when it checks out code onto your filesystem. You can turn on this functionality with the core.autocrlf setting. If you’re on a Windows machine, set it to true – this converts LF endings into CRLF when you check out code:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global core.autocrlf true</span><br></pre></td></tr></table></figure></p>
+<p>If you’re programming on Windows and working with people who are not (or vice-versa), you’ll probably run into line-ending issues at some point. This is because Windows uses both a carriage-return character and a linefeed character for newlines in its files, whereas Mac and Linux systems use only the linefeed character. This is a subtle but incredibly annoying fact of cross-platform work; many editors on Windows silently replace existing LF-style line endings with CRLF, or insert both line-ending characters when the user hits the enter key.<br>Git can handle this by auto-converting CRLF line endings into LF when you add a file to the index, and vice versa when it checks out code onto your filesystem. You can turn on this functionality with the core.autocrlf setting. If you’re on a Windows machine, set it to true – this converts LF endings into CRLF when you check out code:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global core.autocrlf <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>If you’re on a Linux or Mac system that uses LF line endings, then you don’t want Git to automatically convert them when you check out files; however, if a file with CRLF endings accidentally gets introduced, then you may want Git to fix it. You can tell Git to convert CRLF to LF on commit but not the other way around by setting core.autocrlf to input:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global core.autocrlf input</span><br></pre></td></tr></table></figure></p>
+<p>If you’re on a Linux or Mac system that uses LF line endings, then you don’t want Git to automatically convert them when you check out files; however, if a file with CRLF endings accidentally gets introduced, then you may want Git to fix it. You can tell Git to convert CRLF to LF on commit but not the other way around by setting core.autocrlf to input:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global core.autocrlf input</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>This setup should leave you with CRLF endings in Windows checkouts, but LF endings on Mac and Linux systems and in the repository.<br>If you’re a Windows programmer doing a Windows-only project, then you can turn off this functionality, recording the carriage returns in the repository by setting the config value to false:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global core.autocrlf false</span><br></pre></td></tr></table></figure></p>
+<p>This setup should leave you with CRLF endings in Windows checkouts, but LF endings on Mac and Linux systems and in the repository.<br>If you’re a Windows programmer doing a Windows-only project, then you can turn off this functionality, recording the carriage returns in the repository by setting the config value to false:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global core.autocrlf <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p><br></p>
 <p>参考文档：<br><a href="https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important" target="_blank" rel="noopener">LF will be replaced by CRLF in git - What is that and is it important?</a>  </p>
@@ -417,6 +459,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -459,7 +511,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -525,6 +577,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">honeysyt</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -642,7 +703,31 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://syt-honey.github.io/2019/02/21/LF&CRLF/';
+          this.page.identifier = '2019/02/21/LF&CRLF/';
+          this.page.title = 'LF & CRLF';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -660,11 +745,7 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
+    
 
   
 
