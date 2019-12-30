@@ -296,17 +296,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/21/Hexo搭建/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/21/Hexo搭建/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -364,9 +353,9 @@
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><hr>
 <p>本文以主题为<code>material</code>讲解。</p>
-<h4 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1. 安装Hexo"></a>1. 安装Hexo</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-创建一个叫blog的网站"><a href="#2-创建一个叫blog的网站" class="headerlink" title="2. 创建一个叫blog的网站"></a>2. 创建一个叫blog的网站</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 切入到想放入blog的文件中</span></span><br><span class="line">hexo <span class="keyword">init</span> blog</span><br></pre></td></tr></table></figure>
-<h4 id="3-进入blog目录，运行该服务"><a href="#3-进入blog目录，运行该服务" class="headerlink" title="3. 进入blog目录，运行该服务"></a>3. 进入blog目录，运行该服务</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">cd</span> <span class="keyword">blog</span></span><br><span class="line"><span class="keyword">hexo </span>server</span><br></pre></td></tr></table></figure>
+<h4 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1. 安装Hexo"></a>1. 安装Hexo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h4 id="2-创建一个叫blog的网站"><a href="#2-创建一个叫blog的网站" class="headerlink" title="2. 创建一个叫blog的网站"></a>2. 创建一个叫blog的网站</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 切入到想放入blog的文件中</span><br><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+<h4 id="3-进入blog目录，运行该服务"><a href="#3-进入blog目录，运行该服务" class="headerlink" title="3. 进入blog目录，运行该服务"></a>3. 进入blog目录，运行该服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <h4 id="4-打开浏览器，输入http-localhost-4000-查看"><a href="#4-打开浏览器，输入http-localhost-4000-查看" class="headerlink" title="4. 打开浏览器，输入http://localhost:4000/查看"></a>4. 打开浏览器，输入<code>http://localhost:4000/</code>查看</h4><h4 id="5-修改主题和blog目录下的配置文件-下面直接称为：站点配置文件"><a href="#5-修改主题和blog目录下的配置文件-下面直接称为：站点配置文件" class="headerlink" title="5. 修改主题和blog目录下的配置文件(下面直接称为：站点配置文件)"></a>5. 修改主题和<code>blog</code>目录下的配置文件(下面直接称为：站点配置文件)</h4><ul>
 <li>将自己选的主题文件放入<code>themes</code>目录下(我用的：<a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">material</a>)</li>
 <li>打开站点配置文件，找到<code>theme</code>字段，将值改为自己选的主题</li>
@@ -395,15 +384,15 @@
 </ul>
 <p>注：向搜索引擎验证你对站点的所有权，用于向搜索引擎提交sitemap和管理站点被搜索引擎收录的情况。</p>
 <h4 id="7-修改站点配置文件，将网站自部署到Github上"><a href="#7-修改站点配置文件，将网站自部署到Github上" class="headerlink" title="7. 修改站点配置文件，将网站自部署到Github上"></a>7. 修改站点配置文件，将网站自部署到Github上</h4><ul>
-<li>在文件的末尾加上：<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加你要放博客的远程仓库部署</span></span><br><span class="line"><span class="string">deploy:</span> <span class="string">type:</span> git</span><br><span class="line"><span class="string">repo:</span> <span class="string">https:</span><span class="comment">//github.com/github-name/github-name.github.io.git   // 只要是你仓库地址即可，没有强制要求.github.io仓库</span></span><br><span class="line"><span class="string">branch:</span> master</span><br></pre></td></tr></table></figure>
+<li>在文件的末尾加上：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 添加你要放博客的远程仓库部署</span><br><span class="line">deploy: type: git</span><br><span class="line">repo: https://github.com/github-name/github-name.github.io.git   // 只要是你仓库地址即可，没有强制要求.github.io仓库</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="8-安装部署使用的git插件"><a href="#8-安装部署使用的git插件" class="headerlink" title="8. 安装部署使用的git插件"></a>8. 安装部署使用的git插件</h4><p>我们使用的是<code>git</code>源码管理工具，所以我们需要安装<code>git</code>包进行部署，安装这个插件才能使用<code>git</code>进行自动部署。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <h4 id="9-生成网站"><a href="#9-生成网站" class="headerlink" title="9. 生成网站"></a>9. 生成网站</h4><p>部署网站前，我们需要先将其生成静态网站。进入<code>blog</code>目录执行下面命令，生成的网页将会存放在根目录自动生成的<code>public</code>文件夹中。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 <h4 id="10-重启生成网站，进行自动部署网站"><a href="#10-重启生成网站，进行自动部署网站" class="headerlink" title="10. 重启生成网站，进行自动部署网站"></a>10. 重启生成网站，进行自动部署网站</h4><p>注：每次修改后都需要重新生成网站并进行部署。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>参考文章：<br><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo简述</a><br><a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">material用法</a><br><a href="https://blog.csdn.net/u012028371/article/details/78666998" target="_blank" rel="noopener">Hexo用法</a>  </p>
 <p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
@@ -476,16 +465,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
 
   
 
@@ -747,33 +726,9 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://syt-honey.github.io/2019/02/21/Hexo搭建/';
-          this.page.identifier = '2019/02/21/Hexo搭建/';
-          this.page.title = 'Hexo框架搭建博客记录';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -785,11 +740,15 @@
   });
 </script>
 
-<script type="text/javascript" src="">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-    
+
+
+
+  
+
 
   
 
@@ -837,8 +796,6 @@
   
 
   
-  
-
 
   
 

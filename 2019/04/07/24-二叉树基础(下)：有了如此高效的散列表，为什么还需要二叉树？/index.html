@@ -303,17 +303,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/07/24-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/04/07/24-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -400,7 +389,7 @@
 <p><img src="/images/algorithm/binary-search-tree-query-of-duplicate.png" alt="binary-search-tree-query-of-duplicate"></p>
 <p>当然，这就意味着，当我们查找某一个数据的时候，当已经查到与当前节点数据相等的时候不能停止查找，要去它的右子树中继续遍历查找，直到遇到叶子节点才停止。删除也是。</p>
 <h3 id="二叉查找树的时间复杂度分析"><a href="#二叉查找树的时间复杂度分析" class="headerlink" title="二叉查找树的时间复杂度分析"></a>二叉查找树的时间复杂度分析</h3><p>从图中可以看出来，不管是插入还是删除亦或是查找，它的时间复杂度都与树的高度有关，<strong>与高度成正比，也就是O(height)。</strong>那么，一棵包含n个节点的完全二叉树的高度怎么计算呢？</p>
-<p>树的高度就等于最大层数减一，为了方便计算，我们转换成层来表示。从下图中，我们可以看到，包含n个节点的完全二叉树中，从第一层到倒数第二层的节点数都满足等比，1, 2, 2^2, 2^3 … 2^(k - 1)。设树的最大层数为L，又有，最大层数的节点数在区间 [1, 2^(L-1)]之间，于是L和n满足这样一个关系：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n &gt;= <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> + <span class="number">8</span> + ... + <span class="number">2</span>^(L<span class="number">-2</span>) + <span class="number">1</span></span><br><span class="line">n &lt;= <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> + <span class="number">8</span> + ... + <span class="number">2</span>^(L<span class="number">-2</span>) + <span class="number">2</span>^(L<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>树的高度就等于最大层数减一，为了方便计算，我们转换成层来表示。从下图中，我们可以看到，包含n个节点的完全二叉树中，从第一层到倒数第二层的节点数都满足等比，1, 2, 2^2, 2^3 … 2^(k - 1)。设树的最大层数为L，又有，最大层数的节点数在区间 [1, 2^(L-1)]之间，于是L和n满足这样一个关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n &gt;= 1 + 2 + 4 + 8 + ... + 2^(L-2) + 1</span><br><span class="line">n &lt;= 1 + 2 + 4 + 8 + ... + 2^(L-2) + 2^(L-1)</span><br></pre></td></tr></table></figure></p>
 <p>借助等比求和，我们可以计算出L的范围是 [log(2)(n + 1), log(2)n + 1]。完全二叉树的层数小于log(2)n + 1。所以，它的时间复杂度是O(logn)。</p>
 <p><img src="/images/algorithm/binary-search-tree-time.png" alt="binary-search-tree-time"></p>
 <blockquote>
@@ -489,16 +478,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
 
   
 
@@ -760,33 +739,9 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://syt-honey.github.io/2019/04/07/24-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/';
-          this.page.identifier = '2019/04/07/24-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？/';
-          this.page.title = '24-二叉树基础(下)：有了如此高效的散列表，为什么还需要二叉树？';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -798,11 +753,15 @@
   });
 </script>
 
-<script type="text/javascript" src="">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-    
+
+
+
+  
+
 
   
 
@@ -850,8 +809,6 @@
   
 
   
-  
-
 
   
 
