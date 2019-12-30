@@ -305,17 +305,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/04/03/23-二叉树基础(上)：什么样的二叉树适合用数组来存储？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/04/03/23-二叉树基础(上)：什么样的二叉树适合用数组来存储？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -403,7 +392,7 @@
 </ul>
 <p><img src="/images/algorithm/binary-tree-traversal.png" alt="binary-tree-traversal"></p>
 <p><strong>实际上，二叉树的前、中、后序遍历就是一个递归的过程。</strong> 之前我们在递归那篇文章中提过，写递归主要是要推出递推公式。</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前序遍历</span></span><br><span class="line"><span class="function"><span class="title">preTraversal</span>(r) = print r -&gt;</span> <span class="function"><span class="title">preTraversal</span>(r-&gt;</span><span class="function"><span class="title">left</span>) -&gt;</span> <span class="function"><span class="title">preTraversal</span>(r-&gt;</span>right)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="title">inTraversal</span>(r) = inTraversal(r-&gt;</span><span class="function"><span class="title">left</span>) -&gt;</span> <span class="function"><span class="title">print</span> r -&gt;</span> <span class="function"><span class="title">inTraversal</span>(r-&gt;</span>right)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="title">postTraversal</span>(r) = postTraversal(r-&gt;</span><span class="function"><span class="title">left</span>) -&gt;</span> <span class="function"><span class="title">postTraversal</span>(r-&gt;</span><span class="function"><span class="title">right</span>) -&gt;</span> print r</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 前序遍历</span><br><span class="line">preTraversal(r) = print r -&gt; preTraversal(r-&gt;left) -&gt; preTraversal(r-&gt;right)</span><br><span class="line"></span><br><span class="line">// 中序遍历</span><br><span class="line">inTraversal(r) = inTraversal(r-&gt;left) -&gt; print r -&gt; inTraversal(r-&gt;right)</span><br><span class="line"></span><br><span class="line">// 后序遍历</span><br><span class="line">postTraversal(r) = postTraversal(r-&gt;left) -&gt; postTraversal(r-&gt;right) -&gt; print r</span><br></pre></td></tr></table></figure>
 <p>代码实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preTraversal</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(root == null) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d "</span>, root-&gt;data);</span><br><span class="line">  preTraversal(root-&gt;left);</span><br><span class="line">  preTraversal(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inTraversal</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  inTraversal(root-&gt;left);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d "</span>, root-&gt;data);</span><br><span class="line">  inTraversal(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postTraversal</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  postTraversal(root-&gt;left);</span><br><span class="line">  postTraversal(root-&gt;right);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d "</span>, root-&gt;data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样看就很简单啦。现在我们要看看它们的时间复杂度。从上面的代码，我们可以看出来，每个节点最多会被访问两次，所以遍历操作的时间复杂度与节点的个数n成正比，也就是，时间复杂度为O(n)。</p>
 <h3 id="解答开篇-amp-内容小结"><a href="#解答开篇-amp-内容小结" class="headerlink" title="解答开篇 &amp; 内容小结"></a>解答开篇 &amp; 内容小结</h3><p>这一篇，我们讲了一种非线性表数据结构，树。关于树有几个常用的概念，根节点、叶子节点、父节点、子节点、兄弟节点和树的高度、深度、层。</p>
@@ -487,16 +476,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
 
   
 
@@ -758,33 +737,9 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://syt-honey.github.io/2019/04/03/23-二叉树基础(上)：什么样的二叉树适合用数组来存储？/';
-          this.page.identifier = '2019/04/03/23-二叉树基础(上)：什么样的二叉树适合用数组来存储？/';
-          this.page.title = '23-二叉树基础(上)：什么样的二叉树适合用数组来存储？';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -796,11 +751,15 @@
   });
 </script>
 
-<script type="text/javascript" src="">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-    
+
+
+
+  
+
 
   
 
@@ -848,8 +807,6 @@
   
 
   
-  
-
 
   
 
