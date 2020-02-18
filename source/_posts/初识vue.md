@@ -47,9 +47,10 @@ tags: vue
 
 > 到这里想必你已经看到你的第一个vue跑起来了，是不是很激动呢？来到了vue的大家族中，再来几篇文章吧：
 
-[怎么样也少不了的vue-cli官网文档](https://github.com/vuejs/vue-cli)   
-[vue-cli#2.0webpack配置解析](https://juejin.im/post/584e48b2ac502e006c74a120)   
-[webpack的中文文档](https://webpack.docschina.org/)  
+---
+扩展阅读：  
+[1.怎么样也少不了的vue-cli官网文档](https://github.com/vuejs/vue-cli)   
+[2.vue-cli#2.0webpack配置解析](https://juejin.im/post/584e48b2ac502e006c74a120)   
+[3.webpack的中文文档](https://webpack.docschina.org/)  
 
 有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~
-

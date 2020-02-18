@@ -106,9 +106,9 @@ TCP连接的关闭需要发送四个报文段，因此被称为四次挥手。�
 
 [^MSS]：MSS（Maximum Segment Size）最大报文段长度。它通常根据最初确定的本地发送主机发送的最大链路层帧长度（最大传输单元，MTU）来设置。设置MSS要保证一个TCP报文段（当封装在一个IP数据报中）加上TCP/IP首部长度（20 + 20，通常40个字节）适合单个链路层帧。以太网和PPP链路层协议都具有1500字节的MTU，因此MSS的经典值为1460字节。
 
+---
 参考文章：
-[1. TCP的三次握手与四次挥手（详解+动图）](https://blog.csdn.net/qzcsu/article/details/72861891)  
-[2. TCP三次握手四次挥手详解](https://www.cnblogs.com/zmlctt/p/3690998.html)
-
+[1.TCP的三次握手与四次挥手（详解+动图）](https://blog.csdn.net/qzcsu/article/details/72861891)  
+[2.TCP三次握手四次挥手详解](https://www.cnblogs.com/zmlctt/p/3690998.html)
 
 以上内容整理自《计算机网络自顶向下方法》第七版。有问题？发送 [issues](https://syt-honey.github.io/about/) 给我~
