@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/network/序号示例.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/network/TCP三次握手.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/network/四次挥手.png">
-<meta property="og:updated_time" content="2019-12-30T02:38:49.647Z">
+<meta property="og:updated_time" content="2020-02-18T12:23:17.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运输层——面向连接的运输：TCP">
 <meta name="twitter:description" content="目录 概述 TCP报文段结构 TCP连接的建立 TCP连接的释放 问题解答  一、概述TCP被称为是面向连接的，这是因为，当在一个应用进程开始向另一个应用进程发送数据之前，这两个进程必须先相互“握手”，即它们必须相互发送某些预备报文段，以建立确保数据传输的参数。 不用赘述，大家肯定都听过TCP的三次握手、四次挥手。那么，我们现在来思考几个问题：  TCP握手的目的是什么？ TCP握手的详细过程是什">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-30T10:38:49+08:00">
-                2019-12-30
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-18T20:23:17+08:00">
+                2020-02-18
               </time>
             
           </span>
@@ -435,7 +435,8 @@
 <li>MSL（Maximum Segment Lifetime），TCP允许不同的实现可以设置不同的MSL值。它的作用，第一，保证主动发送端发送的最后一个ACK报文能够到达被动端。当被动方发送FIN + ACK报文请求后，一段时间没有接收到确认报文时又会重新发送一次报文。这个时候主动方就会知道，刚刚我发送出去的确认报文对方没有收到，于是又发送一次确认报文，并且重启2MSL计时器。</li>
 </ol>
 <p>[^MSS]：MSS（Maximum Segment Size）最大报文段长度。它通常根据最初确定的本地发送主机发送的最大链路层帧长度（最大传输单元，MTU）来设置。设置MSS要保证一个TCP报文段（当封装在一个IP数据报中）加上TCP/IP首部长度（20 + 20，通常40个字节）适合单个链路层帧。以太网和PPP链路层协议都具有1500字节的MTU，因此MSS的经典值为1460字节。</p>
-<p>参考文章：<br><a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="noopener">1. TCP的三次握手与四次挥手（详解+动图）</a><br><a href="https://www.cnblogs.com/zmlctt/p/3690998.html" target="_blank" rel="noopener">2. TCP三次握手四次挥手详解</a></p>
+<hr>
+<p>参考文章：<br><a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="noopener">1.TCP的三次握手与四次挥手（详解+动图）</a><br><a href="https://www.cnblogs.com/zmlctt/p/3690998.html" target="_blank" rel="noopener">2.TCP三次握手四次挥手详解</a></p>
 <p>以上内容整理自《计算机网络自顶向下方法》第七版。有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
       
@@ -560,7 +561,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -573,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
