@@ -55,7 +55,7 @@ tags: HTML&CSS
     <div class="button">Next Page</div>
   </div>
   <div class="footer">
-    copyright@2018
+    copyright@2020
   </div>
 </div>
 ```
@@ -91,7 +91,7 @@ tags: HTML&CSS
 
 ---
 这是HTML&CSS重点知识点合集的其中一篇，合集其它文章：  
-1. [传说中的BFC]()  
+[1.传说中的BFC](/_posts/传说中的BFC.md)  
 
 ---
 参考文章：  
