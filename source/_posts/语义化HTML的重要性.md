@@ -91,7 +91,7 @@ tags: HTML&CSS
 
 ---
 这是HTML&CSS重点知识点合集的其中一篇，合集其它文章：  
-[1.传说中的BFC](/_posts/传说中的BFC.md)  
+[1.传说中的BFC](https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more)  
 
 ---
 参考文章：  
