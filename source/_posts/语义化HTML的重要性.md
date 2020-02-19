@@ -3,7 +3,7 @@ title: 语义化HTML的重要性
 tags: HTML&CSS
 ---
 
-> 牛客的专向题刷完了，系统的总结一下考点，争取搞清楚各种知识点的来龙去脉。前端精进之路，新的一年，冲鸭！
+> 牛客的专向题刷完了，系统的总结一下考点，争取搞清楚各种知识点的来龙去脉。前端精进之路，新的一年，冲鸭！这是HTML&CSS重点知识点合集第一篇。其余文章见文末。
 
 ## 一、HTML
 
@@ -91,7 +91,8 @@ tags: HTML&CSS
 
 ---
 这是HTML&CSS重点知识点合集的其中一篇，合集其它文章：  
-[1.传说中的BFC](https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more)  
+[2.传说中的BFC](https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more)  
+[3.CSS布局神器——伸缩盒（语法篇）](https://syt-honey.github.io/2020/02/19/%E4%BC%B8%E7%BC%A9%E7%9B%92/)
 
 ---
 参考文章：  

@@ -3,6 +3,8 @@ title: 今天来聊一聊传说中的BFC
 tags: HTML&CSS
 ---
 
+> 这是HTML&CSS重点知识点合集第二篇。其余文章见文末。
+
 ## BFC（Block Formatting Context）
 
 前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。
@@ -87,6 +89,7 @@ BFC的一个重要的效果就是让处于BFC内部的元素与外部的元素�
 ---
 这是HTML&CSS重点知识点合集的其中一篇，合集其它文章：  
 [1.语义化HTML的重要性](https://syt-honey.github.io/2020/02/11/%E8%AF%AD%E4%B9%89%E5%8C%96HTML%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/)  
+[3.CSS布局神器——伸缩盒（语法篇）](https://syt-honey.github.io/2020/02/19/%E4%BC%B8%E7%BC%A9%E7%9B%92/)
 
 ---
 参考文章：  
