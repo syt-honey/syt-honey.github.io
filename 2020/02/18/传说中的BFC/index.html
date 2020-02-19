@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML&CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta name="keywords" content="HTML&amp;CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="今天来聊一聊传说中的BFC">
+<meta property="og:url" content="https://syt-honey.github.io/2020/02/18/传说中的BFC/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/块容器盒子.png">
+<meta property="og:updated_time" content="2020-02-18T13:16:35.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="今天来聊一聊传说中的BFC">
+<meta name="twitter:description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/块容器盒子.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2020/02/18/传说中的BFC/"/>
+
+
+
+
+
+  <title>今天来聊一聊传说中的BFC | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/02/18/传说中的BFC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">今天来聊一聊传说中的BFC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-18T10:28:54+08:00">
+                2020-02-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-18T21:16:35+08:00">
+                2020-02-18
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="BFC（Block-Formatting-Context）"><a href="#BFC（Block-Formatting-Context）" class="headerlink" title="BFC（Block Formatting Context）"></a>BFC（Block Formatting Context）</h2><p>前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。</p>
+<h3 id="1-BFC"><a href="#1-BFC" class="headerlink" title="(1). BFC"></a>(1). BFC</h3><p>BFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点：</p>
+<p><strong>首先，什么是盒子？什么又是块盒子？</strong></p>
+<p>CSS有一个概念，叫CSS视觉格式化模型（visiual formatting model）。它是用来处理和在视觉媒体上显示文档时使用的计算规则。它会根据CSS盒子模型将文档中的元素转换为一个个盒子。也就是说，它定义了盒子的生成。盒子主要包括了块盒、行内盒、匿名盒以及一些实验性的盒子，盒子的类型由 <code>display</code> 来决定。</p>
+<p>块盒子（Block Box），前面说了，盒子的类型由属性 <code>display</code> 来决定。当元素的 <code>display</code> 为 <code>block</code> 、 <code>list-item</code> 或 <code>table</code> 时，这个元素就将是块级元素。一个块级元素会被格式化成一个块，默认按照垂直方向排列。每个块级元素都会生成至少一个块级盒子（即主块级盒子，principal block-level box），并且每个块级盒子都会参与块格式化上下文的创建。</p>
+<p>我们说了块级盒子，那块级盒子和块盒子是啥关系？</p>
+<p>我们先来看看另一个概念——块容器盒子。块容器盒子指的是该元素的直接子元素只有块级盒子或只有行内级盒子。</p>
+<blockquote>
+<p>A block container box either contains only block-level boxes or establishes an inline formatting context and thus contains only inline-level boxes.</p>
+</blockquote>
+<p>如果还是理解起来有些费力，我们不妨来看张<a href="http://layout.imweb.io/article/box-type.html" target="_blank" rel="noopener">图片</a>：</p>
+<p><img src="/images/frontend/块容器盒子.png" alt="块容器盒子"></p>
+<p>知道块容器盒子的概念后，我们再来说块盒子。块盒子就是块容器盒子的一个子集，即当块容器盒子内的元素全部都是块级盒子时，它就是块盒子。有点绕？其实我们可以简单的理解成，块盒子就是块容器盒子中的元素都是块级盒子。行内盒（Inline Box）&amp; 匿名盒（Anonymous Block Boxes）详情请见：<a href="http://layout.imweb.io/article/box-type.html" target="_blank" rel="noopener">盒类型</a></p>
+<p><strong>其次，盒子的定位方案有哪些？</strong></p>
+<p>在布局的时候，浏览器会根据元素的盒类型和上下文对这些元素进行定位。定位时有三种定位方案，分别是常规流，浮动以及绝对定位。</p>
+<p><em>常规流（Normal flow）</em></p>
+<ul>
+<li>在常规流中，盒子一个接一个的排列</li>
+<li>在块级格式上下文中，它们在竖直方向上依次排列</li>
+<li>在行内格式上下文中，它们在水平方向上依次排列</li>
+<li>当 <code>position</code> 为 <code>static</code> 或 <code>relative</code>，并且 <code>float</code> 为 <code>none</code> 时会触发常规流</li>
+<li>对于静态定位（默认定位，<code>position</code> 的值为 <code>static</code>），盒的位置是常规流布局。</li>
+<li>对于相对定位（ <code>position</code> 的值为 <code>relative</code>），盒偏移的位置由 <code>top</code>，<code>bottom</code>，<code>left</code>，<code>right</code> 定义。不过，即便有偏移，仍然保留原有的位置。</li>
+</ul>
+<p><em>浮动（Float）</em></p>
+<ul>
+<li>盒子称为浮动盒</li>
+</ul>
+<p><em>绝对定位（Absolute positioning）</em></p>
+<ul>
+<li>绝对定位方案，盒子会从常规流中移除，不影响常规流的布局</li>
+<li>它的定位相对于它的父元素</li>
+<li>当元素的 <code>position</code> 的值为 <code>absolute</code> 或 <code>fixed</code>，它就是绝对定位元素</li>
+<li>对于 <code>position: absolute</code>，元素的定位将相对于最近的一个 <code>ralative</code>、<code>fixed</code> 或 <code>absolute</code>的父元素，如果没有则相对于 <code>body</code>。</li>
+</ul>
+<p>好了，现在我们讲回到 <strong>块格式化上下文</strong>。从上面的信息可以看出，块格式化上下文是页面CSS视觉渲染的一部分，用于决定块盒子的布局及浮动相互影响范围的一个区域。</p>
+<h3 id="2-那BFC的创建方法有哪些呢？"><a href="#2-那BFC的创建方法有哪些呢？" class="headerlink" title="(2). 那BFC的创建方法有哪些呢？"></a>(2). 那BFC的创建方法有哪些呢？</h3><ol>
+<li>根元素 <code>&lt;html&gt;</code></li>
+<li>浮动元素</li>
+<li>绝对定位元素，元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code></li>
+<li>行内块元素，<code>display: inline-block</code></li>
+<li>表格单元格，<code>display: table-cell</code></li>
+<li><code>overflow</code>值不为 <code>visible</code>的块元素</li>
+<li>弹性盒（flexbox），<code>display: flex</code> 或 <code>inline-flex</code></li>
+</ol>
+<h3 id="3-BFC的范围"><a href="#3-BFC的范围" class="headerlink" title="(3). BFC的范围"></a>(3). BFC的范围</h3><p>一个BFC包含创建该上下文元素的所有子元素，但不包括创建了新BFC中的任意元素。一句话概括就是，一个元素不能同时存在于两个BFC中。</p>
+<p>BFC的一个重要的效果就是让处于BFC内部的元素与外部的元素相互隔离。可见，我们可以利用这个特定来防止浮动元素与其它元素重叠 —— 让重叠元素创建一个BFC，两个BFC之间互不干扰。</p>
+<h3 id="4-BFC的特性"><a href="#4-BFC的特性" class="headerlink" title="(4). BFC的特性"></a>(4). BFC的特性</h3><ol>
+<li>BFC内部的盒会在竖直方向排列</li>
+<li>处于同一个BFC中的元素会相互影响，两个相邻盒的 <code>margin</code> 会发生叠加</li>
+<li>BFC就是页面上的一个独立容器，容器内的元素不会受到外面元素的影响，反之亦然</li>
+<li>计算BFC的高度时，考虑BFC包含的所有元素，包括浮动元素的高度</li>
+</ol>
+<p>根据BFC的这些特性，我们现在可以分析一下一些常见的问题：</p>
+<p><strong>1.如何防止高度塌陷？</strong><br><strong>2.如何防止BFC内部元素发生margin collapsing？</strong>  </p>
+<p>第一个问题是指，当我们对子元素设置浮动后，父元素高度发生塌陷现象。这是因为当我们为子元素设置浮动后，子元素创建了一个BFC，而其父元素没有创建BFC，因此父元素计算高度时并没有将浮动元素的高度算入，导致父元素的高度塌陷。根据特性，很容易想到解决方案之一就是让父元素也创建一个BFC。（特性4）</p>
+<p>第二个问题是特性2的表现，解决方案之一就是为两个相邻的盒分别创建一个BFC，两个BFC相互之间不会影响。</p>
+<hr>
+<p>这是HTML&amp;CSS重点知识点合集的其中一篇，合集其它文章：<br><a href="/_posts/语义化HTML的重要性.md">1.语义化HTML的重要性</a>  </p>
+<hr>
+<p>参考文章：<br><a href="https://juejin.im/post/59b73d5bf265da064618731d" target="_blank" rel="noopener">1.学习BFC-2017-09-12</a>  </p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML-CSS/" rel="tag"># HTML&CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/16/继续上班还是另起炉灶/" rel="next" title="Iris & 大binger 知识分享">
+                <i class="fa fa-chevron-left"></i> Iris & 大binger 知识分享
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC（Block-Formatting-Context）"><span class="nav-number">1.</span> <span class="nav-text">BFC（Block Formatting Context）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-BFC"><span class="nav-number">1.1.</span> <span class="nav-text">(1). BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-那BFC的创建方法有哪些呢？"><span class="nav-number">1.2.</span> <span class="nav-text">(2). 那BFC的创建方法有哪些呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BFC的范围"><span class="nav-number">1.3.</span> <span class="nav-text">(3). BFC的范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-BFC的特性"><span class="nav-number">1.4.</span> <span class="nav-text">(4). BFC的特性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
