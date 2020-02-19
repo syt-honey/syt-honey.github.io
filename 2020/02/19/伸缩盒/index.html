@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML&CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现起来就比较吃力，或者就没办法实现。比如：  在父内容里面垂直居中一个块内">
+<meta name="keywords" content="HTML&amp;CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS布局神器——伸缩盒（语法篇）">
+<meta property="og:url" content="https://syt-honey.github.io/2020/02/19/伸缩盒/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现起来就比较吃力，或者就没办法实现。比如：  在父内容里面垂直居中一个块内">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexModel.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/boxCenter.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/justifyContent.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/alignItems.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/baseline.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/unsafe.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/safe.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexboxBrowserSupport.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexGrow.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/alignSelf.png">
+<meta property="og:updated_time" content="2020-02-19T06:43:44.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS布局神器——伸缩盒（语法篇）">
+<meta name="twitter:description" content="一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现起来就比较吃力，或者就没办法实现。比如：  在父内容里面垂直居中一个块内">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/flexModel.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2020/02/19/伸缩盒/"/>
+
+
+
+
+
+  <title>CSS布局神器——伸缩盒（语法篇） | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/02/19/伸缩盒/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS布局神器——伸缩盒（语法篇）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-19T11:31:35+08:00">
+                2020-02-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-19T14:43:44+08:00">
+                2020-02-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、伸缩盒（Flexible-Box）"><a href="#一、伸缩盒（Flexible-Box）" class="headerlink" title="一、伸缩盒（Flexible Box）"></a>一、伸缩盒（Flexible Box）</h2><p>伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑）</p>
+<p>好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 <code>display</code> 属性 + <code>position</code> 属性 + <code>float</code> 属性。但是它对于一些特殊复杂的布局实现起来就比较吃力，或者就没办法实现。比如：</p>
+<ul>
+<li>在父内容里面垂直居中一个块内容。</li>
+<li>使容器的所有子项占用等量的可用宽度/高度，而不管有多少宽度/高度可用。</li>
+<li>使多列布局中的所有列采用相同的高度，即使它们包含的内容量不同。</li>
+</ul>
+<p>可能你已经猜到了，弹性布局就能够使很多布局任务变得方便且灵活。下面就让我们来看看弹性布局是如何来实现的吧！</p>
+<h2 id="二、语法概念"><a href="#二、语法概念" class="headerlink" title="二、语法概念"></a>二、语法概念</h2><p>系统的熟悉一下Flexbox的语法是有必要的。当然，相信有很多人在项目中都已经用过Flexbox了，那就再复习一下吧，或许会有惊喜发现哦！</p>
+<p>Flexbox是由 <strong>伸缩容器（flex container）</strong>和 <strong>伸缩项目（flex item）</strong>组成。通过将元素的 <code>display</code> 属性设置为 <code>flex</code> 或者 <code>inline-flex</code> 就可以得到一个伸缩容器。<code>display</code> 被设置为 <code>flex</code> 时，伸缩容器就会被渲染成一个块级元素，而被设置为 <code>inline-flex</code> 时，容器会被渲染成一个行内元素。</p>
+<p>我们可以举个例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 假设绝大多用户使用的浏览器版本较高，所以这里使用优雅降级的书写方式 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-伸缩容器"><a href="#1-伸缩容器" class="headerlink" title="(1).伸缩容器"></a>(1).伸缩容器</h3><p>伸缩容器中的每个子元素都是一个伸缩项目。伸缩项目的数量可以是任意的，且和<a href="https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more">BFC</a>一样，容器内的元素和容器外的元素互不影响。</p>
+<p>伸缩容器内部有两个轴方向，分别是主轴（main axis）和侧轴（cross axis）。主轴决定了伸缩项目的排列方向，默认是水平方向。我们可以通过容器属性 <code>flex-direction</code> 进行设置。侧轴和主轴是相对应的。我们来看看<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener">MDN</a>上的一张经典图片：</p>
+<p><img src="/images/frontend/flexModel.png" alt="flex model"></p>
+<p>简单的来说，伸缩容器基于两个轴的方向定义了它内部的flex item如何布局。</p>
+<h4 id="①-容器属性"><a href="#①-容器属性" class="headerlink" title="①. 容器属性"></a>①. 容器属性</h4><p>伸缩容器有六个可以设置的属性，分别是：</p>
+<ol>
+<li><code>flex-direction</code>：定义了伸缩容器中flex item的排列方向</li>
+<li><code>flex-wrap</code>：定义了主轴方向排列的item是否换行</li>
+<li><code>flex-flow</code>：前两个属性的简写。</li>
+<li><code>justify-content</code>：主轴方向的对齐方式</li>
+<li><code>align-items</code>：侧轴方向的对齐方式</li>
+<li><code>align-content</code>：多根轴线的对齐方式</li>
+</ol>
+<p>对于第一、二属性，当某一个需要设置为非默认值时，我们常常将它们一起设置，比如 <code>flex-flow: row nowrap</code>。属性四、五常常用来设置容器在主轴和侧轴的对齐方式。例如，当希望容器中的item两侧间距相同时（在主轴方向上），我们可以设置属性 <code>display: flex; justify-content: space-around;</code>。<code>align-items</code> 常常用来设置item在侧轴方向居中，例如 <code>align-items: center;</code>。我们常见的问题：如何让一个元素在容器中实现居中？一个简单的方法就是：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-container</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/frontend/boxCenter.png" alt="box center"></p>
+<h4 id="②-主要的两个属性"><a href="#②-主要的两个属性" class="headerlink" title="②. 主要的两个属性"></a>②. 主要的两个属性</h4><p>关于伸缩容器，主要需要了解的就是 <code>justify-content</code> 以及 <code>align-items</code> 这两个属性几个值的排布特征。</p>
+<p><strong>justify-content：</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* justify-content*/</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ...+ safe | unsafe;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/frontend/justifyContent.png" alt="justify-content"></p>
+<p>需要说明的是，在不同的浏览器中，所支持的值并不是完全一样的。比如，<code>space-between</code> 在 Edge的一些版本中就不被支持，再比如Chrome不支持 <code>start</code>、<code>end</code>、<code>right</code>、<code>left</code>。最安全的三个值是 <code>flex-start</code>、<code>flex-end</code>、<code>center</code>。</p>
+<p><strong>align-items：</strong></p>
+<p>说完了 <code>justify-content</code>，现在我们来说说 <code>align-items</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="comment">/* align-items */</span></span><br><span class="line">  <span class="attribute">align-items</span>: stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end + ...safe | unsafe;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/frontend/alignItems.png" alt="align-items"></p>
+<p>相信大家对前五个属性还是比较熟悉的，那我们就来讲讲这个 <code>baseline</code>。它其实也很简单，就是根据文本的基线对齐：</p>
+<p><img src="/images/frontend/baseline.png" alt="baseline"></p>
+<h4 id="③-你可能不知道的两个属性值——-safe-和-unsafe"><a href="#③-你可能不知道的两个属性值——-safe-和-unsafe" class="headerlink" title="③. 你可能不知道的两个属性值—— safe 和 unsafe"></a>③. 你可能不知道的两个属性值—— <code>safe</code> 和 <code>unsafe</code></h4><p>你可能会对 <code>safe</code> 和 <code>unsafe</code> 这两个值感到陌生。Box Alignment规范新增了Safe和Unsafe对齐的概念，对应这两个关键字。</p>
+<p>我们以 <code>align-items</code> 的值来探讨一下。在下面的代码中，最后一项对于Flexbox来说太长了，上下都发生了溢出，且这种对齐方式是不安全的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;  </span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: unsafe center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/frontend/unsafe.png" alt="unsafe"></p>
+<p><em>不安全的对齐方式导致的对齐结果可能会发生数据丢失</em></p>
+<p>而安全对齐方式会避免数据丢失的出现，将溢出转移到一边（可控的一边）。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: safe center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/frontend/safe.png" alt="safe"></p>
+<p>注：Chrome目前（Version 80.0.3987.116）暂不支持这两个值。<br><img src="/images/frontend/flexboxBrowserSupport.png" alt="browser support"></p>
+<h3 id="2-伸缩项目"><a href="#2-伸缩项目" class="headerlink" title="(2).伸缩项目"></a>(2).伸缩项目</h3><h4 id="①-项目属性："><a href="#①-项目属性：" class="headerlink" title="①. 项目属性："></a>①. 项目属性：</h4><p>现在我们来讲讲flex item的属性。项目属性用来定义每个伸缩容器中项目的动作。总共有六个：</p>
+<ol>
+<li><code>order</code></li>
+<li><code>flex-grow</code></li>
+<li><code>flex-shrink</code></li>
+<li><code>flex-basis</code></li>
+<li><code>flex</code></li>
+<li><code>align-self</code></li>
+</ol>
+<p><strong>order</strong>：定义了每个item在主轴上的排列顺序。值越小的item排在越前面，默认值为 <code>0</code>，可以设置负值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;interger&gt;; <span class="comment">/* 默认为0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>flex-grow</strong>：定义项目的放大比例。默认值为 <code>0</code>，即如果有剩余空间元素也不进行放大。若值被设置为 <code>1</code>，说明当有剩余位置时，剩余位置将被所有item平分。该属性不能设置为负值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* 默认为0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/frontend/flexGrow.png" alt="flex-grow"></p>
+<p><strong>flex-shrink</strong>：定义了项目的缩小比例。默认值为<code>1</code>，即如果空间不足，该项目将缩小。该属性不能设置为负值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* 默认为1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>flex-basis</strong>：定义了在分配多余空间之前，项目占据的主轴空间(main-size)。浏览器会根据这个属性计算主轴是否有多余空间。默认值为 <code>auto</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* 默认为auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>值得注意的是，当 <code>width</code> 被设置且 <code>flex-basis</code> 的值比 <code>width</code> 大时，<code>width</code> 的值将会被覆盖。若 <code>width</code> 没有被设置，且当长度大于内容长度设置的 <code>flex-basis</code> 才会生效。例如，当 <code>flex-basis</code> 被设置为 <code>0</code> 时，且 <code>width</code> 没有被设置，则item的长度为所占内容的长度。（虽然 <code>width</code> 没有被设置，但 <code>flex-item</code> 的值为 <code>0</code>，小于内容的长度，则 <code>flex-basis</code> 不生效）。可以<a href="http://js.jirengu.com/hefoqukopi/1/edit?html,output" target="_blank" rel="noopener">点击链接</a>进行实操。</p>
+<p><strong>flex</strong>，是属性 <code>flex-grow</code>，<code>flex-shrink</code>，<code>flex-basis</code> 的简写。后两个属性可选。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">'flex-grow'</span>&gt; &lt;<span class="string">'flex-shrink'</span>&gt;? || &lt;<span class="string">'flex-basis'</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>flex</code> 有两个快捷值：<code>auto</code>、<code>none</code>。前者是 <code>1 1 auto</code> 的简写，后者是<code>0 0 auto</code>的简写。我们建议优先使用 <code>flex</code> ，而不是单独使用某一个属性，因为简写形式可以自动地设置其它值。</p>
+<p><strong>align-self</strong>：它允许单个项目与其它项目设置不一样地对齐方式，并且它可以覆盖父元素的 <code>align-items</code>，默认值为 <code>auto</code>，表示继承。若没有父元素，则等同于 <code>stretch</code>。</p>
+<p><img src="/images/frontend/alignSelf.png" alt="align-self"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，<code>float</code>、<code>clear</code> 以及 <code>vertical-align</code> 等布局属性在伸缩项目中是不起作用的。</p>
+<hr>
+<p>这是HTML&amp;CSS重点知识点合集的其中一篇，合集其它文章：<br><a href="https://syt-honey.github.io/2020/02/11/%E8%AF%AD%E4%B9%89%E5%8C%96HTML%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">1.语义化HTML的重要性</a><br><a href="https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more">2.传说中的BFC</a>  </p>
+<p>推荐阅读：<br><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">1.A Complete Guide to Flexbox-2020-02-3</a><br><a href="https://juejin.im/post/5d33a5db5188251654446657" target="_blank" rel="noopener">2.译·Flexbox都在这里-2019-07-23</a></p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML-CSS/" rel="tag"># HTML&CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/18/传说中的BFC/" rel="next" title="今天来聊一聊传说中的BFC">
+                <i class="fa fa-chevron-left"></i> 今天来聊一聊传说中的BFC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、伸缩盒（Flexible-Box）"><span class="nav-number">1.</span> <span class="nav-text">一、伸缩盒（Flexible Box）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、语法概念"><span class="nav-number">2.</span> <span class="nav-text">二、语法概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-伸缩容器"><span class="nav-number">2.1.</span> <span class="nav-text">(1).伸缩容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-容器属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">①. 容器属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-主要的两个属性"><span class="nav-number">2.1.2.</span> <span class="nav-text">②. 主要的两个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-你可能不知道的两个属性值——-safe-和-unsafe"><span class="nav-number">2.1.3.</span> <span class="nav-text">③. 你可能不知道的两个属性值—— safe 和 unsafe</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-伸缩项目"><span class="nav-number">2.2.</span> <span class="nav-text">(2).伸缩项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-项目属性："><span class="nav-number">2.2.1.</span> <span class="nav-text">①. 项目属性：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
