@@ -83,7 +83,7 @@
 <meta name="keywords" content="HTML&amp;CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS布局神器——伸缩盒（语法篇）">
-<meta property="og:url" content="https://syt-honey.github.io/2020/02/19/伸缩盒/index.html">
+<meta property="og:url" content="https://syt-honey.github.io/2020/02/19/伸缩盒（语法篇）/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="这是HTML&amp;amp;CSS重点知识点合集第三篇。其余文章见文末。  一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现">
 <meta property="og:locale" content="zh-CN">
@@ -94,10 +94,11 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/baseline.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/unsafe.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/safe.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexboxBrowserSupport.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexboxBrowserSupportSafe.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexGrow.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/alignSelf.png">
-<meta property="og:updated_time" content="2020-02-19T07:32:20.686Z">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexBrowserSupport.png">
+<meta property="og:updated_time" content="2020-02-23T13:23:57.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局神器——伸缩盒（语法篇）">
 <meta name="twitter:description" content="这是HTML&amp;amp;CSS重点知识点合集第三篇。其余文章见文末。  一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现">
@@ -131,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://syt-honey.github.io/2020/02/19/伸缩盒/"/>
+  <link rel="canonical" href="https://syt-honey.github.io/2020/02/19/伸缩盒（语法篇）/"/>
 
 
 
@@ -264,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/02/19/伸缩盒/">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/02/19/伸缩盒（语法篇）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="honeysyt">
@@ -309,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-02-19T15:32:20+08:00">
-                2020-02-19
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-23T21:23:57+08:00">
+                2020-02-23
               </time>
             
           </span>
@@ -337,7 +338,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2k
+                  2.1k
                 </span>
               
 
@@ -353,7 +354,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -421,7 +422,7 @@
 <p><em>不安全的对齐方式导致的对齐结果可能会发生数据丢失</em></p>
 <p>而安全对齐方式会避免数据丢失的出现，将溢出转移到一边（可控的一边）。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: safe center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/frontend/safe.png" alt="safe"></p>
-<p>注：Chrome目前（Version 80.0.3987.116）暂不支持这两个值。<br><img src="/images/frontend/flexboxBrowserSupport.png" alt="browser support"></p>
+<p>注：Chrome目前（Version 80.0.3987.116）暂不支持这两个值。<br><img src="/images/frontend/flexboxBrowserSupportSafe.png" alt="browser support"></p>
 <h3 id="2-伸缩项目"><a href="#2-伸缩项目" class="headerlink" title="(2).伸缩项目"></a>(2).伸缩项目</h3><h4 id="①-项目属性："><a href="#①-项目属性：" class="headerlink" title="①. 项目属性："></a>①. 项目属性：</h4><p>现在我们来讲讲flex item的属性。项目属性用来定义每个伸缩容器中项目的动作。总共有六个：</p>
 <ol>
 <li><code>order</code></li>
@@ -443,6 +444,9 @@
 <p><img src="/images/frontend/alignSelf.png" alt="align-self"></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后，<code>float</code>、<code>clear</code> 以及 <code>vertical-align</code> 等布局属性在伸缩项目中是不起作用的。</p>
+<h2 id="三、浏览器兼容"><a href="#三、浏览器兼容" class="headerlink" title="三、浏览器兼容"></a>三、浏览器兼容</h2><p>虽然伸缩容器几乎可以满足我们的所有的布局效果，但是要注意它的浏览器的兼容性。Flexbox只支持IE 10+，所以在开发中还是要根据情况来使用。</p>
+<p><img src="/images/frontend/flexBrowserSupport.png" alt="flex browser support"></p>
+<p>可以这样使用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">flex</span>;</span><br><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">-webkit-flex</span>;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>这是HTML&amp;CSS重点知识点合集的其中一篇，合集其它文章：<br><a href="https://syt-honey.github.io/2020/02/11/%E8%AF%AD%E4%B9%89%E5%8C%96HTML%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">1.语义化HTML的重要性</a><br><a href="https://syt-honey.github.io/2020/02/18/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84BFC/#more">2.传说中的BFC</a>  </p>
 <p>推荐阅读：<br><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">1.A Complete Guide to Flexbox-2020-02-3</a><br><a href="https://juejin.im/post/5d33a5db5188251654446657" target="_blank" rel="noopener">2.译·Flexbox都在这里-2019-07-23</a></p>
@@ -486,6 +490,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/21/网格布局/" rel="prev" title="网格布局 ——（语法篇）">
+                网格布局 ——（语法篇） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -566,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -622,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、伸缩盒（Flexible-Box）"><span class="nav-number">1.</span> <span class="nav-text">一、伸缩盒（Flexible Box）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、语法概念"><span class="nav-number">2.</span> <span class="nav-text">二、语法概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-伸缩容器"><span class="nav-number">2.1.</span> <span class="nav-text">(1).伸缩容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-容器属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">①. 容器属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-主要的两个属性"><span class="nav-number">2.1.2.</span> <span class="nav-text">②. 主要的两个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-你可能不知道的两个属性值——-safe-和-unsafe"><span class="nav-number">2.1.3.</span> <span class="nav-text">③. 你可能不知道的两个属性值—— safe 和 unsafe</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-伸缩项目"><span class="nav-number">2.2.</span> <span class="nav-text">(2).伸缩项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-项目属性："><span class="nav-number">2.2.1.</span> <span class="nav-text">①. 项目属性：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、伸缩盒（Flexible-Box）"><span class="nav-number">1.</span> <span class="nav-text">一、伸缩盒（Flexible Box）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、语法概念"><span class="nav-number">2.</span> <span class="nav-text">二、语法概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-伸缩容器"><span class="nav-number">2.1.</span> <span class="nav-text">(1).伸缩容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-容器属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">①. 容器属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②-主要的两个属性"><span class="nav-number">2.1.2.</span> <span class="nav-text">②. 主要的两个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③-你可能不知道的两个属性值——-safe-和-unsafe"><span class="nav-number">2.1.3.</span> <span class="nav-text">③. 你可能不知道的两个属性值—— safe 和 unsafe</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-伸缩项目"><span class="nav-number">2.2.</span> <span class="nav-text">(2).伸缩项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①-项目属性："><span class="nav-number">2.2.1.</span> <span class="nav-text">①. 项目属性：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、浏览器兼容"><span class="nav-number">3.</span> <span class="nav-text">三、浏览器兼容</span></a></li></ol></div>
             
 
           </div>
