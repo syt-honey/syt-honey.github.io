@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridBrowserSupport.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridExp.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridTemplateColumn1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridTemplateColumn1s.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridTemplateColumn2.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/gridArea.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/justifyItemsStart.png">
@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/justifyContent.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/justifyContentSpaceAround.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/justifyItemsStart.png">
-<meta property="og:updated_time" content="2020-02-26T07:11:19.880Z">
+<meta property="og:updated_time" content="2020-02-26T07:54:53.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网格布局 ——（语法篇）">
 <meta name="twitter:description" content="这是HTML&amp;amp;CSS重点知识点合集第四篇，内容稍微有点多。其余文章见文末。  一、网格布局（Grid）前面我们讲了伸缩盒。我们讲到，伸缩盒是传统盒模型布局的一种代替，并且伸缩容器以及flex item的属性足以应付我们常用的各种布局模式，那为什么还会出现Grid网格布局呢？ 可能你已经知道了，以往任何布局方式几乎都是一维布局，而Grid最大的特色就是采用了二维布局。当然，Grid的出现并">
@@ -322,7 +322,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-02-26T15:11:19+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-26T15:54:53+08:00">
                 2020-02-26
               </time>
             
@@ -436,7 +436,7 @@
 </blockquote>
 <p>翻译过来就是说 <code>fr</code> 这个单位表示的是网格容器中剩余空间的一部分。大小为 <code>fr</code> 单位的‘轨道’称为弹性‘轨道’，它们会响应式的填充剩余的内容，和伸缩盒中的flex item会自动填充剩余空间很相似。</p>
 <p>假设设置一个三行四列的列表，希望最后一列自适应容器宽度就可以这样设置：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">50px</span> <span class="number">50px</span> <span class="number">50px</span> <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">50px</span> <span class="number">50px</span> <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/frontend/gridTemplateColumn1.png" alt="三行四列，最后一列自适应"></p>
+<p><img src="/images/frontend/gridTemplateColumn1s.png" alt="三行四列，最后一列自适应"></p>
 <p>那如果希望第一列长度固定而后三列中第一列占剩余长度的四分之一，第二列占二分之一最后一列占四分之一应该该怎么写呢？<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">50px</span> <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">50px</span> <span class="number">50px</span> <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/frontend/gridTemplateColumn2.png" alt="fr用做分数"></p>
 <p>怎么样？神奇吧？</p>
