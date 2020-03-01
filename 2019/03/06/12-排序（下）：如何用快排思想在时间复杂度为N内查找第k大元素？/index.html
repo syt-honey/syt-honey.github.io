@@ -82,8 +82,8 @@
 <meta name="description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
 <meta name="keywords" content="算法与数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="12-排序（下）：如何用快排思想在O(n)内查找第k大元素？">
-<meta property="og:url" content="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在O(n)内查找第k大元素？/index.html">
+<meta property="og:title" content="12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？">
+<meta property="og:url" content="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
 <meta property="og:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
 <meta property="og:locale" content="zh-CN">
@@ -91,9 +91,9 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/quickSort.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/M-Q-Summary.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/algorithm/findEleK.png">
-<meta property="og:updated_time" content="2020-03-01T04:28:34.216Z">
+<meta property="og:updated_time" content="2020-03-01T04:39:52.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="12-排序（下）：如何用快排思想在O(n)内查找第k大元素？">
+<meta name="twitter:title" content="12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？">
 <meta name="twitter:description" content="对于前一篇文章中有说到三种基础排序算法，分别是冒泡、插入和选择排序，它们的时间复杂度都是O(n^2)，比较高，适合小规模的数据排序。这一篇文章我们来讲两种时间复杂度为O(nlogn)的排序算法，归并排序和快速排序。  思考：归并排序和快速排序都用到了分治的思想，我们可以借助这个思想来解决非配许的问题，比如，如何在O(n)的时间复杂度内查找一个无序数组中的第k大元素？ 归并排序(Merge Sor">
 <meta name="twitter:image" content="https://syt-honey.github.io/images/algorithm/mergeSort.png">
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在O(n)内查找第k大元素？/"/>
+  <link rel="canonical" href="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？/"/>
 
 
 
 
 
-  <title>12-排序（下）：如何用快排思想在O(n)内查找第k大元素？ | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？ | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -258,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在O(n)内查找第k大元素？/">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2019/03/06/12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="honeysyt">
@@ -275,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">12-排序（下）：如何用快排思想在O(n)内查找第k大元素？</h1>
+          <h1 class="post-title" itemprop="name headline">12-排序（下）：如何用快排思想在时间复杂度为N内查找第k大元素？</h1>
         
 
         <div class="post-meta">
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-03-01T12:28:34+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-01T12:39:52+08:00">
                 2020-03-01
               </time>
             
