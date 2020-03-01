@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta name="description" content="这是HTML&amp;amp;CSS重点知识点合集第二篇。其余文章见文末。  BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看">
 <meta name="keywords" content="HTML&amp;CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="今天来聊一聊传说中的BFC">
 <meta property="og:url" content="https://syt-honey.github.io/2020/02/18/传说中的BFC/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta property="og:description" content="这是HTML&amp;amp;CSS重点知识点合集第二篇。其余文章见文末。  BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/块容器盒子.png">
-<meta property="og:updated_time" content="2020-02-19T06:44:19.496Z">
+<meta property="og:updated_time" content="2020-02-26T07:57:12.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="今天来聊一聊传说中的BFC">
-<meta name="twitter:description" content="BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点： 首先，什么是盒子？什么又是块盒子？ CSS有一个概念，叫CS">
+<meta name="twitter:description" content="这是HTML&amp;amp;CSS重点知识点合集第二篇。其余文章见文末。  BFC（Block Formatting Context）前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。 (1). BFCBFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看">
 <meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/块容器盒子.png">
 
 
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-02-19T14:44:19+08:00">
-                2020-02-19
+              <time title="Post modified" itemprop="dateModified" datetime="2020-02-26T15:57:12+08:00">
+                2020-02-26
               </time>
             
           </span>
@@ -328,7 +328,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.5k
+                  1.6k
                 </span>
               
 
@@ -365,7 +365,10 @@
       
 
       
-        <h2 id="BFC（Block-Formatting-Context）"><a href="#BFC（Block-Formatting-Context）" class="headerlink" title="BFC（Block Formatting Context）"></a>BFC（Block Formatting Context）</h2><p>前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。</p>
+        <blockquote>
+<p>这是HTML&amp;CSS重点知识点合集第二篇。其余文章见文末。</p>
+</blockquote>
+<h2 id="BFC（Block-Formatting-Context）"><a href="#BFC（Block-Formatting-Context）" class="headerlink" title="BFC（Block Formatting Context）"></a>BFC（Block Formatting Context）</h2><p>前一章我们了解了语义化HTML结构的重要性，也清楚了在写网页结构时如何去写，现在我们来看看HTML5和CSS中一个非常重要的知识点——BFC。</p>
 <h3 id="1-BFC"><a href="#1-BFC" class="headerlink" title="(1). BFC"></a>(1). BFC</h3><p>BFC（Block Formatting Context），顾名思义，块格式化上下文。在讲它之前，我们先来看看下面两点：</p>
 <p><strong>首先，什么是盒子？什么又是块盒子？</strong></p>
 <p>CSS有一个概念，叫CSS视觉格式化模型（visiual formatting model）。它是用来处理和在视觉媒体上显示文档时使用的计算规则。它会根据CSS盒子模型将文档中的元素转换为一个个盒子。也就是说，它定义了盒子的生成。盒子主要包括了块盒、行内盒、匿名盒以及一些实验性的盒子，盒子的类型由 <code>display</code> 来决定。</p>
@@ -423,7 +426,7 @@
 <p>第一个问题是指，当我们对子元素设置浮动后，父元素高度发生塌陷现象。这是因为当我们为子元素设置浮动后，子元素创建了一个BFC，而其父元素没有创建BFC，因此父元素计算高度时并没有将浮动元素的高度算入，导致父元素的高度塌陷。根据特性，很容易想到解决方案之一就是让父元素也创建一个BFC。（特性4）</p>
 <p>第二个问题是特性2的表现，解决方案之一就是为两个相邻的盒分别创建一个BFC，两个BFC相互之间不会影响。</p>
 <hr>
-<p>这是HTML&amp;CSS重点知识点合集的其中一篇，合集其它文章：<br><a href="https://syt-honey.github.io/2020/02/11/%E8%AF%AD%E4%B9%89%E5%8C%96HTML%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">1.语义化HTML的重要性</a>  </p>
+<p>这是HTML&amp;CSS重点知识点合集的其中一篇，合集其它文章：<br><a href="https://syt-honey.github.io/2020/02/11/%E8%AF%AD%E4%B9%89%E5%8C%96HTML%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">1.语义化HTML的重要性</a><br><a href="https://syt-honey.github.io/2020/02/19/%E4%BC%B8%E7%BC%A9%E7%9B%92/">3.CSS布局神器——伸缩盒（语法篇）</a><br><a href="https://syt-honey.github.io/2020/02/21/%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/#more">4.网格布局 ——（语法篇）</a>  </p>
 <hr>
 <p>参考文章：<br><a href="https://juejin.im/post/59b73d5bf265da064618731d" target="_blank" rel="noopener">1.学习BFC-2017-09-12</a>  </p>
 <p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
@@ -467,7 +470,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/19/伸缩盒/" rel="prev" title="CSS布局神器——伸缩盒（语法篇）">
+              <a href="/2020/02/19/伸缩盒（语法篇）/" rel="prev" title="CSS布局神器——伸缩盒（语法篇）">
                 CSS布局神器——伸缩盒（语法篇） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -550,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
