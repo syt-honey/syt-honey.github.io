@@ -82,7 +82,7 @@ tags: HTML&CSS
   line-height: 30px;
 }
 ```
-![普通三栏布局](/images/frontend/wayOfLayout.png)
+![普通三栏布局](/images/frontend/threeListsLayout1.png)
 
 我们通过对两侧边栏分别进行 `float: left;`、`float: right;`，中间的栏设置 `width: 100%;` 来实现两侧定宽，中间‘自适应’这样一个布局。
 
