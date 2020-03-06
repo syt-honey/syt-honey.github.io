@@ -1,6 +1,6 @@
 ---
 title: Record of Fore-end
-tags: js
+tags: JavaScript
 ---
 
 #### HTML5

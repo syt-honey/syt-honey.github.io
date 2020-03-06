@@ -1,6 +1,6 @@
 ---
 title: Object和Array类型
-tags: js
+tags: JavaScript
 ---
 
 

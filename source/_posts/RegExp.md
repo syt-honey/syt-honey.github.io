@@ -1,6 +1,6 @@
 ---
 title: RegExp
-tags: js 
+tags: JavaScript 
 ---
 
 ### 前言

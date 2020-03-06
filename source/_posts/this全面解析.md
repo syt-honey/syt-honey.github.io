@@ -1,6 +1,6 @@
 ---
 title: this全面解析
-tags: js
+tags: JavaScript
 ---
 
 ### 前言

@@ -1,10 +1,9 @@
 ---
 title: JavaScript基础知识
-tags: js
+tags: JavaScript
 ---
 
-### JavaScript
----
+# JavaScript
 
 1. 出现的主要目的：处理服务器端语言负责的一些输入验证操作。
 2. 如今的作用：处理复杂的计算和交互
