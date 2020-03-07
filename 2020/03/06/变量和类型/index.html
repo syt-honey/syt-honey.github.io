@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你真的掌握了 JavaScript 变量和类型嘛？（上）">
+<meta property="og:url" content="https://syt-honey.github.io/2020/03/06/变量和类型/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/stack.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/heap.png">
+<meta property="og:updated_time" content="2020-03-07T07:34:58.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你真的掌握了 JavaScript 变量和类型嘛？（上）">
+<meta name="twitter:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/js/stack.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2020/03/06/变量和类型/"/>
+
+
+
+
+
+  <title>你真的掌握了 JavaScript 变量和类型嘛？（上） | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/03/06/变量和类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">你真的掌握了 JavaScript 变量和类型嘛？（上）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T10:19:37+08:00">
+                2020-03-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-07T15:34:58+08:00">
+                2020-03-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。</p>
+<p>基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。</p>
+<h1 id="JavaScript-的数据类型"><a href="#JavaScript-的数据类型" class="headerlink" title="JavaScript 的数据类型"></a>JavaScript 的数据类型</h1><h2 id="（1）基本数据类型"><a href="#（1）基本数据类型" class="headerlink" title="（1）基本数据类型"></a>（1）基本数据类型</h2><p>JavaScript 一共有 8 种数据类型（ES10），这 8 种类型数据又分为两种：原始类型和对象类型。<br><strong>原始类型都有：</strong>  </p>
+<ol>
+<li><code>Number</code></li>
+<li><code>String</code></li>
+<li><code>Null</code></li>
+<li><code>Undefined</code></li>
+<li><code>Boolean</code></li>
+<li><code>Symbol</code>（ES6）</li>
+<li><code>BigInt</code>（ES10）</li>
+</ol>
+<p>如果你记不住的话，可以这样记 <code>SUNS NB</code>（笑哭）。。。。</p>
+<ol>
+<li><code>Number</code> 类型：包含所有可能的Number值的集合，也包括一些特殊的值 <code>+Infinity</code>、<code>-Infinity</code> 和 <code>Not-a-Number(NaN)</code>。</li>
+<li><code>String</code> 类型，包含所有可能的有限文本值序列</li>
+<li><code>Null</code> 类型：只包含一个 <code>null</code> 值</li>
+<li><code>Undefined</code> 类型：只包含一个 <code>undefined</code> 值</li>
+<li><code>Boolean</code> 类型：只有两个值，分别为 <code>true</code> 和 <code>false</code></li>
+<li><code>Symbol</code> 类型：包含所有表示唯一的非字符串对象属性键。</li>
+<li><code>BigInt</code>类型：</li>
+</ol>
+<p>大多数的时候，原始值是语言实现的最底层的表示。</p>
+<p><strong>对象类型：</strong>  </p>
+<ol>
+<li><code>Object</code> 类型：从逻辑上来讲，对象是属性的集合，并且每个属性要么是数据属性，要么是访问器属性。从用法上来说，常用的 <code>Array</code>、<code>Function</code> 都属于特殊的对象。</li>
+</ol>
+<h2 id="（2）这些数据是如何存储的？"><a href="#（2）这些数据是如何存储的？" class="headerlink" title="（2）这些数据是如何存储的？"></a>（2）这些数据是如何存储的？</h2><p>刚刚讲到，ECMAScript 规范将类型分为了 <code>原始数据类型</code> 和 <code>对象类型</code>。那它们有什么区别呢？它们分别又是怎么存储的？</p>
+<h3 id="区别-①：原始数据类型值不可变，而对象类型值可变"><a href="#区别-①：原始数据类型值不可变，而对象类型值可变" class="headerlink" title="区别 ①：原始数据类型值不可变，而对象类型值可变"></a>区别 ①：原始数据类型值不可变，而对象类型值可变</h3><blockquote>
+<p>All primitives are immutable, i.e., they cannot be altered. It is important not to confuse a primitive itself with a variable assigned a primitive value. The variable may be reassigned a new value, but the existing value can not be changed in the ways that objects, arrays, and functions can be altered.</p>
+</blockquote>
+<p>大意是说：所有的原始值都是不可更改的。我们不能将原始值本身和已经被定义的原始值变量搞混。我们可以使用重新赋值的方式改变变量的值，但是对于刚刚已经存在的原始值，我们是没有办法通过更改对象、数组和函数的方式对其进行更改的。</p>
+<p>《你不知道的JavaScript》中卷第二章第二小节也有提到：</p>
+<blockquote>
+<p>JavaScript 中字符串是不可变的，而数组是可变的。字符串不可变是指字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串。而数组的成员函数都是在其原始值上进行操作。</p>
+<p>注：文中的字符串可以抽象成 <code>primitive values</code>，即所有的原始值：<code>Number</code>, <code>String</code>, <code>Undefined</code>, <code>Null</code>, <code>Symbol</code>, <code>Boolean</code>, <code>BigInt</code>.</p>
+</blockquote>
+<p>还有疑惑？好的，我们就以最常用的字符串操作为例来举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'foo'</span>;</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">"f"</span>, <span class="string">"o"</span>, <span class="string">"o"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = a.concat(<span class="string">"bar"</span>);  <span class="comment">// foobar</span></span><br><span class="line"><span class="keyword">var</span> d = b.concat([<span class="string">"b"</span>, <span class="string">"a"</span>, <span class="string">"r"</span>]);  <span class="comment">// ["f", "o", "o", "b", "a", "r"]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c === a);  <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(d === b);  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>最后输出的两个值都为 <code>false</code>。这说明，不论是字符串还是字符数组，它们在进行 <code>concat</code> 时并不会对原来的值做更改，取而代之的是生成一个副本然后赋值给相应的变量。你可能会说，<code>concat</code> 这个操作只是要读取被操作的值，又不对它进行写的操作，肯定不会改变原来的值啊，这不是很正常嘛。那好，我们来看另一段代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'foo'</span>;</span><br><span class="line">a.toUpperCase();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'r'</span>];</span><br><span class="line">b.push(<span class="string">'!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// foo</span></span><br><span class="line"><span class="built_in">console</span>.log(b);  <span class="comment">//  ["b", "a", "r", "!"]</span></span><br></pre></td></tr></table></figure></p>
+<p>你会发现，不论你对 <code>a</code> 做什么操作，<code>a</code> 的原始值都只为 <code>foo</code>。而当对 <code>b</code> 进行写操作时，它的值就会发生改变。当然你可能会这样操作：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'foo'</span>;</span><br><span class="line">a += <span class="string">'bar'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// foobar</span></span><br></pre></td></tr></table></figure></p>
+<p>啊，这不是嘛，<code>a</code> 的值改变了！哈哈，其实并没有。请记住，<strong>在 JavaScript 中，原始类型的值一旦被设置之后就没有办法再改变了。</strong>那么上面测试的值又怎么解释呢？</p>
+<h3 id="区别②：存储的形式不同"><a href="#区别②：存储的形式不同" class="headerlink" title="区别②：存储的形式不同"></a>区别②：存储的形式不同</h3><p>在 JavaScript 中，内存空间分为栈（stack）、堆（heap）、池（一般也会归类到栈中）。其中栈存放变量，堆存放复杂对象，池存放常量也就是我们说的常量池。</p>
+<p>栈结构，相信大家都知道。它的特点是后进先出，只能访问栈顶元素。如果我们想要拿到栈底元素，我们就必须要先将栈顶元素一一弹出，直至栈中只剩一个元素。</p>
+<p>关于堆，它是一种经过排序的树形数据结构，每个节点都有一个值。我们经常说的堆数据结构就是指二叉堆。它的特点是，父节点的键值总是大于或等于（小于或等于）任何一个子节点的键值。也就是我们常说的最大堆（最小堆）。对于堆的这个特性，常用来实现优先队列。堆的存取是随意的，因为我们只需要知道存取数据的‘地址’就可以拿到我们需要的数据。</p>
+<p>话说回来，那么栈内存和堆内存具有什么特点呢？</p>
+<p><strong>栈内存：</strong></p>
+<ul>
+<li>存储值的内存空间大小固定</li>
+<li>通过按值来访问，运行效率高。</li>
+<li>空间较小</li>
+<li>由系统自动分配存储空间</li>
+</ul>
+<p><strong>堆内存：</strong></p>
+<ul>
+<li>存储的值大小不固定，可以在申请空间时自己确定大小</li>
+<li>空间较大，运行效率低</li>
+<li>按引用访问</li>
+<li>通过代码进行分配空间</li>
+</ul>
+<p>在 JavaScript 中，所有的原始数据类型在变量定义时， <strong>栈</strong>就为其分配好了内存空间。</p>
+<p>还记得我们刚刚的那个问题嘛？现在我们从内存的角度来解释一下原因。在代码中，我们执行了 <code>a += &#39;bar&#39;</code>。实际上是在栈中又开辟了一块内存空间用于存储 <code>foobar</code>，然后让变量 <code>a</code> 指向这块空间。而原来 <code>a</code> 的值 <code>foo</code> 并没有发生改变。所以，这没有违背原始类型的值不能发生改变这一特点。</p>
+<p><img src="/images/frontend/js/stack.png" alt="栈结构"></p>
+<p>而对于引用类型，它的值被存储到堆内存中。只需要在栈中存储一个固定长度的地址，然后让这个地址指向堆中的值我们就可以通过这个地址快速的从二叉堆中找到值。</p>
+<p><img src="/images/frontend/js/heap.png" alt="堆结构"></p>
+<h3 id="区别③：作用形式不同"><a href="#区别③：作用形式不同" class="headerlink" title="区别③：作用形式不同"></a>区别③：作用形式不同</h3><h4 id="赋值，传参"><a href="#赋值，传参" class="headerlink" title="赋值，传参"></a>赋值，传参</h4><p>不知道你有没有注意到一个现象，当我们对一个原始数据类型的变量进行赋值给另一个变量时，它得到的值是前者值得副本。而当我们对一个对象类型进行赋值时，被赋值得对象得到的却是前者的引用（实质上是一个指向堆内存的地址）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'r'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = a;</span><br><span class="line"><span class="keyword">var</span> d = b;</span><br><span class="line"></span><br><span class="line">a = <span class="string">"bar"</span>;</span><br><span class="line">b.push(<span class="string">'!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// bar</span></span><br><span class="line"><span class="built_in">console</span>.log(c);  <span class="comment">// foo</span></span><br><span class="line"><span class="built_in">console</span>.log(b);  <span class="comment">// ["b", "a", "r", "!"]</span></span><br><span class="line"><span class="built_in">console</span>.log(d);  <span class="comment">// ["b", "a", "r", "!"]</span></span><br></pre></td></tr></table></figure>
+<p>从代码中，我们可以看到：我们把 <code>a</code> 的值赋值给 <code>c</code> 后再对 <code>a</code> 进行更改，对 <code>c</code> 并没有影响，这说明它们两个值在内存中是互不影响的。但是当我们把 <code>b</code> 赋值给了 <code>d</code> 后，再对 <code>b</code> 执行了 <code>push</code> 操作后，<code>b</code> 和 <code>d</code> 的值都发生了变化。这是由于对象类型赋值时复制的是地址。这样 <code>d</code> 就也拥有了指向存储在堆内存中值的指针。当我们对 <code>b</code> 指向的堆内存中值进行更新时，<code>d</code> 通过指针也同样访问到该值。</p>
+<p>其实，传参和赋值一样，都是将被赋值的对象值进行copy，然后给需要的变量（函数）。比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'foo'</span>;</span><br><span class="line"><span class="keyword">var</span> b = a;   <span class="comment">// 将 a 的值在栈内存中复制一份，然后让 b 指向这个副本</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">para</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> para.map(<span class="function"><span class="params">i</span> =&gt;</span> i+=<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = fun(c);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// [2, 3, 4, 5];</span></span><br></pre></td></tr></table></figure></p>
+<p>这段代码你可能闭着眼睛都能写好几堆了。但是，你知道这里的参数其实是值传递嘛？当我们把 <code>c</code> 作为参数传入函数中，参数 <code>para</code> 就会拿到 <code>c</code> 的值，然后进行操作。那么 <code>c</code> 的值是什么？是数组的地址啊！所以 <code>para</code> 也指向了这个数组。这就是为什么但我们在函数内部对形参进行操作时会影响到外部的数组。</p>
+<p>我们需要记得一句话，在JavaScript中，所有的函数的参数都是按值传递的。</p>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>不知道你发现没有，当我们在对两个变量进行比较时，不同类型的变量的表现是不相同的。</p>
+<p>对于原始数据类型，它们比较的是它们存储在栈内存中的值，如果相等，则返回 <code>true</code>。而对于原始数据类型，它们比较的是存储在栈内存中的值（地址），如果值不相同，不论指向的堆内存中的值和属性是否相同，它们都返回 <code>false</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'r'</span>];</span><br><span class="line"><span class="keyword">var</span> c = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> d = [<span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'r'</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a === c);  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(b === d);  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>其实它们本质是一样的。复制时（函数传参时也是复制）都是复制该变量在栈内存中存储的值。不管是原始数据类型还是对象类型，都是如此。如果是原始数据类型，那么就会重新开辟一个空间复制值的副本，然后让新的变量指向它。如果是对象类型，同样是复制该变量栈内存中的值，只不过这里面存储的是地址，所以当我们重新开辟一个空间复制值得副本时，它得到的也是一个地址，都指向堆内存的值。</p>
+<p>对于比较，我们只需要记住，原始数据类型比较的是值，而对于对象类型，比较的是引用。</p>
+<hr>
+<p>这是深入理解 JavaScript 语法合集的其中一篇，其它合集：<br><a href="https://syt-honey.github.io/2020/03/03/JavaScript%E8%AF%AD%E6%B3%95%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/">1. 深入理解 JavaScript —— 从设计一门语言讲起</a>  </p>
+<p>参考文章：<br><a href="https://juejin.im/post/5cec1bcff265da1b8f1aa08f" target="_blank" rel="noopener">1. 你真的掌握变量和类型了吗-2019-05-28</a> by ConardLi<br><a href="https://juejin.im/post/5ccae4f25188254190544ded" target="_blank" rel="noopener">2. ECMAScript 中的 Number Type 与 IEEE 754-2008-2019-05-02</a> by JunYu<br>3.《你不知道的 JavaScript 》中卷 by Kyle Simpson<br><a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive" target="_blank" rel="noopener">4. MDN Web docs——Primitive-2020-1-13</a> by <a href="https://wiki.developer.mozilla.org/en-US/docs/Glossary/Primitive$history" target="_blank" rel="noopener">MDN contributors</a>  </p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/03/JavaScript语法从头开始/" rel="next" title="深入理解 JavaScript 语法——从头讲起">
+                <i class="fa fa-chevron-left"></i> 深入理解 JavaScript 语法——从头讲起
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-的数据类型"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（1）基本数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">（1）基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（2）这些数据是如何存储的？"><span class="nav-number">2.2.</span> <span class="nav-text">（2）这些数据是如何存储的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别-①：原始数据类型值不可变，而对象类型值可变"><span class="nav-number">2.2.1.</span> <span class="nav-text">区别 ①：原始数据类型值不可变，而对象类型值可变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别②：存储的形式不同"><span class="nav-number">2.2.2.</span> <span class="nav-text">区别②：存储的形式不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别③：作用形式不同"><span class="nav-number">2.2.3.</span> <span class="nav-text">区别③：作用形式不同</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值，传参"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">赋值，传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
