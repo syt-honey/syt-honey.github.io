@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta name="description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是数据类型和变量。 数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）数据类型JavaScript 一">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你真的掌握了 JavaScript 变量和类型嘛？（上）">
-<meta property="og:url" content="https://syt-honey.github.io/2020/03/06/变量和类型/index.html">
+<meta property="og:url" content="https://syt-honey.github.io/2020/03/06/变量和类型（上）/index.html">
 <meta property="og:site_name" content="H.&#39;s Blog">
-<meta property="og:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta property="og:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是数据类型和变量。 数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）数据类型JavaScript 一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/stack.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/heap.png">
-<meta property="og:updated_time" content="2020-03-07T07:34:58.059Z">
+<meta property="og:updated_time" content="2020-03-10T13:12:01.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你真的掌握了 JavaScript 变量和类型嘛？（上）">
-<meta name="twitter:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。 基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）基本数据类型JavaSc">
+<meta name="twitter:description" content="这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。  前言前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是数据类型和变量。 数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。 JavaScript 的数据类型（1）数据类型JavaScript 一">
 <meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/js/stack.png">
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://syt-honey.github.io/2020/03/06/变量和类型/"/>
+  <link rel="canonical" href="https://syt-honey.github.io/2020/03/06/变量和类型（上）/"/>
 
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/03/06/变量和类型/">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/03/06/变量和类型（上）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="honeysyt">
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-03-07T15:34:58+08:00">
-                2020-03-07
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-10T21:12:01+08:00">
+                2020-03-10
               </time>
             
           </span>
@@ -345,7 +345,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  10
                 </span>
               
             </div>
@@ -369,9 +369,9 @@
         <blockquote>
 <p>这是深入理解 JavaScript 语法合集的第二篇，其余文章见文末。</p>
 </blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是基本数据类型和变量。</p>
-<p>基本数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。</p>
-<h1 id="JavaScript-的数据类型"><a href="#JavaScript-的数据类型" class="headerlink" title="JavaScript 的数据类型"></a>JavaScript 的数据类型</h1><h2 id="（1）基本数据类型"><a href="#（1）基本数据类型" class="headerlink" title="（1）基本数据类型"></a>（1）基本数据类型</h2><p>JavaScript 一共有 8 种数据类型（ES10），这 8 种类型数据又分为两种：原始类型和对象类型。<br><strong>原始类型都有：</strong>  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面介绍的文章中，我们讲到设计语言模块的第一步就是设计基本语法，而基本语法的开始就是数据类型和变量。</p>
+<p>数据类型是指语言内置的基本变量类型，而变量是作为数据的一种表现（存储）形式存在。现在我们就从底层原理看看 JavaScript 种的变量和类型吧。</p>
+<h1 id="JavaScript-的数据类型"><a href="#JavaScript-的数据类型" class="headerlink" title="JavaScript 的数据类型"></a>JavaScript 的数据类型</h1><h2 id="（1）数据类型"><a href="#（1）数据类型" class="headerlink" title="（1）数据类型"></a>（1）数据类型</h2><p>JavaScript 一共有 8 种数据类型（ES10），这 8 种类型数据又分为两种：原始类型（primitive values）和对象类型（reference values）。<br><strong>原始类型都有：</strong>  </p>
 <ol>
 <li><code>Number</code></li>
 <li><code>String</code></li>
@@ -392,6 +392,9 @@
 <li><code>BigInt</code>类型：</li>
 </ol>
 <p>大多数的时候，原始值是语言实现的最底层的表示。</p>
+<blockquote>
+<p>注：很多地方也讲基本类型和引用类型，即原始类型就是基本类型，对象类型就是引用类型。</p>
+</blockquote>
 <p><strong>对象类型：</strong>  </p>
 <ol>
 <li><code>Object</code> 类型：从逻辑上来讲，对象是属性的集合，并且每个属性要么是数据属性，要么是访问器属性。从用法上来说，常用的 <code>Array</code>、<code>Function</code> 都属于特殊的对象。</li>
@@ -489,6 +492,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/03/07/变量和类型（下）/" rel="prev" title="你真的掌握了 JavaScript 变量和类型嘛？（下）">
+                你真的掌握了 JavaScript 变量和类型嘛？（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -568,7 +575,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -624,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-的数据类型"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（1）基本数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">（1）基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（2）这些数据是如何存储的？"><span class="nav-number">2.2.</span> <span class="nav-text">（2）这些数据是如何存储的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别-①：原始数据类型值不可变，而对象类型值可变"><span class="nav-number">2.2.1.</span> <span class="nav-text">区别 ①：原始数据类型值不可变，而对象类型值可变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别②：存储的形式不同"><span class="nav-number">2.2.2.</span> <span class="nav-text">区别②：存储的形式不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别③：作用形式不同"><span class="nav-number">2.2.3.</span> <span class="nav-text">区别③：作用形式不同</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值，传参"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">赋值，传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-的数据类型"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（1）数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">（1）数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（2）这些数据是如何存储的？"><span class="nav-number">2.2.</span> <span class="nav-text">（2）这些数据是如何存储的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别-①：原始数据类型值不可变，而对象类型值可变"><span class="nav-number">2.2.1.</span> <span class="nav-text">区别 ①：原始数据类型值不可变，而对象类型值可变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别②：存储的形式不同"><span class="nav-number">2.2.2.</span> <span class="nav-text">区别②：存储的形式不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别③：作用形式不同"><span class="nav-number">2.2.3.</span> <span class="nav-text">区别③：作用形式不同</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值，传参"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">赋值，传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
