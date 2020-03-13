@@ -83,7 +83,7 @@ JavaScript 和大部分语言一样，也拥有上述第一个模块：基本语
 
 ---
 这是深入理解 JavaScript 语法合集的其中一篇，其它合集：
-[2. 你真的掌握了 JavaScript 变量和类型嘛？（上）](https://syt-honey.github.io/2020/03/06/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B/)  
+[2. 你真的掌握了 JavaScript 变量和类型嘛？（上）](https://syt-honey.github.io/2020/03/06/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8A%EF%BC%89/)    
 [3. 你真的掌握了 JavaScript 变量和类型嘛？（下）](https://syt-honey.github.io/2020/03/07/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8B%EF%BC%89/)  
 
 参考文章：  
