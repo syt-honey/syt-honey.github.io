@@ -90,11 +90,11 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/prototype.jpg">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/constructor1.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/constructor2.jpg">
-<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/__proto__1.png">
-<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/__proto__2.jpg">
-<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/__proto__1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/proto1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/proto2.jpg">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/proto1.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/原型链1.jpg">
-<meta property="og:updated_time" content="2020-03-13T03:26:00.922Z">
+<meta property="og:updated_time" content="2020-03-13T03:36:17.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 的原型和原型链">
 <meta name="twitter:description" content="这是深入理解 JavaScript 语法合集的第四篇，其余文章见文末。  前言前一篇文章 介绍 instanceof 检测变量类型时有提到，它的作用是用于检测构造函数的 prototype 是否在某个实例对象的原型链上。那么什么是原型？什么又是原型链呢？ 一、JavaScript 中的原型（1）构造函数与实例原型相信大家肯定听过原型，还看过 prototype 这个属性。现在我们就来看看它们的关">
@@ -306,7 +306,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-03-13T11:26:00+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-13T11:36:17+08:00">
                 2020-03-13
               </time>
             
@@ -394,13 +394,13 @@
 <p>其实每个原型对象都有一个 <code>constructor</code> 属性，它指向构造函数：</p>
 <p><img src="/images/frontend/js/constructor2.jpg" alt="constructor2"></p>
 <h3 id="（2）实例对象与实例原型"><a href="#（2）实例对象与实例原型" class="headerlink" title="（2）实例对象与实例原型"></a>（2）实例对象与实例原型</h3><p>讲过了构造函数与实例原型之间的关联，现在来讲讲实例与实例原型之间的关联。</p>
-<p>我们通过打印可以得到，每个实例都有一个 <code>__proto__</code> 属性，且指向实例原型（观察到，<code>__proto__</code>中含有属性 <code>constructor</code>，而该属性是实例原型的）：<br><img src="/images/frontend/js/__proto__1.png" alt="__proto__1"></p>
-<p>于是，我们得出构造函数、实例和实例原型之间的联系：<br><img src="/images/frontend/js/__proto__2.jpg" alt="__proto__2"></p>
+<p>我们通过打印可以得到，每个实例都有一个 <code>__proto__</code> 属性，且指向实例原型（观察到，<code>__proto__</code>中含有属性 <code>constructor</code>，而该属性是实例原型的）：<br><img src="/images/frontend/js/proto1.png" alt="__proto__1"></p>
+<p>于是，我们得出构造函数、实例和实例原型之间的联系：<br><img src="/images/frontend/js/proto2.jpg" alt="__proto__2"></p>
 <p>当我们通过构造函数创建多个对象实例时，所有对象都有各自的 <code>__proto__</code> 属性，且指向原型对象。</p>
 <h2 id="二、JavaScript-中的原型链"><a href="#二、JavaScript-中的原型链" class="headerlink" title="二、JavaScript 中的原型链"></a>二、JavaScript 中的原型链</h2><h3 id="（1）从原型到原型链"><a href="#（1）从原型到原型链" class="headerlink" title="（1）从原型到原型链"></a>（1）从原型到原型链</h3><p>其实我们前面在使用 <code>toString</code> 来检测变量类型时就已经提到过：由于大部分对象类型的 <code>toString</code> 方法被重写，所以我们追溯到原型链的顶端，使用 <code>Object</code> 的 <code>toString</code> 方法来检测。</p>
 <p>对象类型的 <code>toString</code> 方法就是从 <code>Object</code> 中“继承”过来的。那是如何“继承”的呢？</p>
 <p>我们刚刚讲过，每个对象都拥有一个 <code>__proto__</code> 属性，且这个属性指向原型对象。而我们知道，原型对象也是一个对象，所以，原型对象也是有一个 <code>__proto__</code> 属性的，它也指向它的原型对象。前面的图中也有显示（原型对象的下面也有一个 <code>__proto__</code>属性）：</p>
-<p><img src="/images/frontend/js/__proto__1.png" alt="__proto__1"></p>
+<p><img src="/images/frontend/js/proto1.png" alt="__proto__1"></p>
 <p>于是我们可以得知，它们的关系链是这样的：</p>
 <p><img src="/images/frontend/js/原型链1.jpg" alt="原型链1"></p>
 <p>由于 <code>Object.prototype</code> 这个原型对象处于顶端，所以它的原型对象为 <code>null</code>，即 <code>__proto__</code>值为 <code>null</code>。</p>
@@ -414,7 +414,7 @@
 <p>所谓“继承”，本质时就是顺着原型链向上查找。</p>
 <p>下一篇我们来介绍一下 JavaScript 中的 “对象”。</p>
 <hr>
-<p>这是深入理解 JavaScript 语法合集的其中一篇，其它合集：<br><a href="https://syt-honey.github.io/2020/03/03/JavaScript%E8%AF%AD%E6%B3%95%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/">1. 深入理解 JavaScript —— 从设计一门语言讲起</a><br><a href="https://syt-honey.github.io/2020/03/06/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B/">2. 你真的掌握了 JavaScript 变量和类型嘛？（上）</a><br><a href="https://syt-honey.github.io/2020/03/07/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8B%EF%BC%89/">3. 你真的掌握了 JavaScript 变量和类型嘛？（下）</a>  </p>
+<p>这是深入理解 JavaScript 语法合集的其中一篇，其它合集：<br><a href="https://syt-honey.github.io/2020/03/03/JavaScript%E8%AF%AD%E6%B3%95%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/">1. 深入理解 JavaScript —— 从设计一门语言讲起</a><br><a href="https://syt-honey.github.io/2020/03/06/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8A%EF%BC%89/">2. 你真的掌握了 JavaScript 变量和类型嘛？（上）</a><br><a href="https://syt-honey.github.io/2020/03/07/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8B%EF%BC%89/">3. 你真的掌握了 JavaScript 变量和类型嘛？（下）</a>  </p>
 <p>参考文章：<br><a href="https://github.com/mqyqingfeng/Blog/issues/2" target="_blank" rel="noopener">1. JavaScript深入之从原型到原型链-2017-04-23</a> by mqyqingfeng  </p>
 <p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
 
