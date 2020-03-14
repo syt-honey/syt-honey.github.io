@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/whale.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是深入理解 JavaScript 语法合集的第五篇，其余文章见文末。  前言在 JavaScript 的操作中，绝大部分都是对对象进行操作。关于你不知道的一些内容，今天我们就来讲解一下。希望你对 JavaScript 中对象的理解也能更加的深入。 一、语法（1）对象的创建对象可以通过两种方式进行定义：声明形式和构造形式，即：12345678// 声明形式let firstObj = &amp;#123">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 中的对象">
+<meta property="og:url" content="https://syt-honey.github.io/2020/03/13/JavaScript中的对象/index.html">
+<meta property="og:site_name" content="H.&#39;s Blog">
+<meta property="og:description" content="这是深入理解 JavaScript 语法合集的第五篇，其余文章见文末。  前言在 JavaScript 的操作中，绝大部分都是对对象进行操作。关于你不知道的一些内容，今天我们就来讲解一下。希望你对 JavaScript 中对象的理解也能更加的深入。 一、语法（1）对象的创建对象可以通过两种方式进行定义：声明形式和构造形式，即：12345678// 声明形式let firstObj = &amp;#123">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/newString.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/getOwnPropertyDescriptor.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/definePropertyWritableFalse1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/definePropertyWritableFalse2.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/definePropertyConfigurable1.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/definePropertyConfigurable2.png">
+<meta property="og:image" content="https://syt-honey.github.io/images/frontend/js/PutPropertyWritableFalse.png">
+<meta property="og:updated_time" content="2020-03-14T15:24:52.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 中的对象">
+<meta name="twitter:description" content="这是深入理解 JavaScript 语法合集的第五篇，其余文章见文末。  前言在 JavaScript 的操作中，绝大部分都是对对象进行操作。关于你不知道的一些内容，今天我们就来讲解一下。希望你对 JavaScript 中对象的理解也能更加的深入。 一、语法（1）对象的创建对象可以通过两种方式进行定义：声明形式和构造形式，即：12345678// 声明形式let firstObj = &amp;#123">
+<meta name="twitter:image" content="https://syt-honey.github.io/images/frontend/js/newString.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":3,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syt-honey.github.io/2020/03/13/JavaScript中的对象/"/>
+
+
+
+
+
+  <title>JavaScript 中的对象 | H.'s Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H.'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syt-honey.github.io/2020/03/13/JavaScript中的对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="honeysyt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H.'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 中的对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-13T15:52:48+08:00">
+                2020-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-14T23:24:52+08:00">
+                2020-03-14
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这是深入理解 JavaScript 语法合集的第五篇，其余文章见文末。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 JavaScript 的操作中，绝大部分都是对对象进行操作。关于你不知道的一些内容，今天我们就来讲解一下。希望你对 JavaScript 中对象的理解也能更加的深入。</p>
+<h2 id="一、语法"><a href="#一、语法" class="headerlink" title="一、语法"></a>一、语法</h2><h3 id="（1）对象的创建"><a href="#（1）对象的创建" class="headerlink" title="（1）对象的创建"></a>（1）对象的创建</h3><p>对象可以通过两种方式进行定义：声明形式和构造形式，即：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明形式</span></span><br><span class="line"><span class="keyword">let</span> firstObj = &#123;</span><br><span class="line">  key: value</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造形式</span></span><br><span class="line"><span class="keyword">let</span> secondObj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">secondObj.key = value;</span><br></pre></td></tr></table></figure></p>
+<p>声明形式和构造形式生成的对象是一样的。唯一的区别是，在文字声明中可以添加多个属性，而在构造形式中需要一个一个的添加。</p>
+<h2 id="二、类型"><a href="#二、类型" class="headerlink" title="二、类型"></a>二、类型</h2><p>在具体讲对象之前，我们来深入的了解一下 <a href="https://syt-honey.github.io/2020/03/07/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8B%EF%BC%89/">这篇文章</a> 中的对象类型。</p>
+<p>我们在讲对象类型时介绍到了一些特殊的对象类型，我们还把其中的一部分类型称为了对象类型系统。并且还检测到对象系统中的所有类型使用 <code>typeof</code> 进行检测返回的都为 <code>object</code>。对象系统中的类型包括：<code>Object</code>、<code>Array</code>、<code>Date</code>、<code>RegExp</code>。</p>
+<p>其实我们之前介绍的基本包装类型：<code>Number</code>、<code>String</code>、<code>Boolean</code> 也属于对象类型系统。不仅如此，还有 <code>Error</code>。</p>
+<p>这些都是 JavaScript 中的对象类型，它们还有另一个名称：内置对象。</p>
+<ul>
+<li><code>String</code></li>
+<li><code>Number</code></li>
+<li><code>Boolean</code></li>
+<li><code>Object</code></li>
+<li><code>Function</code></li>
+<li><code>Array</code></li>
+<li><code>RegExp</code></li>
+<li><code>Date</code></li>
+<li><code>Error</code></li>
+</ul>
+<p>可能你有些奇怪，不是说这些是对象类型嘛？怎么又变成内置对象了？其实这只是一种说法而已。实际上，它们只是一些内置函数。并且这些内置函数还可以看成是构造函数，然后 <code>new</code> 出一个对象来（任何函数前面加一个 <code>new</code> 都是构造函数:) ）。</p>
+<p>不信我们可以试试看：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'123'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str);  <span class="comment">// String &#123;"123"&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/frontend/js/newString.png" alt="new String"></p>
+<h2 id="三、关于对象的内容"><a href="#三、关于对象的内容" class="headerlink" title="三、关于对象的内容"></a>三、关于对象的内容</h2><p>这一小结我们主要讲对象的属性和方法的相关知识，涉及属性名、属性访问以及属性遍历等知识点。</p>
+<h3 id="（1）对象属性"><a href="#（1）对象属性" class="headerlink" title="（1）对象属性"></a>（1）对象属性</h3><h4 id="1-属性访问"><a href="#1-属性访问" class="headerlink" title="1. 属性访问"></a>1. 属性访问</h4><p>对象属性的访问一般有两种方式：<code>.</code> 和 <code>[]</code> 操作符。前者通常被称为“属性访问”，后者通常被称为“键访问”。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.a;  <span class="comment">// 2</span></span><br><span class="line">obj[<span class="string">"a"</span>];  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<p>这两种方法访问到的内容都是相同的，所以这两种术语经常可以互换。</p>
+<p>这两种语法的主要区别在于：<code>.</code> 操作符要求属性名符合标识符的命名规范，而 <code>[&quot;...&quot;]</code> 语法可以接受任意 UTF-8/Unicode 字符串作为属性名。</p>
+<p>需要注意，<code>[&quot;...&quot;]</code> 操作符接收的是字符串。若输入内容不是字符串，那么会将输入的内容转换成字符串，数字、对象都不例外。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj[<span class="literal">true</span>] = <span class="string">"one"</span>;</span><br><span class="line">obj[<span class="number">3</span>] = <span class="string">"two"</span>;</span><br><span class="line">obj[obj] = <span class="string">"three"</span>;</span><br><span class="line"></span><br><span class="line">obj[<span class="string">"true"</span>];  <span class="comment">// one</span></span><br><span class="line">obj[<span class="string">"3"</span>];   <span class="comment">// two</span></span><br><span class="line">obj[<span class="string">"[object Object]"</span>];  <span class="comment">// three</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-可计算属性名"><a href="#2-可计算属性名" class="headerlink" title="2. 可计算属性名"></a>2. 可计算属性名</h4><p>ES6 增加了“可计算属性名”，可以在文字中使用 <code>[]</code> 包裹一个表达式来当作属性名。它的用法是：<code>obj[prefix + name]</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> prefix = <span class="string">"one"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [prefix + <span class="string">"bar"</span>]: <span class="string">"this is the first"</span>,</span><br><span class="line">  [prefix + <span class="string">"foo"</span>]: <span class="string">"this is the second"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[<span class="string">"onebar"</span>];  <span class="comment">// "this is the first"</span></span><br><span class="line">obj[<span class="string">"onefoo"</span>];  <span class="comment">// "this is the second"</span></span><br></pre></td></tr></table></figure></p>
+<p>可计算属性名最常用的场景就是使用 <code>Symbol</code> 当作对象的属性名。</p>
+<blockquote>
+<p>由于 <code>Symbol</code> 的值是唯一的（并不绝对），所以当我们将其作为对象的属性名是就不需要担心属性名发生重合的问题了。</p>
+<p>顺便提一句，对象中存储的键只能是 <code>Symbol</code> 或者字符串。</p>
+</blockquote>
+<h4 id="3-属性特性检测-——-Object-getOwnPropertyDescriptor"><a href="#3-属性特性检测-——-Object-getOwnPropertyDescriptor" class="headerlink" title="3. 属性特性检测 —— Object.getOwnPropertyDescriptor()"></a>3. 属性特性检测 —— <code>Object.getOwnPropertyDescriptor()</code></h4><p>在 ES5 之前，JavaScript 本身并没有可以直接检测属性特性的方法，比如判断属性是否可读。但从 ES5 开始，所有的属性都具备了属性描述符。这个特性使得我们可以方便的判断普通对象的属性是否可读。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="string">"a"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>输出为：<br><img src="/images/frontend/js/getOwnPropertyDescriptor.png" alt="getOwnPropertyDescriptor"></p>
+<p>经输出，我们可以看到，使用该方法不仅可以查看到对象 <code>obj</code> 中属性 <code>a</code> 的 <code>value</code>（值），我们还看到其它几个键：<code>writable</code>、<code>enumerable</code>、<code>configurable</code>。这几个键定义了当前属性的一些特性，比如是否可写？是否可枚举？（决定了当遍历对象属性时是否能遍历的到）以及是否可配置？这些特性直接决定了某些操作是否有用。</p>
+<p>既然这些特性这么重要，那我们如何主动的去设置这些特性呢？</p>
+<h4 id="4-添加属性、修改已有属性——-Object-defineProperty"><a href="#4-添加属性、修改已有属性——-Object-defineProperty" class="headerlink" title="4. 添加属性、修改已有属性—— Object.defineProperty()"></a>4. 添加属性、修改已有属性—— <code>Object.defineProperty()</code></h4><p><strong>1. Writable</strong><br>在创建普通属性时属性描述符会使用默认值。我们也可以使用 <code>Object.defineProperty()</code> 来添加一个新属性或者修改一个已有属性。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"a"</span>, &#123;</span><br><span class="line">  value: <span class="number">2</span>,</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.a;  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<p>我们为对象 <code>obj</code> 添加了一个名为 <code>a</code> 的新属性，且为其设置了三个特性。这和前面直接在对象中设置属性是一样的。</p>
+<p>在设置的时候，我们也可以根据需求来更改这些特性。比如，你希望这个属性一旦设置之后不可以更改（可读不可写），那你可以将 <code>writable</code> 设置为 <code>false</code>：<br><img src="/images/frontend/js/definePropertyWritableFalse1.png" alt="definePropertyWritableFalse1"><br>需要注意的是，前面提到的不可写仅仅是指在外部不可写。如果我们重新使用 <code>Object.defineProperty()</code> 方法，且对其中的 <code>value</code> 值进行更改，那该属性的值照样会被覆盖。<br><img src="/images/frontend/js/definePropertyWritableFalse2.png" alt="definePropertyWritableFalse2"></p>
+<p><strong>2. Configurable</strong><br>那如果我们不希望它被覆盖掉怎么办？这时候特性 <code>configurable</code> 就派上用场了。它的作用就是决定当前属性是否可以进行重新配置。<br><img src="/images/frontend/js/definePropertyConfigurable1.png" alt="definePropertyConfigurable1"><br>当我们对一个 <code>configurable</code> 值为 <code>false</code> 的属性重新使用 <code>Object.defineProperty()</code> 进行配置时就会抛出一个 <code>TypeError</code> 的异常。</p>
+<p><code>configurable</code> 修改成 <code>false</code> 是一个单向操作，设置之后就无法撤销。</p>
+<blockquote>
+<p>还有一个小例外需要注意：即便当前属性的 <code>configurable</code> 为 <code>false</code>，我们还是可以把当前属性的 <code>writable</code> 的状态由 <code>true</code> 改为 <code>false</code>，但是反过来则不行。（<code>enumerable</code> 的值不能进行修改，会报错）</p>
+</blockquote>
+<p><img src="/images/frontend/js/definePropertyConfigurable2.png" alt="definePropertyConfigurable2"></p>
+<p><strong>3. Enumerable</strong><br>从名字就可以看出，该特性控制的是属性是否会出现在对象的属性枚举中，比如 <code>for...in</code> 循环。</p>
+<p>用户定义的所有普通属性默认都是 <code>enumerable: true</code>，也就是说，这个属性会在你枚举的属性列表中出现。</p>
+<h4 id="5-对象内置操作-——-Get"><a href="#5-对象内置操作-——-Get" class="headerlink" title="5. 对象内置操作 —— [[Get]]"></a>5. 对象内置操作 —— <code>[[Get]]</code></h4><p>你有没有思考过，当我们访问属性，它的原理是如何运作的？比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.a; <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<p>最后的一段代码是一次属性访问，但是这条语句不仅仅是在 <code>obj</code> 中查找名字为 <code>a</code> 的属性。</p>
+<p>在语言规范中，<code>obj.a</code> 在 <code>obj</code> 上实际上是实现了 <code>[[Get]]</code> 操作。对象默认的内置 <code>[[Get]]</code> 操作首先在对象中查找是否有名称相同的属性，如果找到就返回这个属性的值。</p>
+<p>如果没有找到名称相同的属性，该操作将会沿着原型链进行查找，若找到则返回，若没有则返回 <code>undefined</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span>,</span><br><span class="line">  d: <span class="literal">undefined</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">Object</span>.prototype, <span class="string">"b"</span>, &#123;</span><br><span class="line">    value: <span class="number">3</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.a;  <span class="comment">// 2</span></span><br><span class="line">obj.b;  <span class="comment">// 3</span></span><br><span class="line">obj.c;  <span class="comment">// undefined</span></span><br><span class="line">obj.d;  <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>如上代码所示，总共分为三种形式：</p>
+<ul>
+<li>属性可以在对象中找到</li>
+<li>属性在对象中找不到，但是在它的原型链上可以找到</li>
+<li>属性在对象和原型链中均找不到</li>
+</ul>
+<p>第一种情况：属性 <code>a</code> 和 <code>d</code> 可以在对象中直接找到，<code>[[Get]]</code> 操作直接返回其值。<br>第二种情况：属性 <code>b</code> 在对象中找不到，但是可以在它的原型对象（也就是原型链上）中找到，返回其值。<br>第三种情况，对于属性 <code>c</code> 我们在对象和原型链中均找不到，返回 <code>undefined</code>。  </p>
+<p>也许你注意到了，属性 <code>c</code> 和属性 <code>d</code> 均返回了 <code>undefined</code>，而前者并没有定义。</p>
+<p>我们可以以此得出一个结论：仅通过返回值，是无法判断一个属性是否存在并且持有一个 <code>undefined</code> 值。</p>
+<h4 id="6-对象内置操作-——-Put"><a href="#6-对象内置操作-——-Put" class="headerlink" title="6. 对象内置操作 —— [[Put]]"></a>6. 对象内置操作 —— <code>[[Put]]</code></h4><p>当我们读取对象属性时会自动调用对象默认的内置操作 <code>[[Get]]</code> 。相似的，当我们为对象属性赋值时也会调用内置操作 <code>[[Put]]</code>。</p>
+<p><code>[[Put]]</code> 被触发时，实际的行为取决于许多因素，其中一个很重要的因素就是：当前对象是否含有这个属性。</p>
+<p>假设我们执行 <code>obj.b = 4;</code>：</p>
+<p>如果对象 <code>obj</code> 中已经包含属性 <code>b</code>，<code>[[Put]]</code> 算法会检查一下内容：</p>
+<ol>
+<li>该属性是否是访问描述符（访问的属性是否是 <code>getter</code>）？如果是并且存在 <code>setter</code> 就调用 <code>setter</code>。</li>
+<li>该属性的数据描述符中 <code>writable</code> 是否为 <code>false</code>？如果是，在非严格模式下，修改失效，在严格模式下抛出 <code>TypeError</code> 异常。</li>
+<li>如果都不是，将该值设置为属性 <code>b</code> 的值。</li>
+</ol>
+<p>如果属性 <code>b</code> 不直接存在于这个对象中，而是存在于原型链上层时，会有三种情况：</p>
+<ol>
+<li>如果原型链上层存在属性 <code>b</code>，且其特性 <code>writable</code> 的值为 <code>true</code>，那么就会直接在 <code>obj</code> 中添加一个名为 <code>b</code> 的新属性。</li>
+<li>如果原型链上层存在属性 <code>b</code>，且其特性 <code>writable</code> 的值为 <code>false</code>，那么将无法修改已有的属性且无法在对象 <code>obj</code> 上创建该属性。如果运行在严格模式下，代码会抛出一个错误。否则，这条语句被忽略。</li>
+<li>如果在原型链上层存在属性 <code>b</code>，并且属性 <code>b</code> 是一个 <code>setter</code>，那将调用这个 <code>setter</code>。属性 <code>b</code> 不会被添加到对象 <code>obj</code> 中，且原型链中的 <code>setter</code> 也不会被重新定义。</li>
+</ol>
+<p>可能有些难理解，尤其是第二条。只读属性会阻止原型链下层隐式创建同名属性。其实这样做主要是为了模拟类属性的继承。我们可以这样思考，在 JavaScript 中，原型链这个特性常被用来实现“继承”。从这个角度来看，原型链上层的属性将被下层的属性“继承”，那如果上层的属性被设置为不可写，那自然“继承”下来的属性也是不可改变的（第二条）。如果可写，那也将会自动的生成该属性（第一条）。但是一定要注意，实际上并不会发生类似的继承赋值。</p>
+<blockquote>
+<p>对于第二条，它只存在于 <code>=</code> 赋值中，如果我们使用 <code>defineProperty()</code> 并不会受影响。</p>
+</blockquote>
+<p><img src="/images/frontend/js/PutPropertyWritableFalse.png" alt="PutPropertyWritableFalse"></p>
+<h4 id="7-对象的隐藏函数-——-Getter、Setter"><a href="#7-对象的隐藏函数-——-Getter、Setter" class="headerlink" title="7. 对象的隐藏函数 —— Getter、Setter"></a>7. 对象的隐藏函数 —— <code>Getter</code>、<code>Setter</code></h4><p>对象默认的 <code>[[Put]]</code> 和 <code>[[Get]]</code> 操作分别可以控制属性值的控制和获取。</p>
+<p>ES5 中可以使用 <code>getter</code> 和 <code>setter</code> 改写默认操作。当我们为属性定义 <code>getter</code> 、<code>setter</code>或者同时定义时，这个属性会被定义为 “访问描述符”（刚刚提到过）。对于访问描述符来说，JavaScript 会忽略它们的 <code>value</code> 和 <code>writable</code> 特性，取而代之的是关心 <code>set</code> 和 <code>get</code> （还有 <code>configurable</code>、<code>enumerable</code>）。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  get a() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"b"</span>, &#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a*<span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.a;  <span class="comment">//  2</span></span><br><span class="line">obj.b;  <span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
+<p>不管是对象文字语法中的 <code>get a() {..}</code> ，还是 <code>defineProperty(..)</code> 中的显示定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏的函数，它的返回值会被当作属性访问的返回值。</p>
+<p>为了让属性更合理，还应当定义 <code>setter</code>。<code>setter</code> 会覆盖单个属性默认的 <code>[[Put]]</code> 操作。通常来说，<code>getter</code>、<code>setter</code> 是成对出现的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  get a() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._a_;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  set a(val) &#123;</span><br><span class="line">    <span class="keyword">this</span>._a_ = val * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.a = <span class="number">2</span>;</span><br><span class="line">obj.a; <span class="comment">// 4</span></span><br></pre></td></tr></table></figure></p>
+<p>对于上面这段代码，<code>obj.a</code> 的赋值操作调用了 <code>set</code> 方法，使 <code>_a_</code> 的值变为 <code>4</code>。当我们再去输出 <code>obj.a</code> 时调用 <code>get</code> 方法输出 <code>4</code>。</p>
+<h4 id="8-遍历"><a href="#8-遍历" class="headerlink" title="8. 遍历"></a>8. 遍历</h4><p>你肯定早就用过 <code>for...in</code> 循环来遍历属性了。<code>for...in</code> 循环可以用来遍历对象的可枚举属性列表（包括原型链）。遍历属性名的有了，那我们如果想要遍历属性值应该怎么办？</p>
+<p>如果是遍历数组，那么我们可使用普通的 <code>for</code> 循环，然后利用下标来访问值。但是这本质上还是使用“属性名”来访问它的值。</p>
+<p>那么如何直接遍历值而不是数组下标（或者对象属性）呢？ES6 添加了遍历数组的 <code>for...of</code> 循环语法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> v <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p><code>for...of</code> 循环首先会向被访问对象请求一个迭代器对象，然后通过调用迭代器对象的 <code>next()</code> 方法来遍历所有返回值。</p>
+<p>数组有内置的 <code>@@iterator</code> ，因此 <code>for...of</code> 可以直接应用在数组上。我们使用内置的 <code>@@iterator</code> 来手动遍历数组：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> it = arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"></span><br><span class="line">it.next();  <span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line">it.next();  <span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line">it.next();  <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line">it.next();  <span class="comment">// &#123; done: true &#125;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>我们使用 ES6 中的符号 <code>Symbol.iterator</code> 来获取对象的 <code>@@iterator</code> 内部属性。引用类似 <code>iterator</code> 的特殊属性时要使用符号名，而不是符号包含的值。此外， <code>@@iterator</code> 本身并不是一个迭代器对象，而是一个返回迭代器对象的函数。</p>
+</blockquote>
+<p>和数组不同，普通的对象没有内置的 <code>@@iterator</code> ，所以无法自动完成 <code>for...of</code> 遍历。当然，我们也可以给任何想遍历的对象定义 <code>@@iterator</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span>, </span><br><span class="line">  b: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="built_in">Symbol</span>.iterator, &#123;</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  writable: <span class="literal">false</span>,</span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  value() &#123;</span><br><span class="line">    <span class="keyword">let</span> o = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> idx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> ks = <span class="built_in">Object</span>.keys(o);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          value: o[ks[idx++]],</span><br><span class="line">          done: (idx &gt; ks.length)</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手动遍历 obj</span></span><br><span class="line"><span class="keyword">let</span> it = obj[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"></span><br><span class="line">it.next(); <span class="comment">// &#123; value:2, done: false &#125;</span></span><br><span class="line">it.next(); <span class="comment">// &#123; value:3, done: false &#125;</span></span><br><span class="line">it.next(); <span class="comment">// &#123; value:undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 for...of 遍历</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> v <span class="keyword">of</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>注意，这里我们使用了 <code>Object.defineProperty</code> 来定义属性 <code>[Symbol.iterator]</code>。我们主要的目的是让它不可枚举。还有，这里我们使用了符号，我们也可以直接在定义对象时进行声明，比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span>, </span><br><span class="line">  b: <span class="number">3</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其中 <code>obj[Symbol.iterator]()</code> 是访问对象中的 <code>Symbol.iterator</code> 函数。</p>
+</blockquote>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>这篇文章中，我们主要讲了访问对象的方式、访问属性的过程中发生了什么？它的原理是怎样的？当我们设置属性值时它的原理又是怎样的？以及对属性描述符、访问描述符有了一个具象的了解。我们还讲了重要的 <code>setter</code> 和 <code>getter</code>，这两个隐藏方法的一个著名的实践就是前端框架 <code>vue</code> 中的双向绑定。最后，我们讲了属性的遍历，分别讲了属性名的遍历和属性值的遍历。</p>
+<p>接下来的一篇我们还将围绕对象来讲——对象的复制。文章将全面的讲解对象复制的方法，以及手动实现深复制。</p>
+<hr>
+<p>这是深入理解 JavaScript 语法合集的其中一篇，其它合集：<br><a href="https://syt-honey.github.io/2020/03/03/JavaScript%E8%AF%AD%E6%B3%95%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/">1. 深入理解 JavaScript —— 从设计一门语言讲起</a><br><a href="https://syt-honey.github.io/2020/03/06/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8A%EF%BC%89/">2. 你真的掌握了 JavaScript 变量和类型嘛？（上）</a><br><a href="https://syt-honey.github.io/2020/03/07/%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%8B%EF%BC%89/">3. 你真的掌握了 JavaScript 变量和类型嘛？（下）</a><br><a href="https://syt-honey.github.io/2020/03/12/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">4. JavaScript 的原型和原型链</a>  </p>
+<p>参考文章：<br>1.《你不知道的 JavaScript》上卷 by Kyle Simpson</p>
+<p>有问题？发送 <a href="https://syt-honey.github.io/about/">issues</a> 给我~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/12/原型和原型链/" rel="next" title="JavaScript 的原型和原型链">
+                <i class="fa fa-chevron-left"></i> JavaScript 的原型和原型链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="honeysyt" />
+            
+              <p class="site-author-name" itemprop="name">honeysyt</p>
+              <p class="site-description motion-element" itemprop="description">Don't say anything, just do it.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/syt-honey" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、语法"><span class="nav-number">1.1.</span> <span class="nav-text">一、语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）对象的创建"><span class="nav-number">1.1.1.</span> <span class="nav-text">（1）对象的创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、类型"><span class="nav-number">1.2.</span> <span class="nav-text">二、类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、关于对象的内容"><span class="nav-number">1.3.</span> <span class="nav-text">三、关于对象的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）对象属性"><span class="nav-number">1.3.1.</span> <span class="nav-text">（1）对象属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-属性访问"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 属性访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-可计算属性名"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2. 可计算属性名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-属性特性检测-——-Object-getOwnPropertyDescriptor"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3. 属性特性检测 —— Object.getOwnPropertyDescriptor()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-添加属性、修改已有属性——-Object-defineProperty"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">4. 添加属性、修改已有属性—— Object.defineProperty()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-对象内置操作-——-Get"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">5. 对象内置操作 —— [[Get]]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-对象内置操作-——-Put"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">6. 对象内置操作 —— [[Put]]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-对象的隐藏函数-——-Getter、Setter"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">7. 对象的隐藏函数 —— Getter、Setter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-遍历"><span class="nav-number">1.3.1.8.</span> <span class="nav-text">8. 遍历</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、总结"><span class="nav-number">1.4.</span> <span class="nav-text">四、总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">honeysyt</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
