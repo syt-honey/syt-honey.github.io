@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexGrow.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/alignSelf.png">
 <meta property="og:image" content="https://syt-honey.github.io/images/frontend/flexBrowserSupport.png">
-<meta property="og:updated_time" content="2020-03-05T07:52:56.587Z">
+<meta property="og:updated_time" content="2020-05-24T09:53:17.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局神器——伸缩盒（语法篇）">
 <meta name="twitter:description" content="这是HTML&amp;amp;CSS重点知识点合集第三篇。其余文章见文末。  一、伸缩盒（Flexible Box）伸缩盒（Flexible Box），看名字就知道，一个“有弹性”的盒子啦~（笑） 好啦，正紧一点。首先，伸缩盒是啥？伸缩盒是对传统布局方案的补充。传统的布局解决方案是基于盒状模型，依赖 display 属性 + position 属性 + float 属性。但是它对于一些特殊复杂的布局实现">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-03-05T15:52:56+08:00">
-                2020-03-05
+              <time title="Post modified" itemprop="dateModified" datetime="2020-05-24T17:53:17+08:00">
+                2020-05-24
               </time>
             
           </span>
@@ -416,7 +416,7 @@
 <p>相信大家对前五个属性还是比较熟悉的，那我们就来讲讲这个 <code>baseline</code>。它其实也很简单，就是根据文本的基线对齐：</p>
 <p><img src="/images/frontend/baseline.png" alt="baseline"></p>
 <h4 id="③-你可能不知道的两个属性值——-safe-和-unsafe"><a href="#③-你可能不知道的两个属性值——-safe-和-unsafe" class="headerlink" title="③. 你可能不知道的两个属性值—— safe 和 unsafe"></a>③. 你可能不知道的两个属性值—— <code>safe</code> 和 <code>unsafe</code></h4><p>你可能会对 <code>safe</code> 和 <code>unsafe</code> 这两个值感到陌生。Box Alignment规范新增了Safe和Unsafe对齐的概念，对应这两个关键字。</p>
-<p>我们以 <code>align-items</code> 的值来探讨一下。在下面的代码中，最后一项对于Flexbox来说太长了，上下都发生了溢出，且这种对齐方式是不安全的。</p>
+<p>我们以 <code>align-items</code> 的值来探讨一下。在下面的代码中，最后一项对于Flexbox来说太长了，左右都发生了溢出，且这种对齐方式是不安全的。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;  </span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: unsafe center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/images/frontend/unsafe.png" alt="unsafe"></p>
 <p><em>不安全的对齐方式导致的对齐结果可能会发生数据丢失</em></p>
