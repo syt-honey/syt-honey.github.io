@@ -20,6 +20,6 @@
     "hexo-server": "^0.2.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^5.0.1"
   }
 }
